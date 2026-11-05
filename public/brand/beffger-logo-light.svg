@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120" width="100%" height="100%">
+  <defs>
+    <filter id="shadowL" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#222B2B" flood-opacity="0.15"/>
+    </filter>
+    <linearGradient id="bunGradL" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF9D42"/>
+      <stop offset="100%" stop-color="#F47A22"/>
+    </linearGradient>
+    <linearGradient id="cheeseGradL" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE169"/>
+      <stop offset="100%" stop-color="#FFC247"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(10, 10) scale(0.5)" filter="url(#shadowL)">
+    <path d="M 25 90 C 25 35, 175 35, 175 90 Z" fill="url(#bunGradL)" stroke="#222B2B" stroke-width="6" stroke-linejoin="round"/>
+    <ellipse cx="65" cy="55" rx="4" ry="2.5" transform="rotate(-20 65 55)" fill="#FFF2DF"/>
+    <ellipse cx="100" cy="46" rx="4.5" ry="2.5" fill="#FFF2DF"/>
+    <ellipse cx="135" cy="55" rx="4" ry="2.5" transform="rotate(20 135 55)" fill="#FFF2DF"/>
+    <ellipse cx="85" cy="66" rx="4" ry="2" transform="rotate(10 85 66)" fill="#FFF2DF"/>
+    <ellipse cx="120" cy="68" rx="4" ry="2.2" transform="rotate(-15 120 68)" fill="#FFF2DF"/>
+
+    <path d="M 52 58 Q 72 63 86 54" fill="none" stroke="#222B2B" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 148 58 Q 128 63 114 54" fill="none" stroke="#222B2B" stroke-width="5" stroke-linecap="round"/>
+
+    <ellipse cx="74" cy="74" rx="14" ry="16" fill="#FFFFFF" stroke="#222B2B" stroke-width="4.5"/>
+    <circle cx="78" cy="74" r="8" fill="#222B2B"/>
+    <circle cx="81" cy="71" r="3" fill="#FFFFFF"/>
+    
+    <ellipse cx="126" cy="74" rx="14" ry="16" fill="#FFFFFF" stroke="#222B2B" stroke-width="4.5"/>
+    <circle cx="122" cy="74" r="8" fill="#222B2B"/>
+    <circle cx="119" cy="71" r="3" fill="#FFFFFF"/>
+
+    <ellipse cx="48" cy="84" rx="8" ry="4" fill="#E94D3C" opacity="0.6"/>
+    <ellipse cx="152" cy="84" rx="8" ry="4" fill="#E94D3C" opacity="0.6"/>
+
+    <path d="M 20 96 Q 50 97 80 96 Q 110 97 140 96 Q 170 97 182 94 Q 170 88 20 96 Z" 
+          fill="#27AE60" stroke="#222B2B" stroke-width="5" stroke-linejoin="round"/>
+
+    <rect x="22" y="100" width="156" height="24" rx="12" fill="#5A2E16" stroke="#222B2B" stroke-width="5"/>
+
+    <path d="M 24 114 L 176 114 C 176 114, 172 136, 160 134 C 152 132, 148 118, 142 118 C 136 118, 134 142, 122 144 C 114 145, 108 122, 102 122 C 96 122, 92 140, 80 142 C 72 143, 68 122, 60 122 C 52 122, 48 136, 38 134 C 30 132, 26 114, 24 114 Z" 
+          fill="url(#cheeseGradL)" stroke="#222B2B" stroke-width="5" stroke-linejoin="round"/>
+
+    <path d="M 32 136 C 32 166, 168 166, 168 136 Z" fill="url(#bunGradL)" stroke="#222B2B" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Typography: BEFFGER in Charcoal and Orange -->
+  <text x="125" y="70" font-family="'Barlow Condensed', 'Arial Black', sans-serif" font-weight="800" font-size="58" letter-spacing="3" fill="#222B2B">
+    BEFF<tspan fill="#F47A22">GER</tspan>
+  </text>
+
+  <!-- Slogan Badge -->
+  <rect x="126" y="82" width="260" height="22" rx="6" fill="#222B2B"/>
+  <text x="256" y="98" font-family="'Inter', sans-serif" font-weight="700" font-size="11.5" letter-spacing="2.5" fill="#FFF2DF" text-anchor="middle">
+    LA CALLE TIENE SABOR
+  </text>
+  
+  <polygon points="400,93 403,87 406,93 412,94 407,98 409,104 403,100 398,104 400,98 395,94" fill="#F47A22"/>
+</svg>

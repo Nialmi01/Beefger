@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Burger mini -->
+  <path d="M 6 28 C 6 20, 26 20, 26 28 Z" fill="#F47A22" stroke="#222B2B" stroke-width="2"/>
+  <rect x="5" y="30" width="22" height="4" rx="2" fill="#5A2E16" stroke="#222B2B" stroke-width="1.5"/>
+  <path d="M 6 34 L 26 34 C 26 34, 22 38, 16 38 C 10 38, 6 34, 6 34 Z" fill="#FFC247"/>
+  <path d="M 7 38 C 7 43, 25 43, 25 38 Z" fill="#F47A22" stroke="#222B2B" stroke-width="2"/>
+
+  <!-- Drink Cup -->
+  <path d="M 28 16 L 30 42 L 42 42 L 44 16 Z" fill="#E94D3C" stroke="#222B2B" stroke-width="2"/>
+  <rect x="26" y="14" width="20" height="3" rx="1.5" fill="#222B2B"/>
+  <!-- Straw -->
+  <path d="M 36 14 L 38 6 L 44 6" fill="none" stroke="#FFC247" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
