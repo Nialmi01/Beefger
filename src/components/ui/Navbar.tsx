@@ -65,12 +65,6 @@ export function Navbar() {
           >
             <span>📱</span> App Móvil
           </Link>
-          <Link
-            href="/admin"
-            className="text-[#FFC247] hover:text-white transition-colors font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-[#FFC247]/10 border border-[#FFC247]/30"
-          >
-            Panel Restaurante
-          </Link>
         </nav>
 
         {/* Right CTA / Cart Trigger */}
