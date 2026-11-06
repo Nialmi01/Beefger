@@ -282,20 +282,20 @@ export default function HomePage() {
                     </div>
 
                     {/* Price & Add CTA */}
-                    <div className="mt-5 pt-3.5 border-t border-[#dec0b1]/60 flex items-center justify-between">
+                    <div className="mt-5 pt-3.5 border-t border-[#dec0b1]/60 flex items-center justify-between gap-2">
                       <div>
                         <span className="text-[10px] text-[#8b7265] uppercase font-bold block">
                           Precio
                         </span>
-                        <span className="font-heading text-2xl text-[#222B2B] font-bold">
+                        <span className="font-heading text-xl sm:text-2xl text-[#222B2B] font-bold whitespace-nowrap">
                           ${product.price.toLocaleString('es-CO')}{' '}
-                          <span className="text-xs font-normal text-[#8b7265]">COP</span>
+                          <span className="text-[10px] sm:text-xs font-normal text-[#8b7265]">COP</span>
                         </span>
                       </div>
 
                       <button
                         onClick={() => setSelectedProduct(product)}
-                        className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 group-hover:shadow-[0_6px_16px_rgba(244,122,34,0.4)]"
+                        className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 whitespace-nowrap shrink-0 group-hover:shadow-[0_6px_16px_rgba(244,122,34,0.4)]"
                       >
                         <Plus className="w-4 h-4 stroke-[3]" />
                         <span>PERSONALIZAR</span>

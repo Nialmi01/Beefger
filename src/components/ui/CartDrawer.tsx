@@ -147,10 +147,10 @@ export function CartDrawer() {
               <Link
                 href="/checkout"
                 onClick={() => setIsOpen(false)}
-                className="w-full py-3.5 px-6 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-base uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_10px_25px_rgba(244,122,34,0.4)] transition-all active:scale-95"
+                className="w-full py-3.5 px-4 sm:px-6 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_10px_25px_rgba(244,122,34,0.4)] transition-all active:scale-95 whitespace-nowrap"
               >
                 <span>CONTINUAR AL CHECKOUT</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5 shrink-0" />
               </Link>
             </div>
           )}

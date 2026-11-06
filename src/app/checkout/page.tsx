@@ -424,19 +424,19 @@ export default function CheckoutPage() {
                     </div>
                   )}
 
-                  <div className="flex items-center gap-3 pt-2">
+                  <div className="flex items-center gap-2 sm:gap-3 pt-2">
                     <button
                       onClick={() => setStep(1)}
-                      className="px-6 py-3.5 rounded-full border border-[#dec0b1] text-[#574237] text-xs font-bold uppercase"
+                      className="px-4 sm:px-6 py-3 sm:py-3.5 rounded-full border border-[#dec0b1] text-[#574237] text-xs font-bold uppercase shrink-0"
                     >
                       Atrás
                     </button>
                     <button
                       onClick={handleNextStep}
-                      className="flex-1 py-3.5 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-md"
+                      className="flex-1 min-w-0 py-3 sm:py-3.5 px-3 sm:px-6 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 shadow-md whitespace-nowrap"
                     >
                       <span>CONTINUAR A PAGO</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 shrink-0" />
                     </button>
                   </div>
                 </div>
@@ -566,19 +566,19 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 pt-2">
+                  <div className="flex items-center gap-2 sm:gap-3 pt-2">
                     <button
                       onClick={() => setStep(2)}
-                      className="px-6 py-3.5 rounded-full border border-[#dec0b1] text-[#574237] text-xs font-bold uppercase"
+                      className="px-4 sm:px-6 py-3 sm:py-3.5 rounded-full border border-[#dec0b1] text-[#574237] text-xs font-bold uppercase shrink-0"
                     >
                       Atrás
                     </button>
                     <button
                       onClick={handleNextStep}
-                      className="flex-1 py-3.5 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-md"
+                      className="flex-1 min-w-0 py-3 sm:py-3.5 px-3 sm:px-6 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 shadow-md whitespace-nowrap"
                     >
                       <span>REVISAR RESUMEN</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 shrink-0" />
                     </button>
                   </div>
                 </div>
@@ -640,10 +640,10 @@ export default function CheckoutPage() {
                     />
                   </div>
 
-                  <div className="flex items-center gap-3 pt-2">
+                  <div className="flex items-center gap-2 sm:gap-3 pt-2">
                     <button
                       onClick={() => setStep(3)}
-                      className="px-6 py-4 rounded-full border border-[#dec0b1] text-[#574237] text-xs font-bold uppercase"
+                      className="px-4 sm:px-6 py-3.5 sm:py-4 rounded-full border border-[#dec0b1] text-[#574237] text-xs font-bold uppercase shrink-0"
                       disabled={isSubmitting}
                     >
                       Atrás
@@ -651,14 +651,15 @@ export default function CheckoutPage() {
                     <button
                       onClick={handleSubmitOrder}
                       disabled={isSubmitting}
-                      className="flex-1 py-4 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-base uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_10px_25px_rgba(244,122,34,0.4)] transition-all active:scale-95 disabled:opacity-50"
+                      className="flex-1 min-w-0 py-3.5 sm:py-4 px-3 sm:px-6 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-xs sm:text-base uppercase tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 shadow-[0_10px_25px_rgba(244,122,34,0.4)] transition-all active:scale-95 disabled:opacity-50 whitespace-nowrap"
                     >
                       {isSubmitting ? (
-                        <span>PROCESANDO PEDIDO...</span>
+                        <span>PROCESANDO...</span>
                       ) : (
                         <>
-                          <CheckCircle2 className="w-5 h-5" />
-                          <span>CONFIRMAR PEDIDO — ${grandTotal.toLocaleString('es-CO')} COP</span>
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                          <span className="hidden sm:inline">CONFIRMAR PEDIDO — ${grandTotal.toLocaleString('es-CO')} COP</span>
+                          <span className="sm:hidden">PEDIR — ${grandTotal.toLocaleString('es-CO')}</span>
                         </>
                       )}
                     </button>

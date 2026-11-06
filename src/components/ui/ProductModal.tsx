@@ -45,7 +45,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4 md:p-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4">
       {/* Backdrop */}
       <div
         onClick={onClose}
@@ -53,19 +53,20 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
       />
 
       {/* Modal Dialog */}
-      <div className="relative bg-[#FFF2DF] rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl border border-[#dec0b1] z-10 flex flex-col max-h-[92vh]">
+      <div className="relative bg-[#FFF2DF] rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl border border-[#dec0b1] z-10 flex flex-col max-h-[94vh] sm:max-h-[90vh]">
         {/* Sticky Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-[#222B2B]/80 hover:bg-[#222B2B] text-white flex items-center justify-center shadow-lg transition-transform active:scale-90"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#222B2B]/80 hover:bg-[#222B2B] text-white flex items-center justify-center shadow-lg transition-transform active:scale-90"
+          aria-label="Cerrar modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* Modal Scrollable Body */}
         <div className="overflow-y-auto flex-1">
           {/* Product Hero Image */}
-          <div className="relative aspect-video w-full bg-[#222B2B] overflow-hidden">
+          <div className="relative aspect-[16/10] sm:aspect-video w-full bg-[#222B2B] overflow-hidden">
             <img
               src={product.image_url}
               alt={product.name}
@@ -74,38 +75,38 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-[#222B2B]/90 via-transparent to-transparent" />
             
             {product.badge && (
-              <span className="absolute top-4 left-4 bg-[#FFC247] text-[#222B2B] font-heading text-xs font-extrabold uppercase px-3 py-1 rounded-full shadow-lg">
+              <span className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-[#FFC247] text-[#222B2B] font-heading text-[10px] sm:text-xs font-extrabold uppercase px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
                 {product.badge}
               </span>
             )}
 
-            <div className="absolute bottom-4 left-4 right-4 text-white">
-              <h2 className="font-heading text-3xl sm:text-4xl leading-tight m-0 uppercase tracking-wide">
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white">
+              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl leading-tight m-0 uppercase tracking-wide">
                 {product.name}
               </h2>
-              <div className="flex items-center gap-4 text-xs sm:text-sm text-[#EDE1CE]/90 mt-1">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[#EDE1CE]/90 mt-1">
                 <span className="flex items-center gap-1">
-                  <Clock className="w-4 h-4 text-[#F47A22]" /> {product.preparation_time_minutes} min
+                  <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F47A22]" /> {product.preparation_time_minutes} min
                 </span>
                 <span>•</span>
-                <span className="text-[#FFC247] font-bold text-base">
+                <span className="text-[#FFC247] font-bold text-sm sm:text-base">
                   ${product.price.toLocaleString('es-CO')} COP
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="p-6 space-y-6">
+          <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
             {/* Description */}
             <div>
-              <h4 className="font-heading text-sm text-[#9a4600] tracking-wider uppercase mb-1">
+              <h4 className="font-heading text-xs sm:text-sm text-[#9a4600] tracking-wider uppercase mb-1">
                 Ingredientes & Receta
               </h4>
-              <p className="text-sm text-[#222B2B] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#222B2B] leading-relaxed">
                 {product.description}
               </p>
               {product.allergens && product.allergens.length > 0 && (
-                <div className="mt-3 flex items-center gap-2 text-xs text-[#574237] bg-white/60 p-2.5 rounded-lg border border-[#dec0b1]/60">
+                <div className="mt-2.5 flex items-center gap-2 text-xs text-[#574237] bg-white/60 p-2 sm:p-2.5 rounded-lg border border-[#dec0b1]/60">
                   <AlertCircle className="w-4 h-4 text-[#E94D3C] shrink-0" />
                   <span>Contiene alérgenos: {product.allergens.join(', ')}</span>
                 </div>
@@ -114,16 +115,16 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
 
             {/* Dynamic Modifier Groups */}
             {product.modifier_groups && product.modifier_groups.length > 0 && (
-              <div className="space-y-5 pt-2 border-t border-[#dec0b1]/60">
+              <div className="space-y-4 sm:space-y-5 pt-2 border-t border-[#dec0b1]/60">
                 {product.modifier_groups.map((group) => {
                   const isSingle = group.max_selection === 1;
                   return (
-                    <div key={group.id} className="space-y-2.5">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-heading text-base text-[#222B2B] tracking-wide">
+                    <div key={group.id} className="space-y-2 sm:space-y-2.5">
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="font-heading text-sm sm:text-base text-[#222B2B] tracking-wide">
                           {group.name}
                         </h4>
-                        <span className="text-xs font-medium text-[#574237] bg-white px-2 py-0.5 rounded-full border border-[#dec0b1]">
+                        <span className="text-[10px] sm:text-xs font-medium text-[#574237] bg-white px-2 py-0.5 rounded-full border border-[#dec0b1] whitespace-nowrap">
                           {isSingle ? 'Elige 1 opción' : `Hasta ${group.max_selection} opciones`}
                         </span>
                       </div>
@@ -146,17 +147,17 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                                   isSingle
                                 )
                               }
-                              className={`p-3 rounded-xl border text-left flex items-center justify-between transition-all ${
+                              className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between transition-all ${
                                 isSelected
                                   ? 'bg-[#222B2B] text-white border-[#222B2B] shadow-md'
                                   : 'bg-white text-[#222B2B] border-[#dec0b1]/70 hover:border-[#F47A22]'
                               }`}
                             >
-                              <div className="flex items-center gap-2.5">
+                              <div className="flex items-center gap-2">
                                 <div
                                   className={`w-4 h-4 rounded-${
                                     isSingle ? 'full' : 'md'
-                                  } border flex items-center justify-center ${
+                                  } border flex items-center justify-center shrink-0 ${
                                     isSelected
                                       ? 'bg-[#F47A22] border-[#F47A22] text-white'
                                       : 'border-[#8b7265] bg-white'
@@ -170,7 +171,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                               </div>
                               {option.price_adjustment > 0 && (
                                 <span
-                                  className={`text-xs font-bold shrink-0 ml-2 ${
+                                  className={`text-xs font-bold shrink-0 ml-2 whitespace-nowrap ${
                                     isSelected ? 'text-[#FFC247]' : 'text-[#F47A22]'
                                   }`}
                                 >
@@ -189,7 +190,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
 
             {/* Special Instructions */}
             <div className="pt-2 border-t border-[#dec0b1]/60">
-              <label className="block font-heading text-sm text-[#222B2B] tracking-wide mb-1.5">
+              <label className="block font-heading text-xs sm:text-sm text-[#222B2B] tracking-wide mb-1.5">
                 Indicaciones especiales para cocina
               </label>
               <textarea
@@ -197,39 +198,49 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Ej: sin cebolla, salsa aparte, servilletas adicionales..."
                 rows={2}
-                className="w-full p-3 rounded-xl bg-white border border-[#dec0b1] text-xs text-[#222B2B] placeholder:text-[#574237]/50 focus:outline-none focus:ring-2 focus:ring-[#F47A22]"
+                className="w-full p-2.5 sm:p-3 rounded-xl bg-white border border-[#dec0b1] text-xs text-[#222B2B] placeholder:text-[#574237]/50 focus:outline-none focus:ring-2 focus:ring-[#F47A22]"
               />
             </div>
           </div>
         </div>
 
         {/* Modal Sticky Bottom Bar */}
-        <div className="p-4 bg-white border-t border-[#dec0b1] flex items-center justify-between gap-4">
+        <div className="p-3 sm:p-4 bg-white border-t border-[#dec0b1] flex items-center justify-between gap-2 sm:gap-4 shrink-0">
           {/* Stepper */}
-          <div className="flex items-center border-2 border-[#222B2B] rounded-full bg-[#FFF2DF] px-2 py-1">
+          <div className="flex items-center border-2 border-[#222B2B] rounded-full bg-[#FFF2DF] px-1 sm:px-2 py-1 shrink-0 shadow-sm">
             <button
+              type="button"
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              className="w-8 h-8 rounded-full flex items-center justify-center text-[#222B2B] hover:bg-black/10 transition-colors"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[#222B2B] hover:bg-black/10 active:scale-90 transition-all"
+              aria-label="Disminuir cantidad"
             >
-              <Minus className="w-4 h-4" />
+              <Minus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
             </button>
-            <span className="w-8 text-center font-bold text-sm">{quantity}</span>
+            <span className="w-6 sm:w-8 text-center font-extrabold text-xs sm:text-sm text-[#222B2B] select-none">
+              {quantity}
+            </span>
             <button
+              type="button"
               onClick={() => setQuantity((q) => q + 1)}
-              className="w-8 h-8 rounded-full flex items-center justify-center text-[#222B2B] hover:bg-black/10 transition-colors"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[#222B2B] hover:bg-black/10 active:scale-90 transition-all"
+              aria-label="Aumentar cantidad"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
             </button>
           </div>
 
           {/* Add Button */}
           <button
+            type="button"
             onClick={handleAddToCart}
-            className="flex-1 py-3.5 px-6 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-sm sm:text-base uppercase tracking-wider shadow-[0_8px_20px_rgba(244,122,34,0.4)] transition-all active:scale-95 flex items-center justify-between"
+            className="flex-1 min-w-0 py-3 sm:py-3.5 px-3 sm:px-6 rounded-full bg-[#F47A22] hover:bg-[#d96616] text-white font-heading font-extrabold shadow-[0_6px_20px_rgba(244,122,34,0.35)] transition-all active:scale-95 flex items-center justify-between gap-1.5 sm:gap-3"
           >
-            <span>AGREGAR AL PEDIDO</span>
-            <span className="text-[#FFF2DF] font-extrabold">
-              ${totalPrice.toLocaleString('es-CO')} COP
+            <span className="text-xs sm:text-sm md:text-base uppercase tracking-wider font-extrabold whitespace-nowrap truncate">
+              <span className="hidden sm:inline">AGREGAR AL PEDIDO</span>
+              <span className="sm:hidden">AGREGAR</span>
+            </span>
+            <span className="shrink-0 text-xs sm:text-sm md:text-base font-black text-[#FFF2DF] whitespace-nowrap bg-black/15 sm:bg-transparent px-2.5 sm:px-0 py-0.5 rounded-full">
+              ${totalPrice.toLocaleString('es-CO')} <span className="text-[10px] sm:text-xs font-semibold opacity-90">COP</span>
             </span>
           </button>
         </div>
