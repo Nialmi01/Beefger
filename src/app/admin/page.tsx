@@ -174,44 +174,56 @@ export default function AdminDashboardPage() {
           </div>
 
           <div className="space-y-3">
-            {orders.slice(0, 5).map((o) => (
-              <div
-                key={o.id}
-                className="p-4 rounded-2xl border border-[#dec0b1]/70 bg-[#FFF2DF]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-[#F47A22] transition-colors"
-              >
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-extrabold bg-[#222B2B] text-white px-2.5 py-0.5 rounded">
-                      {o.order_number}
-                    </span>
-                    <span className="font-bold text-xs text-[#222B2B]">{o.customer_name}</span>
-                    <span className="text-[10px] text-gray-400">
-                      • {new Date(o.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </span>
-                  </div>
-                  <div className="text-xs text-[#574237] mt-1.5">
-                    {o.items.map((i) => `${i.quantity}x ${i.product_name_snapshot}`).join(', ')}
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
-                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase ${
-                    o.status === 'nuevo'
-                      ? 'bg-blue-100 text-blue-800'
-                      : o.status === 'en_preparacion'
-                      ? 'bg-amber-100 text-amber-800'
-                      : o.status === 'listo'
-                      ? 'bg-emerald-100 text-emerald-800'
-                      : 'bg-gray-100 text-gray-800'
-                  }`}>
-                    {o.status.replace('_', ' ')}
-                  </span>
-                  <span className="font-heading text-lg text-[#222B2B] font-bold">
-                    ${o.total.toLocaleString('es-CO')}
-                  </span>
-                </div>
+            {orders.length === 0 ? (
+              <div className="text-center py-12 space-y-2">
+                <ShoppingBag className="w-10 h-10 text-[#8b7265] mx-auto opacity-50" />
+                <h4 className="font-heading text-lg text-[#222B2B]">No hay comandas activas</h4>
+                <p className="text-xs text-[#574237]">
+                  Los pedidos realizados por clientes en la tienda o creados en caja aparecerán aquí en vivo.
+                </p>
               </div>
-            ))}
+            ) : (
+              orders.slice(0, 5).map((o) => (
+                <div
+                  key={o.id}
+                  className="p-4 rounded-2xl border border-[#dec0b1]/70 bg-[#FFF2DF]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-[#F47A22] transition-colors"
+                >
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs font-extrabold bg-[#222B2B] text-white px-2.5 py-0.5 rounded">
+                        {o.order_number}
+                      </span>
+                      <span className="font-bold text-xs text-[#222B2B]">{o.customer_name}</span>
+                      <span className="text-[10px] text-gray-400">
+                        • {new Date(o.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </span>
+                    </div>
+                    <div className="text-xs text-[#574237] mt-1.5">
+                      {o.items.map((i) => `${i.quantity}x ${i.product_name_snapshot}`).join(', ')}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                    <span
+                      className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase ${
+                        o.status === 'nuevo'
+                          ? 'bg-blue-100 text-blue-800'
+                          : o.status === 'en_preparacion'
+                          ? 'bg-amber-100 text-amber-800'
+                          : o.status === 'listo'
+                          ? 'bg-emerald-100 text-emerald-800'
+                          : 'bg-gray-100 text-gray-800'
+                      }`}
+                    >
+                      {o.status.replace('_', ' ')}
+                    </span>
+                    <span className="font-heading text-lg text-[#222B2B] font-bold">
+                      ${o.total.toLocaleString('es-CO')}
+                    </span>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
@@ -261,8 +273,8 @@ export default function AdminDashboardPage() {
               </div>
               <div className="w-full bg-gray-100 rounded-full h-2">
                 <div
-                  className="bg-[#10b981] h-2 rounded-full"
-                  style={{ width: `${totalSales > 0 ? (cashSales / totalSales) * 100 : 50}%` }}
+                  className="bg-[#10b981] h-2 rounded-full transition-all"
+                  style={{ width: `${totalSales > 0 ? (cashSales / totalSales) * 100 : 0}%` }}
                 />
               </div>
 
@@ -272,8 +284,8 @@ export default function AdminDashboardPage() {
               </div>
               <div className="w-full bg-gray-100 rounded-full h-2">
                 <div
-                  className="bg-[#F47A22] h-2 rounded-full"
-                  style={{ width: `${totalSales > 0 ? (digitalSales / totalSales) * 100 : 50}%` }}
+                  className="bg-[#F47A22] h-2 rounded-full transition-all"
+                  style={{ width: `${totalSales > 0 ? (digitalSales / totalSales) * 100 : 0}%` }}
                 />
               </div>
             </div>

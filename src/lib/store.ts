@@ -56,11 +56,11 @@ export const INITIAL_CATEGORIES: Category[] = [
   },
 ];
 
-// Initial Delivery Zones
+// Initial Delivery Zones (Customizable according to city and operating hub)
 export const INITIAL_DELIVERY_ZONES: DeliveryZone[] = [
   {
     id: 'dz1',
-    name: 'Zona 1: San Fernando / Miraflores',
+    name: 'Zona 1: Cobertura Cercana (1 - 3 km)',
     delivery_fee: 4000,
     min_order_amount: 20000,
     estimated_time_minutes: 25,
@@ -68,24 +68,16 @@ export const INITIAL_DELIVERY_ZONES: DeliveryZone[] = [
   },
   {
     id: 'dz2',
-    name: 'Zona 2: Granada / El Peñón / Centenario',
-    delivery_fee: 5000,
-    min_order_amount: 20000,
-    estimated_time_minutes: 30,
-    is_active: true,
-  },
-  {
-    id: 'dz3',
-    name: 'Zona 3: Tequendama / Limonar',
-    delivery_fee: 6000,
+    name: 'Zona 2: Cobertura Media (3 - 6 km)',
+    delivery_fee: 5500,
     min_order_amount: 25000,
     estimated_time_minutes: 35,
     is_active: true,
   },
   {
-    id: 'dz4',
-    name: 'Zona 4: Ciudad Jardín / Pance',
-    delivery_fee: 8500,
+    id: 'dz3',
+    name: 'Zona 3: Cobertura Extendida (6 - 10 km)',
+    delivery_fee: 8000,
     min_order_amount: 35000,
     estimated_time_minutes: 45,
     is_active: true,
@@ -536,24 +528,41 @@ export const INITIAL_PRODUCTS: Product[] = [
 
 // Initial Ingredients for Kardex & Technical sheets
 export const INITIAL_INGREDIENTS: Ingredient[] = [
-  { id: 'i1', name: 'Carne de res seleccionada', sku: 'ING-CARN-01', unit: 'g', current_stock: 24500, minimum_stock: 5000, cost_per_unit: 28.0, supplier: 'Carnes del Valle', is_active: true },
-  { id: 'i2', name: 'Pan brioche artesanal', sku: 'ING-PANB-01', unit: 'un', current_stock: 175, minimum_stock: 30, cost_per_unit: 1400.0, supplier: 'Panadería La Corona', is_active: true },
-  { id: 'i3', name: 'Queso Cheddar lonchas', sku: 'ING-CHED-01', unit: 'g', current_stock: 7800, minimum_stock: 1500, cost_per_unit: 32.0, supplier: 'Lácteos El Trébol', is_active: true },
-  { id: 'i4', name: 'Queso Mozzarella bloque', sku: 'ING-MOZZ-01', unit: 'g', current_stock: 17200, minimum_stock: 3000, cost_per_unit: 26.0, supplier: 'Lácteos El Trébol', is_active: true },
-  { id: 'i5', name: 'Tocineta ahumada laminada', sku: 'ING-TOCI-01', unit: 'g', current_stock: 9200, minimum_stock: 2000, cost_per_unit: 35.0, supplier: 'Embutidos Don Raúl', is_active: true },
-  { id: 'i6', name: 'Pan de perro 22cm', sku: 'ING-PANP-01', unit: 'un', current_stock: 115, minimum_stock: 25, cost_per_unit: 1100.0, supplier: 'Panadería La Corona', is_active: true },
-  { id: 'i7', name: 'Salchicha parrillera 100g', sku: 'ING-SALC-01', unit: 'g', current_stock: 14600, minimum_stock: 3000, cost_per_unit: 22.0, supplier: 'Embutidos Don Raúl', is_active: true },
-  { id: 'i8', name: 'Chorizo parrillero artesanal', sku: 'ING-CHOR-01', unit: 'g', current_stock: 7200, minimum_stock: 1500, cost_per_unit: 25.0, supplier: 'Embutidos Don Raúl', is_active: true },
+  { id: 'i1', name: 'Carne de res seleccionada', sku: 'ING-CARN-01', unit: 'g', current_stock: 24500, minimum_stock: 5000, cost_per_unit: 28.0, supplier: 'Carnes Premium', is_active: true },
+  { id: 'i2', name: 'Pan brioche artesanal', sku: 'ING-PANB-01', unit: 'un', current_stock: 175, minimum_stock: 30, cost_per_unit: 1400.0, supplier: 'Panadería Artesanal', is_active: true },
+  { id: 'i3', name: 'Queso Cheddar lonchas', sku: 'ING-CHED-01', unit: 'g', current_stock: 7800, minimum_stock: 1500, cost_per_unit: 32.0, supplier: 'Lácteos del País', is_active: true },
+  { id: 'i4', name: 'Queso Mozzarella bloque', sku: 'ING-MOZZ-01', unit: 'g', current_stock: 17200, minimum_stock: 3000, cost_per_unit: 26.0, supplier: 'Lácteos del País', is_active: true },
+  { id: 'i5', name: 'Tocineta ahumada laminada', sku: 'ING-TOCI-01', unit: 'g', current_stock: 9200, minimum_stock: 2000, cost_per_unit: 35.0, supplier: 'Embutidos Artesanales', is_active: true },
+  { id: 'i6', name: 'Pan de perro 22cm', sku: 'ING-PANP-01', unit: 'un', current_stock: 115, minimum_stock: 25, cost_per_unit: 1100.0, supplier: 'Panadería Artesanal', is_active: true },
+  { id: 'i7', name: 'Salchicha parrillera 100g', sku: 'ING-SALC-01', unit: 'g', current_stock: 14600, minimum_stock: 3000, cost_per_unit: 22.0, supplier: 'Embutidos Artesanales', is_active: true },
+  { id: 'i8', name: 'Chorizo parrillero artesanal', sku: 'ING-CHOR-01', unit: 'g', current_stock: 7200, minimum_stock: 1500, cost_per_unit: 25.0, supplier: 'Embutidos Artesanales', is_active: true },
   { id: 'i9', name: 'Masa de pizza 30cm (220g)', sku: 'ING-MASP-01', unit: 'g', current_stock: 14800, minimum_stock: 3000, cost_per_unit: 8.5, supplier: 'Producción Interna', is_active: true },
   { id: 'i10', name: 'Hogao casero colombiano', sku: 'ING-HOGA-01', unit: 'g', current_stock: 5800, minimum_stock: 1000, cost_per_unit: 12.0, supplier: 'Producción Interna', is_active: true },
-  { id: 'i11', name: 'Plátano maduro en cubos', sku: 'ING-PLAT-01', unit: 'g', current_stock: 9600, minimum_stock: 2000, cost_per_unit: 6.5, supplier: 'Central de Abastos', is_active: true },
+  { id: 'i11', name: 'Plátano maduro en cubos', sku: 'ING-PLAT-01', unit: 'g', current_stock: 9600, minimum_stock: 2000, cost_per_unit: 6.5, supplier: 'Central Mayorista', is_active: true },
   { id: 'i12', name: 'Cebolla caramelizada', sku: 'ING-CEBC-01', unit: 'g', current_stock: 4800, minimum_stock: 1000, cost_per_unit: 14.0, supplier: 'Producción Interna', is_active: true },
-  { id: 'i13', name: 'Pepinillos agridulces', sku: 'ING-PEPI-01', unit: 'g', current_stock: 3400, minimum_stock: 800, cost_per_unit: 20.0, supplier: 'Importaciones del Valle', is_active: true },
+  { id: 'i13', name: 'Pepinillos agridulces', sku: 'ING-PEPI-01', unit: 'g', current_stock: 3400, minimum_stock: 800, cost_per_unit: 20.0, supplier: 'Distribuciones Gourmet', is_active: true },
   { id: 'i14', name: 'Salsa Ahumada BEFFGER', sku: 'ING-SAHU-01', unit: 'g', current_stock: 7800, minimum_stock: 1500, cost_per_unit: 16.0, supplier: 'Producción Interna', is_active: true },
-  { id: 'i15', name: 'Caja ecológica hamburguesa', sku: 'EMP-CAJH-01', unit: 'un', current_stock: 380, minimum_stock: 80, cost_per_unit: 750.0, supplier: 'Empaques del Pacífico', is_active: true },
+  { id: 'i15', name: 'Caja ecológica hamburguesa', sku: 'EMP-CAJH-01', unit: 'un', current_stock: 380, minimum_stock: 80, cost_per_unit: 750.0, supplier: 'Empaques Eco', is_active: true },
+  { id: 'i16', name: 'Piña oro miel asada', sku: 'ING-PINA-01', unit: 'g', current_stock: 8400, minimum_stock: 1500, cost_per_unit: 8.0, supplier: 'Central Mayorista', is_active: true },
+  { id: 'i17', name: 'Salsa de mango picante', sku: 'ING-SMNG-01', unit: 'g', current_stock: 6200, minimum_stock: 1200, cost_per_unit: 15.0, supplier: 'Producción Interna', is_active: true },
+  { id: 'i18', name: 'Maíz dulce tierno', sku: 'ING-MAIZ-01', unit: 'g', current_stock: 5400, minimum_stock: 1000, cost_per_unit: 10.0, supplier: 'Distribuciones Gourmet', is_active: true },
+  { id: 'i19', name: 'Papitas ripiao crocantes', sku: 'ING-PRIP-01', unit: 'g', current_stock: 6800, minimum_stock: 1200, cost_per_unit: 12.0, supplier: 'Snacks & Papas', is_active: true },
+  { id: 'i20', name: 'Salsa de piña caramelizada', sku: 'ING-SPIN-01', unit: 'g', current_stock: 7100, minimum_stock: 1200, cost_per_unit: 11.0, supplier: 'Producción Interna', is_active: true },
+  { id: 'i21', name: 'Jalapeños encurtidos rodajas', sku: 'ING-JALA-01', unit: 'g', current_stock: 3200, minimum_stock: 600, cost_per_unit: 18.0, supplier: 'Distribuciones Gourmet', is_active: true },
+  { id: 'i22', name: 'Salsa de ajo y cilantro', sku: 'ING-SAJO-01', unit: 'g', current_stock: 5600, minimum_stock: 1000, cost_per_unit: 13.0, supplier: 'Producción Interna', is_active: true },
+  { id: 'i23', name: 'Salsa BBQ de panela', sku: 'ING-SBBQ-01', unit: 'g', current_stock: 6500, minimum_stock: 1200, cost_per_unit: 14.0, supplier: 'Producción Interna', is_active: true },
+  { id: 'i24', name: 'Cebolla crispy crocante', sku: 'ING-CCRI-01', unit: 'g', current_stock: 4200, minimum_stock: 800, cost_per_unit: 22.0, supplier: 'Distribuciones Gourmet', is_active: true },
+  { id: 'i25', name: 'Portaperro térmico kraft', sku: 'EMP-PPER-01', unit: 'un', current_stock: 420, minimum_stock: 80, cost_per_unit: 550.0, supplier: 'Empaques Eco', is_active: true },
+  { id: 'i26', name: 'Salsa pomodoro base pizza', sku: 'ING-POMO-01', unit: 'g', current_stock: 12500, minimum_stock: 2500, cost_per_unit: 9.0, supplier: 'Producción Interna', is_active: true },
+  { id: 'i27', name: 'Pollo desmechado marinado', sku: 'ING-POLL-01', unit: 'g', current_stock: 8900, minimum_stock: 1800, cost_per_unit: 20.0, supplier: 'Carnes Premium', is_active: true },
+  { id: 'i28', name: 'Jamón artesanal estándar', sku: 'ING-JAMO-01', unit: 'g', current_stock: 7400, minimum_stock: 1500, cost_per_unit: 18.0, supplier: 'Embutidos Artesanales', is_active: true },
+  { id: 'i29', name: 'Caja pizza microcorrugada 30cm', sku: 'EMP-CPIZ-01', unit: 'un', current_stock: 260, minimum_stock: 50, cost_per_unit: 1450.0, supplier: 'Empaques Eco', is_active: true },
+  { id: 'i30', name: 'Papa rústica bastón', sku: 'ING-PAPA-01', unit: 'g', current_stock: 28000, minimum_stock: 5000, cost_per_unit: 7.0, supplier: 'Central Mayorista', is_active: true },
+  { id: 'i31', name: 'Aceite vegetal para fritura', sku: 'ING-ACEI-01', unit: 'g', current_stock: 18000, minimum_stock: 4000, cost_per_unit: 9.5, supplier: 'Distribuciones Gourmet', is_active: true },
+  { id: 'i32', name: 'Cono kraft antigrasa papas', sku: 'EMP-CPAP-01', unit: 'un', current_stock: 350, minimum_stock: 70, cost_per_unit: 450.0, supplier: 'Empaques Eco', is_active: true },
 ];
 
-// Initial Recipes / Technical cost sheets for products
+// Initial Recipes / Technical cost sheets for ALL 10 products
 export const INITIAL_RECIPES: Recipe[] = [
   {
     id: 'rec1',
@@ -562,7 +571,7 @@ export const INITIAL_RECIPES: Recipe[] = [
     yield_portions: 1,
     packaging_cost: 1100,
     labor_variable_cost: 1200,
-    preparation_notes: 'Sellar carne 150g a 240°C por 3 min por lado. Tostar brioche con mantequilla.',
+    preparation_notes: 'Sellar carne 150g a 240°C por 3 min por lado. Tostar brioche con mantequilla, agregar tocineta crocante y cebolla caramelizada.',
     items: [
       { id: 'ri1', recipe_id: 'rec1', ingredient_id: 'i1', ingredient_name: 'Carne de res seleccionada', quantity: 150, unit: 'g', unit_cost_snapshot: 28.0, total_cost: 4200 },
       { id: 'ri2', recipe_id: 'rec1', ingredient_id: 'i2', ingredient_name: 'Pan brioche artesanal', quantity: 1, unit: 'un', unit_cost_snapshot: 1400.0, total_cost: 1400 },
@@ -585,19 +594,200 @@ export const INITIAL_RECIPES: Recipe[] = [
     yield_portions: 1,
     packaging_cost: 1100,
     labor_variable_cost: 1200,
-    preparation_notes: 'Carne 150g, mozzarella fundido, hogao tradicional y tajadas de plátano caramelizadas.',
+    preparation_notes: 'Carne 150g, mozzarella fundido, hogao casero tradicional y tajadas de plátano caramelizadas.',
     items: [
       { id: 'ri21', recipe_id: 'rec2', ingredient_id: 'i1', ingredient_name: 'Carne de res seleccionada', quantity: 150, unit: 'g', unit_cost_snapshot: 28.0, total_cost: 4200 },
       { id: 'ri22', recipe_id: 'rec2', ingredient_id: 'i2', ingredient_name: 'Pan brioche artesanal', quantity: 1, unit: 'un', unit_cost_snapshot: 1400.0, total_cost: 1400 },
-      { id: 'ri23', recipe_id: 'rec2', ingredient_id: 'i4', ingredient_name: 'Queso Mozzarella', quantity: 30, unit: 'g', unit_cost_snapshot: 26.0, total_cost: 780 },
-      { id: 'ri24', recipe_id: 'rec2', ingredient_id: 'i10', ingredient_name: 'Hogao casero', quantity: 35, unit: 'g', unit_cost_snapshot: 12.0, total_cost: 420 },
-      { id: 'ri25', recipe_id: 'rec2', ingredient_id: 'i11', ingredient_name: 'Plátano maduro', quantity: 50, unit: 'g', unit_cost_snapshot: 6.5, total_cost: 325 },
+      { id: 'ri23', recipe_id: 'rec2', ingredient_id: 'i4', ingredient_name: 'Queso Mozzarella bloque', quantity: 30, unit: 'g', unit_cost_snapshot: 26.0, total_cost: 780 },
+      { id: 'ri24', recipe_id: 'rec2', ingredient_id: 'i10', ingredient_name: 'Hogao casero colombiano', quantity: 35, unit: 'g', unit_cost_snapshot: 12.0, total_cost: 420 },
+      { id: 'ri25', recipe_id: 'rec2', ingredient_id: 'i11', ingredient_name: 'Plátano maduro en cubos', quantity: 50, unit: 'g', unit_cost_snapshot: 6.5, total_cost: 325 },
     ],
     total_ingredient_cost: 7125,
     total_cost: 9425,
     sale_price: 17900,
-    food_cost_percentage: 39.8,
-    gross_margin_percentage: 60.2,
+    food_cost_percentage: 39.80,
+    gross_margin_percentage: 60.20,
+  },
+  {
+    id: 'rec3',
+    product_id: 'p3',
+    product_name: 'La Tropical',
+    yield_portions: 1,
+    packaging_cost: 1100,
+    labor_variable_cost: 1200,
+    preparation_notes: 'Contraste dulce y salado. Piña oro miel a la plancha, carne 150g, mozzarella fundido, tocineta y salsa de mango picante.',
+    items: [
+      { id: 'ri31', recipe_id: 'rec3', ingredient_id: 'i1', ingredient_name: 'Carne de res seleccionada', quantity: 150, unit: 'g', unit_cost_snapshot: 28.0, total_cost: 4200 },
+      { id: 'ri32', recipe_id: 'rec3', ingredient_id: 'i2', ingredient_name: 'Pan brioche artesanal', quantity: 1, unit: 'un', unit_cost_snapshot: 1400.0, total_cost: 1400 },
+      { id: 'ri33', recipe_id: 'rec3', ingredient_id: 'i4', ingredient_name: 'Queso Mozzarella bloque', quantity: 30, unit: 'g', unit_cost_snapshot: 26.0, total_cost: 780 },
+      { id: 'ri34', recipe_id: 'rec3', ingredient_id: 'i16', ingredient_name: 'Piña oro miel asada', quantity: 50, unit: 'g', unit_cost_snapshot: 8.0, total_cost: 400 },
+      { id: 'ri35', recipe_id: 'rec3', ingredient_id: 'i5', ingredient_name: 'Tocineta ahumada laminada', quantity: 25, unit: 'g', unit_cost_snapshot: 35.0, total_cost: 875 },
+      { id: 'ri36', recipe_id: 'rec3', ingredient_id: 'i12', ingredient_name: 'Cebolla caramelizada', quantity: 15, unit: 'g', unit_cost_snapshot: 14.0, total_cost: 210 },
+      { id: 'ri37', recipe_id: 'rec3', ingredient_id: 'i17', ingredient_name: 'Salsa de mango picante', quantity: 25, unit: 'g', unit_cost_snapshot: 15.0, total_cost: 375 },
+    ],
+    total_ingredient_cost: 8240,
+    total_cost: 10540,
+    sale_price: 18900,
+    food_cost_percentage: 43.60,
+    gross_margin_percentage: 56.40,
+  },
+  {
+    id: 'rec4',
+    product_id: 'p4',
+    product_name: 'El Callejero',
+    yield_portions: 1,
+    packaging_cost: 550,
+    labor_variable_cost: 900,
+    preparation_notes: 'Salchicha parrillera dorada, pan vaporizado, mozzarella gratinada, maíz dulce, papitas ripiao crocantes y salsas de autor.',
+    items: [
+      { id: 'ri41', recipe_id: 'rec4', ingredient_id: 'i6', ingredient_name: 'Pan de perro 22cm', quantity: 1, unit: 'un', unit_cost_snapshot: 1100.0, total_cost: 1100 },
+      { id: 'ri42', recipe_id: 'rec4', ingredient_id: 'i7', ingredient_name: 'Salchicha parrillera 100g', quantity: 100, unit: 'g', unit_cost_snapshot: 22.0, total_cost: 2200 },
+      { id: 'ri43', recipe_id: 'rec4', ingredient_id: 'i4', ingredient_name: 'Queso Mozzarella bloque', quantity: 25, unit: 'g', unit_cost_snapshot: 26.0, total_cost: 650 },
+      { id: 'ri44', recipe_id: 'rec4', ingredient_id: 'i5', ingredient_name: 'Tocineta ahumada laminada', quantity: 20, unit: 'g', unit_cost_snapshot: 35.0, total_cost: 700 },
+      { id: 'ri45', recipe_id: 'rec4', ingredient_id: 'i18', ingredient_name: 'Maíz dulce tierno', quantity: 20, unit: 'g', unit_cost_snapshot: 10.0, total_cost: 200 },
+      { id: 'ri46', recipe_id: 'rec4', ingredient_id: 'i19', ingredient_name: 'Papitas ripiao crocantes', quantity: 15, unit: 'g', unit_cost_snapshot: 12.0, total_cost: 180 },
+      { id: 'ri47', recipe_id: 'rec4', ingredient_id: 'i20', ingredient_name: 'Salsa de piña caramelizada', quantity: 20, unit: 'g', unit_cost_snapshot: 11.0, total_cost: 220 },
+      { id: 'ri48', recipe_id: 'rec4', ingredient_id: 'i14', ingredient_name: 'Salsa Ahumada BEFFGER', quantity: 20, unit: 'g', unit_cost_snapshot: 16.0, total_cost: 320 },
+    ],
+    total_ingredient_cost: 5570,
+    total_cost: 7020,
+    sale_price: 15900,
+    food_cost_percentage: 35.03,
+    gross_margin_percentage: 64.97,
+  },
+  {
+    id: 'rec5',
+    product_id: 'p5',
+    product_name: 'El Ranchero',
+    yield_portions: 1,
+    packaging_cost: 550,
+    labor_variable_cost: 900,
+    preparation_notes: 'Parrillero tradicional. Salchicha 100g, chorizo parrillero dorado en rodajas, cheddar fundido, jalapeños y salsa ajo cilantro.',
+    items: [
+      { id: 'ri51', recipe_id: 'rec5', ingredient_id: 'i6', ingredient_name: 'Pan de perro 22cm', quantity: 1, unit: 'un', unit_cost_snapshot: 1100.0, total_cost: 1100 },
+      { id: 'ri52', recipe_id: 'rec5', ingredient_id: 'i7', ingredient_name: 'Salchicha parrillera 100g', quantity: 100, unit: 'g', unit_cost_snapshot: 22.0, total_cost: 2200 },
+      { id: 'ri53', recipe_id: 'rec5', ingredient_id: 'i8', ingredient_name: 'Chorizo parrillero artesanal', quantity: 30, unit: 'g', unit_cost_snapshot: 25.0, total_cost: 750 },
+      { id: 'ri54', recipe_id: 'rec5', ingredient_id: 'i3', ingredient_name: 'Queso Cheddar lonchas', quantity: 30, unit: 'g', unit_cost_snapshot: 32.0, total_cost: 960 },
+      { id: 'ri55', recipe_id: 'rec5', ingredient_id: 'i12', ingredient_name: 'Cebolla caramelizada', quantity: 15, unit: 'g', unit_cost_snapshot: 14.0, total_cost: 210 },
+      { id: 'ri56', recipe_id: 'rec5', ingredient_id: 'i21', ingredient_name: 'Jalapeños encurtidos rodajas', quantity: 10, unit: 'g', unit_cost_snapshot: 18.0, total_cost: 180 },
+      { id: 'ri57', recipe_id: 'rec5', ingredient_id: 'i22', ingredient_name: 'Salsa de ajo y cilantro', quantity: 15, unit: 'g', unit_cost_snapshot: 13.0, total_cost: 195 },
+    ],
+    total_ingredient_cost: 5595,
+    total_cost: 7045,
+    sale_price: 16900,
+    food_cost_percentage: 33.10,
+    gross_margin_percentage: 66.90,
+  },
+  {
+    id: 'rec6',
+    product_id: 'p6',
+    product_name: 'El Ahumado',
+    yield_portions: 1,
+    packaging_cost: 550,
+    labor_variable_cost: 900,
+    preparation_notes: 'Toque ahumado profundo. Salchicha 100g, cheddar, tocineta ahumada, cebolla caramelizada, BBQ artesanal de panela y cebolla crispy.',
+    items: [
+      { id: 'ri61', recipe_id: 'rec6', ingredient_id: 'i6', ingredient_name: 'Pan de perro 22cm', quantity: 1, unit: 'un', unit_cost_snapshot: 1100.0, total_cost: 1100 },
+      { id: 'ri62', recipe_id: 'rec6', ingredient_id: 'i7', ingredient_name: 'Salchicha parrillera 100g', quantity: 100, unit: 'g', unit_cost_snapshot: 22.0, total_cost: 2200 },
+      { id: 'ri63', recipe_id: 'rec6', ingredient_id: 'i3', ingredient_name: 'Queso Cheddar lonchas', quantity: 25, unit: 'g', unit_cost_snapshot: 32.0, total_cost: 800 },
+      { id: 'ri64', recipe_id: 'rec6', ingredient_id: 'i5', ingredient_name: 'Tocineta ahumada laminada', quantity: 20, unit: 'g', unit_cost_snapshot: 35.0, total_cost: 700 },
+      { id: 'ri65', recipe_id: 'rec6', ingredient_id: 'i12', ingredient_name: 'Cebolla caramelizada', quantity: 30, unit: 'g', unit_cost_snapshot: 14.0, total_cost: 420 },
+      { id: 'ri66', recipe_id: 'rec6', ingredient_id: 'i23', ingredient_name: 'Salsa BBQ de panela', quantity: 25, unit: 'g', unit_cost_snapshot: 14.0, total_cost: 350 },
+      { id: 'ri67', recipe_id: 'rec6', ingredient_id: 'i24', ingredient_name: 'Cebolla crispy crocante', quantity: 10, unit: 'g', unit_cost_snapshot: 22.0, total_cost: 220 },
+    ],
+    total_ingredient_cost: 5790,
+    total_cost: 7240,
+    sale_price: 15900,
+    food_cost_percentage: 36.41,
+    gross_margin_percentage: 63.59,
+  },
+  {
+    id: 'rec7',
+    product_id: 'p7',
+    product_name: 'La Colombiana (30 cm)',
+    yield_portions: 1,
+    packaging_cost: 1450,
+    labor_variable_cost: 1500,
+    preparation_notes: 'Pizza horneada a la piedra a 320°C por 7 min. Base pomodoro, mozzarella abundante, chorizo parrillero, hogao casero y plátano maduro.',
+    items: [
+      { id: 'ri71', recipe_id: 'rec7', ingredient_id: 'i9', ingredient_name: 'Masa de pizza 30cm (220g)', quantity: 220, unit: 'g', unit_cost_snapshot: 8.5, total_cost: 1870 },
+      { id: 'ri72', recipe_id: 'rec7', ingredient_id: 'i26', ingredient_name: 'Salsa pomodoro base pizza', quantity: 60, unit: 'g', unit_cost_snapshot: 9.0, total_cost: 540 },
+      { id: 'ri73', recipe_id: 'rec7', ingredient_id: 'i4', ingredient_name: 'Queso Mozzarella bloque', quantity: 130, unit: 'g', unit_cost_snapshot: 26.0, total_cost: 3380 },
+      { id: 'ri74', recipe_id: 'rec7', ingredient_id: 'i8', ingredient_name: 'Chorizo parrillero artesanal', quantity: 50, unit: 'g', unit_cost_snapshot: 25.0, total_cost: 1250 },
+      { id: 'ri75', recipe_id: 'rec7', ingredient_id: 'i10', ingredient_name: 'Hogao casero colombiano', quantity: 35, unit: 'g', unit_cost_snapshot: 12.0, total_cost: 420 },
+      { id: 'ri76', recipe_id: 'rec7', ingredient_id: 'i11', ingredient_name: 'Plátano maduro en cubos', quantity: 40, unit: 'g', unit_cost_snapshot: 6.5, total_cost: 260 },
+    ],
+    total_ingredient_cost: 7720,
+    total_cost: 10670,
+    sale_price: 26900,
+    food_cost_percentage: 28.69,
+    gross_margin_percentage: 60.34,
+  },
+  {
+    id: 'rec8',
+    product_id: 'p8',
+    product_name: 'La BBQ Explosiva (30 cm)',
+    yield_portions: 1,
+    packaging_cost: 1450,
+    labor_variable_cost: 1500,
+    preparation_notes: 'Masa piedra 30cm, pomodoro suave, mozzarella 130g, pechuga desmechada jugosa, tocineta ahumada, cebolla caramelizada y BBQ artesanal.',
+    items: [
+      { id: 'ri81', recipe_id: 'rec8', ingredient_id: 'i9', ingredient_name: 'Masa de pizza 30cm (220g)', quantity: 220, unit: 'g', unit_cost_snapshot: 8.5, total_cost: 1870 },
+      { id: 'ri82', recipe_id: 'rec8', ingredient_id: 'i26', ingredient_name: 'Salsa pomodoro base pizza', quantity: 35, unit: 'g', unit_cost_snapshot: 9.0, total_cost: 315 },
+      { id: 'ri83', recipe_id: 'rec8', ingredient_id: 'i4', ingredient_name: 'Queso Mozzarella bloque', quantity: 130, unit: 'g', unit_cost_snapshot: 26.0, total_cost: 3380 },
+      { id: 'ri84', recipe_id: 'rec8', ingredient_id: 'i27', ingredient_name: 'Pollo desmechado marinado', quantity: 80, unit: 'g', unit_cost_snapshot: 20.0, total_cost: 1600 },
+      { id: 'ri85', recipe_id: 'rec8', ingredient_id: 'i5', ingredient_name: 'Tocineta ahumada laminada', quantity: 25, unit: 'g', unit_cost_snapshot: 35.0, total_cost: 875 },
+      { id: 'ri86', recipe_id: 'rec8', ingredient_id: 'i12', ingredient_name: 'Cebolla caramelizada', quantity: 30, unit: 'g', unit_cost_snapshot: 14.0, total_cost: 420 },
+      { id: 'ri87', recipe_id: 'rec8', ingredient_id: 'i23', ingredient_name: 'Salsa BBQ de panela', quantity: 25, unit: 'g', unit_cost_snapshot: 14.0, total_cost: 350 },
+    ],
+    total_ingredient_cost: 8810,
+    total_cost: 11760,
+    sale_price: 27900,
+    food_cost_percentage: 31.57,
+    gross_margin_percentage: 57.85,
+  },
+  {
+    id: 'rec9',
+    product_id: 'p9',
+    product_name: 'La Tropical Picante (30 cm)',
+    yield_portions: 1,
+    packaging_cost: 1450,
+    labor_variable_cost: 1500,
+    preparation_notes: 'Fusión caribeña gourmet. Masa piedra, pomodoro, mozzarella, jamón artesanal, piña asada, jalapeños encurtidos y salsa de mango picante.',
+    items: [
+      { id: 'ri91', recipe_id: 'rec9', ingredient_id: 'i9', ingredient_name: 'Masa de pizza 30cm (220g)', quantity: 220, unit: 'g', unit_cost_snapshot: 8.5, total_cost: 1870 },
+      { id: 'ri92', recipe_id: 'rec9', ingredient_id: 'i26', ingredient_name: 'Salsa pomodoro base pizza', quantity: 60, unit: 'g', unit_cost_snapshot: 9.0, total_cost: 540 },
+      { id: 'ri93', recipe_id: 'rec9', ingredient_id: 'i4', ingredient_name: 'Queso Mozzarella bloque', quantity: 130, unit: 'g', unit_cost_snapshot: 26.0, total_cost: 3380 },
+      { id: 'ri94', recipe_id: 'rec9', ingredient_id: 'i28', ingredient_name: 'Jamón artesanal estándar', quantity: 60, unit: 'g', unit_cost_snapshot: 18.0, total_cost: 1080 },
+      { id: 'ri95', recipe_id: 'rec9', ingredient_id: 'i16', ingredient_name: 'Piña oro miel asada', quantity: 60, unit: 'g', unit_cost_snapshot: 8.0, total_cost: 480 },
+      { id: 'ri96', recipe_id: 'rec9', ingredient_id: 'i21', ingredient_name: 'Jalapeños encurtidos rodajas', quantity: 10, unit: 'g', unit_cost_snapshot: 18.0, total_cost: 180 },
+      { id: 'ri97', recipe_id: 'rec9', ingredient_id: 'i17', ingredient_name: 'Salsa de mango picante', quantity: 15, unit: 'g', unit_cost_snapshot: 15.0, total_cost: 225 },
+    ],
+    total_ingredient_cost: 7755,
+    total_cost: 10705,
+    sale_price: 26900,
+    food_cost_percentage: 28.82,
+    gross_margin_percentage: 60.21,
+  },
+  {
+    id: 'rec10',
+    product_id: 'p10',
+    product_name: 'Papas Rústicas a la Francesa',
+    yield_portions: 1,
+    packaging_cost: 450,
+    labor_variable_cost: 500,
+    preparation_notes: 'Fritura doble en aceite vegetal a 180°C hasta obtener dorado y crocancia exterior. Escurrir, sazonar con sal marina y servir con Salsa Ahumada.',
+    items: [
+      { id: 'ri101', recipe_id: 'rec10', ingredient_id: 'i30', ingredient_name: 'Papa rústica bastón', quantity: 200, unit: 'g', unit_cost_snapshot: 7.0, total_cost: 1400 },
+      { id: 'ri102', recipe_id: 'rec10', ingredient_id: 'i31', ingredient_name: 'Aceite vegetal para fritura', quantity: 30, unit: 'g', unit_cost_snapshot: 9.5, total_cost: 285 },
+      { id: 'ri103', recipe_id: 'rec10', ingredient_id: 'i14', ingredient_name: 'Salsa Ahumada BEFFGER', quantity: 30, unit: 'g', unit_cost_snapshot: 16.0, total_cost: 480 },
+      { id: 'ri104', recipe_id: 'rec10', ingredient_id: 'i10', ingredient_name: 'Hogao casero colombiano', quantity: 5, unit: 'g', unit_cost_snapshot: 12.0, total_cost: 60 },
+    ],
+    total_ingredient_cost: 2225,
+    total_cost: 3175,
+    sale_price: 8900,
+    food_cost_percentage: 25.00,
+    gross_margin_percentage: 64.33,
   },
 ];
 
@@ -624,13 +814,13 @@ export const INITIAL_CASH_MOVEMENTS: CashMovement[] = [];
 // Initial Customers CRM (Production ready: empty list for real clients)
 export const INITIAL_CUSTOMERS: Customer[] = [];
 
-// Initial Settings
+// Initial Settings (Production ready: customizable address & city)
 export const INITIAL_SETTINGS: BusinessSettings = {
   restaurant_name: 'BEFFGER',
   slogan: 'LA CALLE TIENE SABOR',
-  phone: '+57 315 888 9900',
-  address: 'Cra. 34 # 4-56, Parque del Perro',
-  city: 'Cali, Colombia',
+  phone: '+57 300 000 0000',
+  address: 'Sede Principal (Dirección por configurar)',
+  city: 'Ciudad por configurar',
   tax_rate: 0.08,
   is_open: true,
   currency: 'COP',
@@ -709,6 +899,28 @@ class BeffgerStore {
 
         const savedProducts = localStorage.getItem('beffger_products');
         if (savedProducts) this.products = JSON.parse(savedProducts);
+
+        const savedSettings = localStorage.getItem('beffger_settings');
+        if (savedSettings) {
+          const parsedSet = JSON.parse(savedSettings);
+          if (parsedSet.city?.includes('Cali') || parsedSet.address?.includes('Parque del Perro')) {
+            localStorage.removeItem('beffger_settings');
+            this.settings = INITIAL_SETTINGS;
+          } else {
+            this.settings = { ...INITIAL_SETTINGS, ...parsedSet };
+          }
+        }
+
+        const savedZones = localStorage.getItem('beffger_delivery_zones');
+        if (savedZones) {
+          const parsedZones = JSON.parse(savedZones);
+          if (Array.isArray(parsedZones) && parsedZones.some((z: any) => z.name?.includes('San Fernando') || z.name?.includes('Granada'))) {
+            localStorage.removeItem('beffger_delivery_zones');
+            this.deliveryZones = INITIAL_DELIVERY_ZONES;
+          } else {
+            this.deliveryZones = parsedZones;
+          }
+        }
       } catch (e) {
         this.orders = [];
         this.customers = [];
@@ -1086,8 +1298,54 @@ class BeffgerStore {
     return this.settings;
   }
 
+  public updateSettings(partial: Partial<BusinessSettings>): void {
+    this.settings = { ...this.settings, ...partial };
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('beffger_settings', JSON.stringify(this.settings));
+      } catch (e) {}
+    }
+    this.notify();
+  }
+
+  // --- Delivery Zones Management ---
   public getDeliveryZones(): DeliveryZone[] {
     return this.deliveryZones;
+  }
+
+  public addDeliveryZone(zone: Omit<DeliveryZone, 'id'>): DeliveryZone {
+    const newZone: DeliveryZone = {
+      ...zone,
+      id: `dz-${Date.now().toString(36)}`,
+    };
+    this.deliveryZones.push(newZone);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('beffger_delivery_zones', JSON.stringify(this.deliveryZones));
+      } catch (e) {}
+    }
+    this.notify();
+    return newZone;
+  }
+
+  public updateDeliveryZone(id: string, partial: Partial<DeliveryZone>): void {
+    this.deliveryZones = this.deliveryZones.map((z) => (z.id === id ? { ...z, ...partial } : z));
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('beffger_delivery_zones', JSON.stringify(this.deliveryZones));
+      } catch (e) {}
+    }
+    this.notify();
+  }
+
+  public deleteDeliveryZone(id: string): void {
+    this.deliveryZones = this.deliveryZones.filter((z) => z.id !== id);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('beffger_delivery_zones', JSON.stringify(this.deliveryZones));
+      } catch (e) {}
+    }
+    this.notify();
   }
 }
 

@@ -1,4 +1,18 @@
-export type UserRole = 'admin' | 'gerente' | 'cajero' | 'cocina' | 'domiciliario' | 'cliente';
+export type UserRole = 'admin' | 'gerente' | 'cajero' | 'cocina' | 'domiciliario' | 'mesero' | 'cliente';
+
+export type StaffRole = 'Administrador' | 'Gerente' | 'Cajero' | 'Cocina' | 'Domiciliario' | 'Mesero';
+
+export interface StaffUser {
+  id: string;
+  name: string;
+  email: string;
+  role: StaffRole;
+  phone?: string;
+  isActive: boolean;
+  avatarInitials: string;
+  lastLogin?: string;
+  createdAt?: string;
+}
 
 export type OrderType = 'domicilio' | 'retiro' | 'mesa';
 

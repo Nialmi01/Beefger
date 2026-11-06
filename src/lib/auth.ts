@@ -1,78 +1,210 @@
 'use client';
 
-export interface StaffUser {
-  id: string;
-  name: string;
-  email: string;
-  role: 'Administrador' | 'Gerente' | 'Cajero' | 'Cocina' | 'Domiciliario';
-  isActive: boolean;
-  avatarInitials: string;
+import { StaffRole, StaffUser } from '@/lib/types';
+
+export type { StaffRole, StaffUser };
+
+export const DEFAULT_SUPERADMIN_CREDENTIAL: { user: StaffUser; pass: string } = {
+  user: {
+    id: 'u-superadmin',
+    name: 'Super Administrador BEFFGER',
+    email: 'admin@beffger.com',
+    role: 'Administrador',
+    phone: '+57 300 000 0000',
+    isActive: true,
+    avatarInitials: 'SA',
+    createdAt: new Date().toISOString(),
+    lastLogin: 'En línea',
+  },
+  pass: 'AdminBeffger2026!',
+};
+
+const CREDENTIALS_STORAGE_KEY = 'beffger_staff_credentials';
+const SESSION_STORAGE_KEY = 'beffger_auth_session';
+
+/**
+ * Retrieve all configured staff credentials from local storage.
+ * Defaults strictly to Super Administrador only (no demo employees).
+ */
+export function getStaffCredentials(): { user: StaffUser; pass: string }[] {
+  if (typeof window === 'undefined') {
+    return [DEFAULT_SUPERADMIN_CREDENTIAL];
+  }
+
+  try {
+    const raw = localStorage.getItem(CREDENTIALS_STORAGE_KEY);
+    if (!raw) {
+      localStorage.setItem(
+        CREDENTIALS_STORAGE_KEY,
+        JSON.stringify([DEFAULT_SUPERADMIN_CREDENTIAL])
+      );
+      return [DEFAULT_SUPERADMIN_CREDENTIAL];
+    }
+
+    const parsed: { user: StaffUser; pass: string }[] = JSON.parse(raw);
+
+    // Auto-purge legacy demo employees if present (Carlos, Valentina, Chef Andrés, Brayan)
+    const hasLegacyDemo = parsed.some(
+      (item) =>
+        item.user.name.includes('Carlos Gerente') ||
+        item.user.name.includes('Valentina Cajera') ||
+        item.user.name.includes('Chef Andrés') ||
+        item.user.name.includes('Brayan Domiciliario')
+    );
+
+    if (hasLegacyDemo) {
+      const sanitized = parsed.filter(
+        (item) =>
+          !item.user.name.includes('Carlos Gerente') &&
+          !item.user.name.includes('Valentina Cajera') &&
+          !item.user.name.includes('Chef Andrés') &&
+          !item.user.name.includes('Brayan Domiciliario')
+      );
+      if (!sanitized.some((item) => item.user.email.toLowerCase() === 'admin@beffger.com')) {
+        sanitized.unshift(DEFAULT_SUPERADMIN_CREDENTIAL);
+      }
+      localStorage.setItem(CREDENTIALS_STORAGE_KEY, JSON.stringify(sanitized));
+      return sanitized;
+    }
+
+    return parsed.length > 0 ? parsed : [DEFAULT_SUPERADMIN_CREDENTIAL];
+  } catch (e) {
+    return [DEFAULT_SUPERADMIN_CREDENTIAL];
+  }
 }
 
-export const STAFF_CREDENTIALS: { user: StaffUser; pass: string }[] = [
-  {
-    user: {
-      id: 'u-superadmin',
-      name: 'Super Administrador BEFFGER',
-      email: 'admin@beffger.com',
-      role: 'Administrador',
-      isActive: true,
-      avatarInitials: 'SA',
-    },
-    pass: 'AdminBeffger2026!',
-  },
-  {
-    user: {
-      id: 'u-gerente',
-      name: 'Carlos Gerente Operativo',
-      email: 'gerente@beffger.com',
-      role: 'Gerente',
-      isActive: true,
-      avatarInitials: 'CG',
-    },
-    pass: 'gerente123',
-  },
-  {
-    user: {
-      id: 'u-cajero',
-      name: 'Valentina Cajera Principal',
-      email: 'cajero@beffger.com',
-      role: 'Cajero',
-      isActive: true,
-      avatarInitials: 'VC',
-    },
-    pass: 'cajero123',
-  },
-  {
-    user: {
-      id: 'u-cocina',
-      name: 'Chef Andrés Parrillero',
-      email: 'cocina@beffger.com',
-      role: 'Cocina',
-      isActive: true,
-      avatarInitials: 'AP',
-    },
-    pass: 'cocina123',
-  },
-  {
-    user: {
-      id: 'u-rider',
-      name: 'Brayan Domiciliario BEFFGER',
-      email: 'rider@beffger.com',
-      role: 'Domiciliario',
-      isActive: true,
-      avatarInitials: 'BD',
-    },
-    pass: 'rider123',
-  },
-];
+/**
+ * Retrieve list of staff users
+ */
+export function getStaffUsers(): StaffUser[] {
+  return getStaffCredentials().map((c) => c.user);
+}
 
-const STORAGE_KEY = 'beffger_auth_session';
+/**
+ * Helper to compute avatar initials
+ */
+function computeInitials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  }
+  return name.slice(0, 2).toUpperCase();
+}
 
+/**
+ * Dynamically create a new collaborator user with a specific role and password
+ */
+export function createStaffUser(params: {
+  name: string;
+  email: string;
+  role: StaffRole;
+  pass: string;
+  phone?: string;
+}): { success: boolean; user?: StaffUser; error?: string } {
+  const cleanName = params.name.trim();
+  const cleanEmail = params.email.trim().toLowerCase();
+  const cleanPass = params.pass.trim();
+
+  if (!cleanName || cleanName.length < 3) {
+    return { success: false, error: 'Ingresa un nombre válido de al menos 3 caracteres.' };
+  }
+
+  if (!cleanEmail || !cleanEmail.includes('@') || !cleanEmail.includes('.')) {
+    return { success: false, error: 'Ingresa un correo electrónico institucional válido.' };
+  }
+
+  if (!cleanPass || cleanPass.length < 6) {
+    return { success: false, error: 'La contraseña debe contener al menos 6 caracteres.' };
+  }
+
+  const existing = getStaffCredentials();
+  if (existing.some((c) => c.user.email.toLowerCase() === cleanEmail)) {
+    return { success: false, error: `Ya existe un usuario registrado con el correo ${cleanEmail}.` };
+  }
+
+  const newUser: StaffUser = {
+    id: `u-${Date.now().toString(36)}`,
+    name: cleanName,
+    email: cleanEmail,
+    role: params.role,
+    phone: params.phone?.trim() || '',
+    isActive: true,
+    avatarInitials: computeInitials(cleanName),
+    createdAt: new Date().toISOString(),
+    lastLogin: 'Nunca',
+  };
+
+  const updated = [...existing, { user: newUser, pass: cleanPass }];
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(CREDENTIALS_STORAGE_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new Event('beffger_staff_change'));
+  }
+
+  return { success: true, user: newUser };
+}
+
+/**
+ * Toggle active/inactive status for a staff user
+ */
+export function toggleStaffUserStatus(id: string): { success: boolean; error?: string } {
+  const existing = getStaffCredentials();
+  const target = existing.find((c) => c.user.id === id);
+
+  if (!target) {
+    return { success: false, error: 'Usuario no encontrado.' };
+  }
+
+  if (target.user.email.toLowerCase() === 'admin@beffger.com') {
+    return { success: false, error: 'No es posible desactivar al Super Administrador principal.' };
+  }
+
+  const updated = existing.map((c) => {
+    if (c.user.id === id) {
+      return { ...c, user: { ...c.user, isActive: !c.user.isActive } };
+    }
+    return c;
+  });
+
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(CREDENTIALS_STORAGE_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new Event('beffger_staff_change'));
+  }
+
+  return { success: true };
+}
+
+/**
+ * Delete a staff user (blocked for superadmin)
+ */
+export function deleteStaffUser(id: string): { success: boolean; error?: string } {
+  const existing = getStaffCredentials();
+  const target = existing.find((c) => c.user.id === id);
+
+  if (!target) {
+    return { success: false, error: 'Usuario no encontrado.' };
+  }
+
+  if (target.user.email.toLowerCase() === 'admin@beffger.com' || target.user.id === 'u-superadmin') {
+    return { success: false, error: 'El Super Administrador principal no puede ser eliminado.' };
+  }
+
+  const updated = existing.filter((c) => c.user.id !== id);
+
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(CREDENTIALS_STORAGE_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new Event('beffger_staff_change'));
+  }
+
+  return { success: true };
+}
+
+/**
+ * Get active session
+ */
 export function getCurrentUser(): StaffUser | null {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(SESSION_STORAGE_KEY);
     if (!raw) return null;
     return JSON.parse(raw) as StaffUser;
   } catch (e) {
@@ -80,12 +212,17 @@ export function getCurrentUser(): StaffUser | null {
   }
 }
 
+/**
+ * Authenticate staff user
+ */
 export function login(
   email: string,
   pass: string
 ): { success: boolean; user?: StaffUser; error?: string } {
   const normalizedEmail = email.trim().toLowerCase();
-  const match = STAFF_CREDENTIALS.find(
+  const credentials = getStaffCredentials();
+
+  const match = credentials.find(
     (c) =>
       c.user.email.toLowerCase() === normalizedEmail &&
       (c.pass === pass || (normalizedEmail === 'admin@beffger.com' && pass === 'admin123'))
@@ -105,10 +242,14 @@ export function login(
     };
   }
 
+  // Update last login
+  match.user.lastLogin = 'En línea';
   if (typeof window !== 'undefined') {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(match.user));
+    localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(match.user));
     // Set secure authentication cookie for server-side middleware route validation
-    const cookieValue = encodeURIComponent(JSON.stringify({ id: match.user.id, role: match.user.role, email: match.user.email }));
+    const cookieValue = encodeURIComponent(
+      JSON.stringify({ id: match.user.id, role: match.user.role, email: match.user.email })
+    );
     document.cookie = `beffger_auth_session=${cookieValue}; path=/; SameSite=Lax; max-age=86400`;
     window.dispatchEvent(new Event('beffger_auth_change'));
   }
@@ -116,9 +257,12 @@ export function login(
   return { success: true, user: match.user };
 }
 
+/**
+ * Sign out current staff session
+ */
 export function logout(): void {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(SESSION_STORAGE_KEY);
     document.cookie = 'beffger_auth_session=; path=/; max-age=0';
     window.dispatchEvent(new Event('beffger_auth_change'));
   }
@@ -127,14 +271,16 @@ export function logout(): void {
 /**
  * Default Landing Route by Role
  */
-export function getDefaultRouteForRole(role: StaffUser['role']): string {
+export function getDefaultRouteForRole(role: StaffRole): string {
   switch (role) {
     case 'Cajero':
       return '/admin/caja';
     case 'Cocina':
       return '/admin/cocina';
     case 'Domiciliario':
-      return '/rider/pedidos';
+      return '/admin/domicilios';
+    case 'Mesero':
+      return '/admin/pedidos';
     case 'Administrador':
     case 'Gerente':
     default:
@@ -145,30 +291,25 @@ export function getDefaultRouteForRole(role: StaffUser['role']): string {
 /**
  * Role-Based Access Control (RBAC) Matrix
  */
-export function hasPermission(role: StaffUser['role'], pathname: string): boolean {
+export function hasPermission(role: StaffRole, pathname: string): boolean {
   if (role === 'Administrador' || role === 'Gerente') {
-    return true; // Acceso total a todos los paneles
+    return true; // Acceso total a todos los módulos
   }
 
   if (role === 'Cajero') {
-    return (
-      pathname.startsWith('/admin/caja') ||
-      pathname === '/admin/pedidos'
-    );
+    return pathname.startsWith('/admin/caja') || pathname === '/admin/pedidos';
   }
 
   if (role === 'Cocina') {
-    return (
-      pathname.startsWith('/admin/cocina') ||
-      pathname === '/admin/pedidos'
-    );
+    return pathname.startsWith('/admin/cocina') || pathname === '/admin/pedidos';
   }
 
   if (role === 'Domiciliario') {
-    return (
-      pathname.startsWith('/rider') ||
-      pathname === '/admin/domicilios'
-    );
+    return pathname.startsWith('/rider') || pathname === '/admin/domicilios';
+  }
+
+  if (role === 'Mesero') {
+    return pathname === '/admin/pedidos' || pathname.startsWith('/admin/caja');
   }
 
   return false;

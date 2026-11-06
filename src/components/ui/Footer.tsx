@@ -1,8 +1,21 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { store } from '@/lib/store';
+import { BusinessSettings } from '@/lib/types';
 import { Phone, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 
 export function Footer() {
+  const [settings, setSettings] = useState<BusinessSettings>(store.getSettings());
+
+  useEffect(() => {
+    setSettings(store.getSettings());
+    return store.subscribe(() => {
+      setSettings(store.getSettings());
+    });
+  }, []);
+
   return (
     <footer className="bg-[#222B2B] text-white pt-16 pb-12 border-t-4 border-[#F47A22]">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,11 +56,11 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-[#EDE1CE]/90">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#F47A22] shrink-0 mt-1" />
-                <span>+57 315 888 9900<br /><span className="text-xs text-white/50">WhatsApp & Llamadas</span></span>
+                <span>{settings.phone || '+57 300 000 0000'}<br /><span className="text-xs text-white/50">WhatsApp & Llamadas</span></span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#F47A22] shrink-0 mt-1" />
-                <span>Cra. 34 # 4-56, Parque del Perro<br /><span className="text-xs text-white/50">Cali, Valle del Cauca</span></span>
+                <span>{settings.address || 'Sede Principal'}<br /><span className="text-xs text-white/50">{settings.city || 'Despachos a Domicilio'}</span></span>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="w-4 h-4 text-[#F47A22] shrink-0 mt-1" />

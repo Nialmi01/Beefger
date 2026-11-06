@@ -111,10 +111,11 @@ export default function CheckoutPage() {
   const handleSubmitOrder = async () => {
     setErrorMsg('');
 
+    const settings = store.getSettings();
     const fullDeliveryAddress =
       orderType === 'domicilio'
         ? `${address}, Barrio ${neighborhood}`
-        : 'Retiro en establecimiento: Cra. 34 # 4-56 Parque del Perro';
+        : `Retiro en establecimiento: ${settings.address} (${settings.city})`;
 
     if (paymentMethod === 'wompi') {
       setIsWompiModalOpen(true);
@@ -346,7 +347,7 @@ export default function CheckoutPage() {
                       </div>
                       <div>
                         <h4 className="font-heading text-base leading-tight">Recoger en Local</h4>
-                        <span className="text-xs text-[#574237]">Parque del Perro (Cali)</span>
+                        <span className="text-xs text-[#574237]">{store.getSettings().address || 'Sede Principal'}</span>
                       </div>
                     </button>
                   </div>
@@ -355,7 +356,7 @@ export default function CheckoutPage() {
                     <div className="space-y-4 pt-2">
                       <div>
                         <label className="block text-xs font-bold text-[#222B2B] uppercase mb-1">
-                          Zona de Cobertura en Cali *
+                          Zona de Cobertura de Entrega *
                         </label>
                         <select
                           value={selectedZoneId}
@@ -418,7 +419,7 @@ export default function CheckoutPage() {
                         📍 Punto de Retiro Oficial BEFFGER:
                       </p>
                       <p className="text-xs text-[#574237]">
-                        Cra. 34 # 4-56, Parque del Perro, Cali.<br />
+                        {store.getSettings().address}, {store.getSettings().city}.<br />
                         Tu pedido estará listo en aproximadamente 20-25 minutos. Te avisaremos cuando la comanda esté empacada.
                       </p>
                     </div>
@@ -750,7 +751,7 @@ export default function CheckoutPage() {
           delivery_zone_id: orderType === 'domicilio' ? selectedZoneId : undefined,
           delivery_address: orderType === 'domicilio'
             ? `${address}, Barrio ${neighborhood}`
-            : 'Retiro en establecimiento: Cra. 34 # 4-56 Parque del Perro',
+            : `Retiro en establecimiento: ${store.getSettings().address} (${store.getSettings().city})`,
           delivery_instructions: deliveryInstructions,
           items,
           tip,

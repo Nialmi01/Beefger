@@ -10,9 +10,9 @@ INSERT INTO business_settings (
     '00000000-0000-0000-0000-000000000001',
     'BEFFGER',
     'LA CALLE TIENE SABOR',
-    '+57 315 888 9900',
-    'Cra. 34 # 4-56, Parque del Perro',
-    'Cali, Colombia',
+    '+57 300 000 0000',
+    'Sede Principal (Dirección por configurar)',
+    'Ciudad por configurar',
     0.08,
     TRUE,
     'COP',
@@ -22,11 +22,7 @@ INSERT INTO business_settings (
 
 -- 2. USERS / PROFILES
 INSERT INTO profiles (id, email, full_name, role, phone) VALUES
-('11111111-1111-1111-1111-111111111111', 'admin@beffger.com', 'Mauricio Administrador', 'admin', '+573150000001'),
-('22222222-2222-2222-2222-222222222222', 'gerente@beffger.com', 'Carlos Gerente Operativo', 'gerente', '+573150000002'),
-('33333333-3333-3333-3333-333333333333', 'cajero@beffger.com', 'Valentina Cajera Principal', 'cajero', '+573150000003'),
-('44444444-4444-4444-4444-444444444444', 'cocina@beffger.com', 'Chef Andrés Parrillero', 'cocina', '+573150000004'),
-('55555555-5555-5555-5555-555555555555', 'rider@beffger.com', 'Brayan Domiciliario BEFFGER', 'domiciliario', '+573150000005')
+('11111111-1111-1111-1111-111111111111', 'admin@beffger.com', 'Super Administrador BEFFGER', 'admin', '+573000000000')
 ON CONFLICT (id) DO NOTHING;
 
 -- 3. CATEGORIES
@@ -48,10 +44,9 @@ ON CONFLICT (id) DO NOTHING;
 
 -- 5. DELIVERY ZONES
 INSERT INTO delivery_zones (id, name, delivery_fee, min_order_amount, estimated_time_minutes) VALUES
-('dz100000-0000-0000-0000-000000000001', 'Zona 1: San Fernando / Miraflores', 4000.00, 20000.00, 25),
-('dz200000-0000-0000-0000-000000000002', 'Zona 2: Granada / El Peñón / Centenario', 5000.00, 20000.00, 30),
-('dz300000-0000-0000-0000-000000000003', 'Zona 3: Tequendama / Limonar', 6000.00, 25000.00, 35),
-('dz400000-0000-0000-0000-000000000004', 'Zona 4: Ciudad Jardín / Pance', 8500.00, 35000.00, 45)
+('dz100000-0000-0000-0000-000000000001', 'Zona 1: Cobertura Cercana (1 - 3 km)', 4000.00, 20000.00, 25),
+('dz200000-0000-0000-0000-000000000002', 'Zona 2: Cobertura Media (3 - 6 km)', 5500.00, 25000.00, 35),
+('dz300000-0000-0000-0000-000000000003', 'Zona 3: Cobertura Extendida (6 - 10 km)', 8000.00, 35000.00, 45)
 ON CONFLICT (id) DO NOTHING;
 
 -- 6. PRODUCTS (The 9 Gourmet Specialties + Complementos)
