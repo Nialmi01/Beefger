@@ -419,7 +419,7 @@ fun HomeScreen(
                         letterSpacing = 0.5.sp
                     )
                     Text(
-                        text = "${filteredProducts.size} recetas gourmet",
+                        text = "${filteredProducts.size} recetas",
                         fontSize = 11.sp,
                         color = Color(0xFF8B7265)
                     )
@@ -480,6 +480,22 @@ fun ProductCard(
                     .weight(1f)
                     .fillMaxWidth()
             ) {
+                if (product.isGourmet && !product.badge.isNullOrBlank()) {
+                    Surface(
+                        color = Color(0xFFFEF3C7),
+                        shape = RoundedCornerShape(6.dp),
+                        modifier = Modifier.padding(bottom = 3.dp)
+                    ) {
+                        Text(
+                            text = product.badge,
+                            color = Color(0xFF92400E),
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                        )
+                    }
+                }
+
                 Text(
                     text = product.name,
                     fontWeight = FontWeight.ExtraBold,

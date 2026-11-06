@@ -18,48 +18,39 @@ import {
 // Initial Categories
 export const INITIAL_CATEGORIES: Category[] = [
   {
-    id: 'c-gourmet',
-    name: 'Línea Gourmet Especial',
-    slug: 'gourmet-especial',
-    description: 'Nuestra exclusiva selección de autor Beefger: recetas de campeonato, mermeladas artesanales y combinaciones premium.',
+    id: 'c1',
+    name: 'Hamburguesas',
+    slug: 'hamburguesas',
+    description: '150g de carne de res seleccionada a la parrilla, pan brioche artesanal e ingredientes generosos.',
     icon_url: '/icons/categories/hamburguesa.svg',
     display_order: 1,
     is_active: true,
   },
   {
-    id: 'c1',
-    name: 'Hamburguesas Gourmet',
-    slug: 'hamburguesas-gourmet',
-    description: '150g de carne de res seleccionada, pan brioche e ingredientes generosos.',
-    icon_url: '/icons/categories/hamburguesa.svg',
+    id: 'c2',
+    name: 'Perros Calientes',
+    slug: 'perros-calientes',
+    description: 'Salchicha premium de 100g, pan suave de 22cm y combinaciones cargadas.',
+    icon_url: '/icons/categories/perro-caliente.svg',
     display_order: 2,
     is_active: true,
   },
   {
-    id: 'c2',
-    name: 'Perros Gourmet',
-    slug: 'perros-gourmet',
-    description: 'Salchicha premium de 100g, pan suave de 22cm y toppings cargados.',
-    icon_url: '/icons/categories/perro-caliente.svg',
+    id: 'c3',
+    name: 'Pizzas 30cm',
+    slug: 'pizzas',
+    description: 'Pizzas artesanales de 30 cm a la piedra con combinaciones exclusivas de la casa.',
+    icon_url: '/icons/categories/pizza.svg',
     display_order: 3,
     is_active: true,
   },
   {
-    id: 'c3',
-    name: 'Pizzas Gourmet',
-    slug: 'pizzas-gourmet',
-    description: 'Pizzas artesanales de 30 cm a la piedra con combinaciones exclusivas.',
-    icon_url: '/icons/categories/pizza.svg',
-    display_order: 4,
-    is_active: true,
-  },
-  {
     id: 'c4',
-    name: 'Complementos',
+    name: 'Papas & Acompañantes',
     slug: 'complementos',
-    description: 'Papas rústicas doradas y crujientes con sal marina.',
+    description: 'Papas rústicas doradas y crujientes con sal marina y especias.',
     icon_url: '/icons/categories/papas.svg',
-    display_order: 5,
+    display_order: 4,
     is_active: true,
   },
 ];
@@ -102,10 +93,10 @@ export const INITIAL_DELIVERY_ZONES: DeliveryZone[] = [
 
 // The Official Gourmet Creations + Heritage Collection
 export const INITIAL_PRODUCTS: Product[] = [
-  // 💎 1. BOURBON SMOKEHOUSE (Beefger Gourmet)
+  // 🍔 HAMBURGUESAS (Línea Gourmet de Autor + Clásicas de la Casa)
   {
     id: 'p-bourbon',
-    category_id: 'c-gourmet',
+    category_id: 'c1',
     name: 'Bourbon Smokehouse',
     slug: 'bourbon-smokehouse',
     description: 'Nuestra carne artesanal de 150g se encuentra con una mermelada de tocineta al whiskey bourbon que redefine el sabor. Coronada con un nido de cebolla crispy para ese crunch perfecto en cada bocado, en pan brioche sellado.',
@@ -116,7 +107,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     is_gourmet: true,
     image_url: '/images/products/gourmet/bourbon-smokehouse.jpg',
     allergens: ['Gluten', 'Lácteos'],
-    badge: '👑 JOYA DE LA CORONA',
+    badge: '💎 LÍNEA GOURMET',
     display_order: 1,
     modifier_groups: [
       {
@@ -133,7 +124,7 @@ export const INITIAL_PRODUCTS: Product[] = [
       },
       {
         id: 'mg-b2',
-        name: 'Adiciones Gourmet',
+        name: 'Adiciones Especiales',
         min_selection: 0,
         max_selection: 3,
         is_required: false,
@@ -145,11 +136,9 @@ export const INITIAL_PRODUCTS: Product[] = [
       },
     ],
   },
-
-  // 💎 2. UMAMI TRUFFLE MASTER (Beefger Gourmet)
   {
     id: 'p-umami',
-    category_id: 'c-gourmet',
+    category_id: 'c1',
     name: 'Umami Truffle Master',
     slug: 'umami-truffle-master',
     description: 'Sofisticación pura en formato hamburguesa. Alioli de ajo confitado, generosa porción de champiñones salteados y pimienta negra recién molida sobre queso fundido en pan brioche.',
@@ -160,7 +149,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     is_gourmet: true,
     image_url: '/images/products/gourmet/umami-truffle-master.jpg',
     allergens: ['Gluten', 'Lácteos'],
-    badge: '💎 MASTER CHEF',
+    badge: '💎 LÍNEA GOURMET',
     display_order: 2,
     modifier_groups: [
       {
@@ -177,7 +166,7 @@ export const INITIAL_PRODUCTS: Product[] = [
       },
       {
         id: 'mg-u2',
-        name: 'Adiciones Gourmet',
+        name: 'Adiciones Especiales',
         min_selection: 0,
         max_selection: 2,
         is_required: false,
@@ -188,11 +177,9 @@ export const INITIAL_PRODUCTS: Product[] = [
       },
     ],
   },
-
-  // 💎 3. TROPICAL VULCANO (Beefger Gourmet)
   {
     id: 'p-vulcano',
-    category_id: 'c-gourmet',
+    category_id: 'c1',
     name: 'Tropical Vulcano',
     slug: 'tropical-vulcano',
     description: '¡Erupción de sabor! Queso mozzarella fundido sobre nuestra carne artesanal, el dulzor de la piña asada caramelizada y el golpe vibrante de los jalapeños con nuestra Mayo-Sriracha de la casa.',
@@ -203,7 +190,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     is_gourmet: true,
     image_url: '/images/products/gourmet/tropical-vulcano.jpg',
     allergens: ['Gluten', 'Lácteos'],
-    badge: '🌋 ERUPCIÓN',
+    badge: '💎 LÍNEA GOURMET',
     display_order: 3,
     modifier_groups: [
       {
@@ -232,11 +219,9 @@ export const INITIAL_PRODUCTS: Product[] = [
       },
     ],
   },
-
-  // 💎 4. LA LEGENDARIA (Beefger Gourmet)
   {
     id: 'p-legendaria',
-    category_id: 'c-gourmet',
+    category_id: 'c1',
     name: 'La Legendaria',
     slug: 'la-legendaria',
     description: 'La Clásica donde todo comenzó en Beefger. Equilibrio perfecto de carne de res jugosa, queso fundido, vegetales frescos seleccionados y el toque secreto original en pan artesanal.',
@@ -247,7 +232,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     is_gourmet: true,
     image_url: '/images/products/gourmet/la-legendaria.jpg',
     allergens: ['Gluten', 'Lácteos'],
-    badge: '⭐ CLÁSICA',
+    badge: '💎 LÍNEA GOURMET',
     display_order: 4,
     modifier_groups: [
       {
@@ -276,10 +261,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     ],
   },
 
-  // 💎 5. MEXICAN REBEL (Beefger Gourmet)
+  // 🌭 PERROS CALIENTES (Línea Gourmet de Autor + Clásicos de la Casa)
   {
     id: 'p-mexican-rebel',
-    category_id: 'c-gourmet',
+    category_id: 'c2',
     name: 'Mexican Rebel',
     slug: 'mexican-rebel',
     description: 'Mezcla perfecta de rebeldía y fuego: salchicha premium ahumada, guacamole rústico casero, maíz tierno salteado y el toque crunchy de nachos triturados.',
@@ -290,7 +275,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     is_gourmet: true,
     image_url: '/images/products/gourmet/mexican-rebel.png',
     allergens: ['Gluten'],
-    badge: '🥑 REBELDE',
+    badge: '💎 LÍNEA GOURMET',
     display_order: 5,
     modifier_groups: [
       {
@@ -307,11 +292,9 @@ export const INITIAL_PRODUCTS: Product[] = [
       },
     ],
   },
-
-  // 💎 6. BBQ CRUNCH (Beefger Gourmet)
   {
     id: 'p-bbq-crunch',
-    category_id: 'c-gourmet',
+    category_id: 'c2',
     name: 'BBQ Crunch',
     slug: 'bbq-crunch',
     description: 'El clásico americano nivel leyenda. Salchicha ahumada bañada en salsa BBQ artesanal secreta, ensalada coleslaw ultra fresca y cremosa, coronada con montaña de papitas cabello de ángel.',
@@ -322,7 +305,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     is_gourmet: true,
     image_url: '/images/products/gourmet/bbq-crunch.png',
     allergens: ['Gluten', 'Lácteos'],
-    badge: '💥 CRUNCH',
+    badge: '💎 LÍNEA GOURMET',
     display_order: 6,
     modifier_groups: [
       {
@@ -351,7 +334,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19900,
     preparation_time_minutes: 15,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/hamburguesas/la-brutal.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: '¡INSIGNIA!',
@@ -394,7 +377,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 17900,
     preparation_time_minutes: 15,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/hamburguesas/la-criolla.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: 'COLOMBIANA',
@@ -424,7 +407,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 18900,
     preparation_time_minutes: 15,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/hamburguesas/la-tropical.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: 'TROPICAL',
@@ -441,7 +424,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 15900,
     preparation_time_minutes: 12,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/perros/el-callejero.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: 'FAVORITO',
@@ -458,7 +441,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 16900,
     preparation_time_minutes: 12,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/perros/el-ranchero.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: 'PARRILLERO',
@@ -475,7 +458,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 15900,
     preparation_time_minutes: 12,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/perros/el-ahumado.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: 'AHUMADO',
@@ -492,7 +475,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 26900,
     preparation_time_minutes: 20,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/pizzas/la-colombiana.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: 'ORIGINAL',
@@ -509,7 +492,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 27900,
     preparation_time_minutes: 20,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/pizzas/bbq-explosiva.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: 'EXPLOSIVA',
@@ -526,7 +509,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 26900,
     preparation_time_minutes: 20,
     is_available: true,
-    is_gourmet: true,
+    is_gourmet: false,
     image_url: '/images/products/pizzas/tropical-picante.jpg',
     allergens: ['Gluten', 'Lácteos'],
     badge: 'FUSIÓN',
@@ -564,12 +547,12 @@ export const INITIAL_INGREDIENTS: Ingredient[] = [
   { id: 'i10', name: 'Hogao casero colombiano', sku: 'ING-HOGA-01', unit: 'g', current_stock: 5800, minimum_stock: 1000, cost_per_unit: 12.0, supplier: 'Producción Interna', is_active: true },
   { id: 'i11', name: 'Plátano maduro en cubos', sku: 'ING-PLAT-01', unit: 'g', current_stock: 9600, minimum_stock: 2000, cost_per_unit: 6.5, supplier: 'Central de Abastos', is_active: true },
   { id: 'i12', name: 'Cebolla caramelizada', sku: 'ING-CEBC-01', unit: 'g', current_stock: 4800, minimum_stock: 1000, cost_per_unit: 14.0, supplier: 'Producción Interna', is_active: true },
-  { id: 'i13', name: 'Pepinillos agridulces', sku: 'ING-PEPI-01', unit: 'g', current_stock: 3400, minimum_stock: 800, cost_per_unit: 20.0, supplier: 'Importaciones Gourmet', is_active: true },
+  { id: 'i13', name: 'Pepinillos agridulces', sku: 'ING-PEPI-01', unit: 'g', current_stock: 3400, minimum_stock: 800, cost_per_unit: 20.0, supplier: 'Importaciones del Valle', is_active: true },
   { id: 'i14', name: 'Salsa Ahumada BEFFGER', sku: 'ING-SAHU-01', unit: 'g', current_stock: 7800, minimum_stock: 1500, cost_per_unit: 16.0, supplier: 'Producción Interna', is_active: true },
   { id: 'i15', name: 'Caja ecológica hamburguesa', sku: 'EMP-CAJH-01', unit: 'un', current_stock: 380, minimum_stock: 80, cost_per_unit: 750.0, supplier: 'Empaques del Pacífico', is_active: true },
 ];
 
-// Initial Recipes / Technical cost sheets for the 9 Gourmet products
+// Initial Recipes / Technical cost sheets for products
 export const INITIAL_RECIPES: Recipe[] = [
   {
     id: 'rec1',

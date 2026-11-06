@@ -306,7 +306,12 @@ fun ProductDetailScreen(
                             Text(" • ", color = Color.Gray, fontSize = 13.sp)
                             Text("⏱ 15-25 min", color = Color.DarkGray, fontSize = 13.sp)
                             Text(" • ", color = Color.Gray, fontSize = 13.sp)
-                            Text("Gourmet Urbano", color = BeffgerGreen, fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Text(
+                                text = if (product.isGourmet) (product.badge ?: "Línea Gourmet") else "Receta de Autor",
+                                color = if (product.isGourmet) Color(0xFFD97706) else BeffgerGreen,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 13.sp
+                            )
                         }
                     }
                     Text(

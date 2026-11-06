@@ -15,9 +15,8 @@ enum class AppRole(val title: String, val description: String, val icon: String)
 @Serializable
 enum class ProductCategory(val displayName: String) {
     ALL("Todo"),
-    GOURMET_ESPECIAL("Línea Gourmet Especial"),
     HAMBURGUESAS("Hamburguesas"),
-    PERROS("Perros Gourmet"),
+    PERROS("Perros Calientes"),
     PIZZAS("Pizzas 30cm"),
     COMPLEMENTOS("Papas & Acompañantes")
 }
@@ -49,7 +48,8 @@ data class Product(
     val price: Int,
     val description: String,
     @DrawableRes val imageRes: Int,
-    val isGourmet: Boolean = true,
+    val isGourmet: Boolean = false,
+    val badge: String? = null,
     var isAvailable: Boolean = true,
     val ingredients: List<String>,
     val modifierGroups: List<ModifierGroup> = emptyList()

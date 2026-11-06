@@ -98,8 +98,8 @@ fun RoleLauncherScreen(
             // 5 Role Cards
             val roleCards = listOf(
                 AppRole.CLIENTE to Triple(
-                    "App Clientes Gourmet",
-                    "Catálogo completo de 9 recetas, personalización con términos de carne, carrito, Wompi y rastreo en vivo de 5 etapas.",
+                    "App Clientes Beffger",
+                    "Catálogo completo con 16 recetas de hamburguesas, perros calientes, pizzas y complementos, con personalización de adiciones, carrito, Wompi y rastreo en vivo.",
                     BeffgerOrange
                 ),
                 AppRole.DOMICILIARIO to Triple(

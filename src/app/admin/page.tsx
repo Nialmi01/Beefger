@@ -221,7 +221,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white p-6 rounded-3xl border border-[#dec0b1] shadow-beffger-card space-y-4">
             <h3 className="font-heading text-xl text-[#222B2B] uppercase border-b border-[#dec0b1] pb-3 flex items-center gap-2">
               <Award className="w-5 h-5 text-[#FFC247]" />
-              <span>Creaciones Gourmet Más Vendidas</span>
+              <span>Creaciones Más Vendidas</span>
             </h3>
 
             <div className="space-y-3">

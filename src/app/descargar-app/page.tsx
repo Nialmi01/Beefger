@@ -45,14 +45,14 @@ export default function DescargarAppClientesPage() {
                 </h1>
 
                 <p className="text-base text-[#222B2B]/80 leading-relaxed mb-6">
-                  Pide tus hamburguesas gourmet de 150g, perros calientes cargados y pizzas artesanales con la máxima comodidad. Registra tu perfil para guardar tus datos en el CRM y hacer pedidos en un solo toque.
+                  Pide tus hamburguesas de 150g, perros calientes cargados y pizzas artesanales con la máxima comodidad. Registra tu perfil para guardar tus datos en el CRM y hacer pedidos en un solo toque.
                 </p>
 
                 {/* Features list */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                   <div className="flex items-center gap-2 text-xs font-semibold text-[#222B2B]">
                     <CheckCircle2 className="w-4 h-4 text-[#10b981] shrink-0" />
-                    <span>Catálogo de 9 recetas gourmet</span>
+                    <span>Catálogo de 16 recetas de autor</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-[#222B2B]">
                     <UserCheck className="w-4 h-4 text-[#10b981] shrink-0" />

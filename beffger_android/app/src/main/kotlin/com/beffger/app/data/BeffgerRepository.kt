@@ -21,15 +21,17 @@ import java.util.Locale
 class BeffgerRepository {
 
     val sampleProducts = listOf(
-        // 💎 GOURMET 1. BOURBON SMOKEHOUSE
+        // 🍔 1. BOURBON SMOKEHOUSE (LÍNEA GOURMET)
         Product(
             id = "p-bourbon",
             slug = "bourbon-smokehouse",
             name = "Bourbon Smokehouse",
-            category = ProductCategory.GOURMET_ESPECIAL,
+            category = ProductCategory.HAMBURGUESAS,
             price = 22000,
             description = "Nuestra carne artesanal de 150g se encuentra con una mermelada de tocineta al whiskey bourbon que redefine el sabor. Coronada con un nido de cebolla crispy en pan brioche sellado.",
             imageRes = R.drawable.bourbon_smokehouse,
+            isGourmet = true,
+            badge = "💎 LÍNEA GOURMET",
             ingredients = listOf("Carne de res 150g", "Mermelada tocineta al bourbon", "Cebolla crispy", "Pan brioche sellado", "Queso cheddar fundido"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -42,7 +44,7 @@ class BeffgerRepository {
                     isRequired = true
                 ),
                 ModifierGroup(
-                    name = "Adiciones Gourmet",
+                    name = "Adiciones Especiales",
                     options = listOf(
                         ModifierOption("Extra Mermelada Bourbon", 3500),
                         ModifierOption("Extra Cebolla Crispy", 2000),
@@ -52,15 +54,17 @@ class BeffgerRepository {
             )
         ),
 
-        // 💎 GOURMET 2. UMAMI TRUFFLE MASTER
+        // 🍔 2. UMAMI TRUFFLE MASTER (LÍNEA GOURMET)
         Product(
             id = "p-umami",
             slug = "umami-truffle-master",
             name = "Umami Truffle Master",
-            category = ProductCategory.GOURMET_ESPECIAL,
+            category = ProductCategory.HAMBURGUESAS,
             price = 20000,
             description = "Sofisticación pura en formato hamburguesa. Alioli de ajo confitado, generosa porción de champiñones salteados y pimienta negra recién molida sobre queso fundido en pan brioche.",
             imageRes = R.drawable.umami_truffle_master,
+            isGourmet = true,
+            badge = "💎 LÍNEA GOURMET",
             ingredients = listOf("Carne 150g", "Alioli ajo confitado", "Champiñones salteados trufados", "Queso fundido", "Pan brioche"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -73,7 +77,7 @@ class BeffgerRepository {
                     isRequired = true
                 ),
                 ModifierGroup(
-                    name = "Adiciones Gourmet",
+                    name = "Adiciones Especiales",
                     options = listOf(
                         ModifierOption("Extra Champiñones Salteados", 3500),
                         ModifierOption("Doble Alioli Ajo Confitado", 2000)
@@ -82,15 +86,17 @@ class BeffgerRepository {
             )
         ),
 
-        // 💎 GOURMET 3. TROPICAL VULCANO
+        // 🍔 3. TROPICAL VULCANO (LÍNEA GOURMET)
         Product(
             id = "p-vulcano",
             slug = "tropical-vulcano",
             name = "Tropical Vulcano",
-            category = ProductCategory.GOURMET_ESPECIAL,
+            category = ProductCategory.HAMBURGUESAS,
             price = 18000,
             description = "¡Erupción de sabor! Queso mozzarella fundido sobre nuestra carne artesanal, el dulzor de la piña asada caramelizada y el golpe vibrante de los jalapeños con nuestra Mayo-Sriracha de la casa.",
             imageRes = R.drawable.tropical_vulcano,
+            isGourmet = true,
+            badge = "💎 LÍNEA GOURMET",
             ingredients = listOf("Carne artesanal", "Mozzarella fundido", "Piña caramelizada", "Jalapeños frescos", "Mayo-Sriracha"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -113,15 +119,17 @@ class BeffgerRepository {
             )
         ),
 
-        // 💎 GOURMET 4. LA LEGENDARIA
+        // 🍔 4. LA LEGENDARIA (LÍNEA GOURMET)
         Product(
             id = "p-legendaria",
             slug = "la-legendaria",
             name = "La Legendaria",
-            category = ProductCategory.GOURMET_ESPECIAL,
+            category = ProductCategory.HAMBURGUESAS,
             price = 16000,
             description = "La Clásica donde todo comenzó en Beefger. Equilibrio perfecto de carne de res jugosa, queso fundido, vegetales frescos seleccionados y el toque secreto original en pan artesanal.",
             imageRes = R.drawable.la_legendaria,
+            isGourmet = true,
+            badge = "💎 LÍNEA GOURMET",
             ingredients = listOf("Carne jugosa 150g", "Vegetales frescos", "Queso derretido", "Salsa secreta original", "Pan brioche"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -143,15 +151,17 @@ class BeffgerRepository {
             )
         ),
 
-        // 💎 GOURMET 5. MEXICAN REBEL
+        // 🌭 5. MEXICAN REBEL (LÍNEA GOURMET)
         Product(
             id = "p-mexican-rebel",
             slug = "mexican-rebel",
             name = "Mexican Rebel",
-            category = ProductCategory.GOURMET_ESPECIAL,
+            category = ProductCategory.PERROS,
             price = 16000,
             description = "Mezcla perfecta de rebeldía y fuego: salchicha premium ahumada, guacamole rústico casero, maíz tierno salteado y el toque crunchy de nachos triturados.",
             imageRes = R.drawable.mexican_rebel,
+            isGourmet = true,
+            badge = "💎 LÍNEA GOURMET",
             ingredients = listOf("Salchicha premium ahumada", "Guacamole rústico casero", "Maíz tierno salteado", "Nachos crujientes"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -165,15 +175,17 @@ class BeffgerRepository {
             )
         ),
 
-        // 💎 GOURMET 6. BBQ CRUNCH
+        // 🌭 6. BBQ CRUNCH (LÍNEA GOURMET)
         Product(
             id = "p-bbq-crunch",
             slug = "bbq-crunch",
             name = "BBQ Crunch",
-            category = ProductCategory.GOURMET_ESPECIAL,
+            category = ProductCategory.PERROS,
             price = 14000,
             description = "El clásico americano nivel leyenda. Salchicha ahumada bañada en salsa BBQ artesanal secreta, ensalada coleslaw ultra fresca y coronada con montaña de papitas cabello de ángel.",
             imageRes = R.drawable.bbq_crunch,
+            isGourmet = true,
+            badge = "💎 LÍNEA GOURMET",
             ingredients = listOf("Salchicha ahumada", "Salsa BBQ artesanal", "Ensalada coleslaw fresca", "Papitas cabello de ángel"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -186,7 +198,7 @@ class BeffgerRepository {
             )
         ),
 
-        // 🍔 1. LA BRUTAL
+        // 🍔 7. LA BRUTAL
         Product(
             id = "p1",
             slug = "la-brutal",
@@ -195,6 +207,8 @@ class BeffgerRepository {
             price = 19900,
             description = "Hamburguesa insignia con 150g de carne de res premium, queso cheddar fundido, doble tocineta crocante, cebolla caramelizada y salsa ahumada de la casa en pan brioche dorado.",
             imageRes = R.drawable.la_brutal,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Carne de res 150g", "Pan brioche", "Qheddar fundido", "Tocineta crocante", "Cebolla caramelizada", "Salsa ahumada"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -207,7 +221,7 @@ class BeffgerRepository {
                     isRequired = true
                 ),
                 ModifierGroup(
-                    name = "Adiciones Gourmet",
+                    name = "Adiciones Especiales",
                     options = listOf(
                         ModifierOption("Extra Tocineta Crocante", 3500),
                         ModifierOption("Doble Queso Cheddar", 2500),
@@ -217,7 +231,7 @@ class BeffgerRepository {
             )
         ),
 
-        // 🍔 2. LA CRIOLLA
+        // 🍔 8. LA CRIOLLA
         Product(
             id = "p2",
             slug = "la-criolla",
@@ -226,6 +240,8 @@ class BeffgerRepository {
             price = 21900,
             description = "Fusión colombiana irresistible: 150g de res a la parrilla, mozzarella hilada, plátano maduro meloso frito, hogao casero espeso y cebolla crocante en salsa de ajo y cilantro.",
             imageRes = R.drawable.la_criolla,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Carne 150g", "Plátano maduro frito", "Hogao criollo", "Queso mozzarella", "Cebolla crocante", "Salsa ajo-cilantro"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -246,7 +262,7 @@ class BeffgerRepository {
             )
         ),
 
-        // 🍔 3. LA TROPICAL
+        // 🍔 9. LA TROPICAL
         Product(
             id = "p3",
             slug = "la-tropical",
@@ -255,6 +271,8 @@ class BeffgerRepository {
             price = 20900,
             description = "Equilibrio agridulce perfecto con rodaja de piña asada a la plancha, tocineta, queso mozzarella fundido, cebolla morada fresca y salsa de mango picante en pan brioche.",
             imageRes = R.drawable.la_tropical,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Carne 150g", "Piña asada a la plancha", "Mozzarella fundido", "Tocineta", "Salsa mango picante"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -267,7 +285,7 @@ class BeffgerRepository {
             )
         ),
 
-        // 🌭 4. EL CALLEJERO
+        // 🌭 10. EL CALLEJERO
         Product(
             id = "p4",
             slug = "el-callejero",
@@ -276,19 +294,21 @@ class BeffgerRepository {
             price = 16900,
             description = "Perro caliente gigante de 22cm con salchicha premium de 100g, mozzarella fundido, lluvia de tocineta, maíz dulce tierno, papitas crocantes y salsa de piña de la casa.",
             imageRes = R.drawable.el_callejero,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Salchicha premium 100g", "Pan perro 22cm", "Mozzarella", "Tocineta", "Maíz dulce", "Papas ripio", "Salsa piña"),
             modifierGroups = listOf(
                 ModifierGroup(
                     name = "Salsas Adicionales",
                     options = listOf(
                         ModifierOption("Extra Salsa de la Casa", 1000),
-                        ModifierOption("Salsa Tártara Gourmet", 1200)
+                        ModifierOption("Salsa Tártara Especial", 1200)
                     )
                 )
             )
         ),
 
-        // 🌭 5. EL RANCHERO
+        // 🌭 11. EL RANCHERO
         Product(
             id = "p5",
             slug = "el-ranchero",
@@ -297,11 +317,13 @@ class BeffgerRepository {
             price = 18900,
             description = "Sabor callejero intenso con salchicha premium coronada con chorizo dorado picado, abundante salsa cheddar tibia, jalapeños encurtidos y cebolla morada en plumas.",
             imageRes = R.drawable.el_ranchero,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Salchicha premium", "Chorizo dorado 30g", "Salsa cheddar", "Jalapeños", "Cebolla morada", "Salsa ajo"),
             modifierGroups = emptyList()
         ),
 
-        // 🌭 6. EL AHUMADO
+        // 🌭 12. EL AHUMADO
         Product(
             id = "p6",
             slug = "el-ahumado",
@@ -310,11 +332,13 @@ class BeffgerRepository {
             price = 17900,
             description = "Salchicha premium con queso costeño asado a la plancha, cebolla caramelizada al carbón, tocineta crocante y reducción de salsa BBQ artesanal ahumada.",
             imageRes = R.drawable.el_ahumado,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Salchicha 100g", "Queso costeño asado", "Cebolla caramelizada", "Tocineta", "BBQ ahumada"),
             modifierGroups = emptyList()
         ),
 
-        // 🍕 7. LA COLOMBIANA (PIZZA 30CM)
+        // 🍕 13. LA COLOMBIANA (PIZZA 30CM)
         Product(
             id = "p7",
             slug = "la-colombiana",
@@ -323,6 +347,8 @@ class BeffgerRepository {
             price = 26900,
             description = "Pizza artesanal horneada a la piedra de 8 porciones con base crocante, plátano maduro frito caramelizado, maíz dulce tierno, tocineta crocante y doble queso mozzarella.",
             imageRes = R.drawable.la_colombiana,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Masa madre 30cm", "Plátano maduro frito", "Maíz dulce", "Tocineta", "Doble mozzarella"),
             modifierGroups = listOf(
                 ModifierGroup(
@@ -335,7 +361,7 @@ class BeffgerRepository {
             )
         ),
 
-        // 🍕 8. LA BBQ EXPLOSIVA (PIZZA 30CM)
+        // 🍕 14. LA BBQ EXPLOSIVA (PIZZA 30CM)
         Product(
             id = "p8",
             slug = "bbq-explosiva",
@@ -344,24 +370,28 @@ class BeffgerRepository {
             price = 27900,
             description = "Masa artesanal con generosa porción de carne desmechada sazonada, tocineta ahumada, cebolla caramelizada, mozzarella y espiral de salsa BBQ de la casa.",
             imageRes = R.drawable.bbq_explosiva,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Carne desmechada", "Tocineta ahumada", "Cebolla caramelizada", "Salsa BBQ", "Mozzarella"),
             modifierGroups = emptyList()
         ),
 
-        // 🍕 9. TROPICAL PICANTE (PIZZA 30CM)
+        // 🍕 15. TROPICAL PICANTE (PIZZA 30CM)
         Product(
             id = "p9",
             slug = "tropical-picante",
             name = "Tropical Picante (30 cm)",
             category = ProductCategory.PIZZAS,
             price = 25900,
-            description = "Combinación gourmet atrevida con piña asada, tocineta ahumada, rodajas de jalapeños encurtidos y toque de salsa de mango picante sobre mozzarella burbujeante.",
+            description = "Combinación artesanal atrevida con piña asada, tocineta ahumada, rodajas de jalapeños encurtidos y toque de salsa de mango picante sobre mozzarella burbujeante.",
             imageRes = R.drawable.tropical_picante,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Piña asada", "Jalapeños", "Tocineta", "Salsa mango picante", "Mozzarella"),
             modifierGroups = emptyList()
         ),
 
-        // 🍟 10. PAPAS RÚSTICAS DE LA CASA
+        // 🍟 16. PAPAS RÚSTICAS DE LA CASA
         Product(
             id = "p10",
             slug = "papas-rusticas",
@@ -370,6 +400,8 @@ class BeffgerRepository {
             price = 7900,
             description = "Porción generosa de papas naturales cortadas en bastones rústicos, sazonadas con paprika y sal marina, servidas con salsa ahumada BEFFGER.",
             imageRes = R.drawable.papas_francesa,
+            isGourmet = false,
+            badge = null,
             ingredients = listOf("Papas naturales 250g", "Paprika", "Sal marina", "Salsa ahumada"),
             modifierGroups = emptyList()
         )

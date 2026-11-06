@@ -253,7 +253,7 @@ fun CheckoutScreen(
                         color = BeffgerCharcoal
                     )
                     Text(
-                        text = "Agrega deliciosas hamburguesas, perros gourmet o pizzas artesanales de nuestro menú.",
+                        text = "Agrega deliciosas hamburguesas, perros calientes o pizzas artesanales de nuestro menú.",
                         color = Color.DarkGray,
                         fontSize = 14.sp,
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center,
@@ -265,7 +265,7 @@ fun CheckoutScreen(
                         shape = RoundedCornerShape(12.dp),
                         modifier = Modifier.padding(top = 8.dp)
                     ) {
-                        Text("Explorar Menú Gourmet", color = BeffgerWhite, fontWeight = FontWeight.Bold)
+                        Text("Explorar Carta Completa", color = BeffgerWhite, fontWeight = FontWeight.Bold)
                     }
                 }
             }

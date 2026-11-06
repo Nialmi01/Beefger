@@ -71,7 +71,7 @@ export default function CheckoutPage() {
           </div>
           <h1 className="font-heading text-4xl text-[#222B2B]">Tu carrito está vacío</h1>
           <p className="text-sm text-[#574237]">
-            Para realizar un pedido, primero debes agregar tus productos favoritos de BEFFGER Gourmet.
+            Para realizar un pedido, primero debes agregar tus productos favoritos de BEFFGER.
           </p>
           <button
             onClick={() => router.push('/menu')}

@@ -188,7 +188,7 @@ export default function HomePage() {
                     : 'bg-white text-[#222B2B] hover:bg-[#F47A22] hover:text-white border border-[#dec0b1]'
                 }`}
               >
-                <span>🔥 TODO EL MENÚ GOURMET</span>
+                <span>🔥 TODO EL MENÚ</span>
               </button>
 
               {categories.map((cat) => (
@@ -217,13 +217,13 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 pb-4 border-b border-[#dec0b1]">
               <div>
                 <span className="font-heading text-sm text-[#F47A22] tracking-wider uppercase font-bold">
-                  Línea Exclusiva
+                  Nuestra Carta
                 </span>
                 <h2 className="font-heading text-3xl sm:text-4xl text-[#222B2B] uppercase tracking-tight mt-1">
-                  BEFFGER GOURMET
+                  CARTA OFICIAL BEFFGER
                 </h2>
                 <p className="text-xs sm:text-sm text-[#574237] mt-1">
-                  Nueve creaciones urbanas monumentales preparadas al momento con recetas de autor.
+                  Creaciones urbanas monumentales preparadas al momento con ingredientes selectos y recetas de autor.
                 </p>
               </div>
 
@@ -322,7 +322,7 @@ export default function HomePage() {
                   ¿PIDIENDO PARA EL PARCHE?
                 </h3>
                 <p className="text-sm text-[#EDE1CE]/80 leading-relaxed">
-                  Pide 2 Hamburguesas Gourmet o 2 Pizzas Artesanales de 30cm y recibe gratis una porción de papas rústicas doradas con salsa de la casa.
+                  Pide 2 Hamburguesas o 2 Pizzas Artesanales de 30cm y recibe gratis una porción de papas rústicas doradas con salsa de la casa.
                 </p>
               </div>
 
@@ -364,7 +364,7 @@ export default function HomePage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                     <div className="flex items-center gap-2 text-xs font-semibold text-[#EDE1CE]">
                       <span className="text-[#10b981]">✔</span>
-                      <span>Catálogo de 9 recetas gourmet</span>
+                      <span>Catálogo de 16 recetas de autor</span>
                     </div>
                     <div className="flex items-center gap-2 text-xs font-semibold text-[#EDE1CE]">
                       <span className="text-[#10b981]">✔</span>

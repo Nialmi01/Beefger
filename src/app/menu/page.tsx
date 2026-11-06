@@ -51,10 +51,10 @@ export default function MenuPage() {
                 CARTA COMPLETA
               </span>
               <h1 className="font-heading text-4xl sm:text-6xl text-white uppercase tracking-tight mt-3">
-                MENÚ <span className="text-[#F47A22]">BEFFGER GOURMET</span>
+                MENÚ <span className="text-[#F47A22]">BEFFGER</span>
               </h1>
               <p className="text-sm sm:text-base text-[#EDE1CE]/80 mt-2 leading-relaxed">
-                Nuestras nueve recetas emblemáticas de hamburguesas, perros calientes y pizzas de 30 cm a la piedra. Selecciona cualquier producto para personalizar el término de la carne, salsas y extras.
+                Nuestras creaciones de hamburguesas, perros calientes y pizzas de 30 cm a la piedra. Selecciona cualquier producto para personalizar el término de la carne, salsas y extras.
               </p>
             </div>
           </div>
