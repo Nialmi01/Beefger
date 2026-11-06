@@ -99,7 +99,7 @@ export default function AdminProductsPage() {
             GESTIÓN DE MENÚ & CATÁLOGO
           </span>
           <h1 className="font-heading text-3xl text-[#222B2B] uppercase mt-0.5">
-            Productos & Recetas Gourmet
+            Productos & Recetas del Menú
           </h1>
           <p className="text-xs text-[#574237]">
             {products.length} productos registrados • Modifica precios y disponibilidad en tiempo real.
@@ -268,7 +268,7 @@ export default function AdminProductsPage() {
           <div className="bg-[#FFF2DF] rounded-3xl p-6 w-full max-w-lg border border-[#dec0b1] shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-[#dec0b1] pb-3">
               <h3 className="font-heading text-2xl text-[#222B2B] uppercase">
-                Crear Nuevo Producto Gourmet
+                Crear Nuevo Producto del Menú
               </h3>
               <button
                 onClick={() => setShowCreateModal(false)}

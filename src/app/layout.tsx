@@ -4,15 +4,15 @@ import { CartProvider } from '@/lib/cart';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'BEFFGER — La Calle Tiene Sabor | Street Food Gourmet',
+  title: 'BEFFGER — La Calle Tiene Sabor | Street Food de Autor',
   description:
-    'Hamburguesas monumentales de 150g, perros gourmet cargados y pizzas artesanales horneadas a la piedra. Pide en línea a domicilio o para llevar en Cali.',
+    'Hamburguesas monumentales de 150g, perros calientes cargados y pizzas artesanales horneadas a la piedra. Pide en línea a domicilio o para llevar.',
   keywords: [
     'BEFFGER',
-    'Hamburguesas Gourmet',
+    'Hamburguesas',
     'Perros Calientes',
     'Pizzas Artesanales',
-    'Street Food Cali',
+    'Street Food',
     'La Brutal',
     'Comida rápida artesanal',
   ],

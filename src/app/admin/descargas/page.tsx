@@ -25,8 +25,8 @@ interface StaffAppInfo {
   apkFile: string;
   qrFile: string;
   accessCode: string;
-  defaultEmail: string;
-  defaultPass: string;
+  authMethod: string;
+  authNote: string;
   icon: React.ComponentType<{ className?: string }>;
   color: string;
   badge: string;
@@ -37,6 +37,28 @@ interface StaffAppInfo {
 
 const STAFF_APPS: StaffAppInfo[] = [
   {
+    id: 'admin',
+    role: 'Administrador & Gerencia',
+    appName: 'BEFFGER Administrador',
+    packageId: 'com.beffger.app.admin',
+    apkFile: 'beffger-admin.apk',
+    qrFile: '/images/qr-admin.png',
+    accessCode: 'ADMIN-2026',
+    authMethod: 'Credenciales Superadmin',
+    authNote: 'Acceso exclusivo con cuenta institucional admin@beffger.com',
+    icon: BarChart3,
+    color: '#8B5CF6',
+    badge: 'Control Maestro',
+    badgeBg: 'bg-purple-500/10 text-purple-600',
+    description: 'Monitoreo de ingresos y tickets promedio en tiempo real, arqueo y cierre de caja diario desglosado (Wompi, efectivo, datáfono) e interruptor para pausar o activar recetas del menú.',
+    features: [
+      'KPIs de ingresos, ticket promedio y pedidos activos',
+      'Arqueo de caja desglosado (Online, Efectivo, Datáfono)',
+      'Interruptor para pausar o activar recetas del menú',
+      'Auditoría y control global de todo el restaurante'
+    ]
+  },
+  {
     id: 'domiciliario',
     role: 'Domiciliarios & Repartidores',
     appName: 'BEFFGER Domiciliarios',
@@ -44,8 +66,8 @@ const STAFF_APPS: StaffAppInfo[] = [
     apkFile: 'beffger-domiciliario.apk',
     qrFile: '/images/qr-domiciliario.png',
     accessCode: 'DOMI-2026',
-    defaultEmail: 'rider@beffger.com',
-    defaultPass: 'rider123',
+    authMethod: 'Credenciales de Domiciliario',
+    authNote: 'Usuario y clave creados por el Administrador en la sección Equipo y Roles',
     icon: Bike,
     color: '#3B82F6',
     badge: 'Logística',
@@ -66,8 +88,8 @@ const STAFF_APPS: StaffAppInfo[] = [
     apkFile: 'beffger-cocina.apk',
     qrFile: '/images/qr-cocina.png',
     accessCode: 'COCINA-2026',
-    defaultEmail: 'cocina@beffger.com',
-    defaultPass: 'cocina123',
+    authMethod: 'Credenciales de Cocina',
+    authNote: 'Usuario y clave asignados a cada jefe de cocina o parrillero de turno',
     icon: ChefHat,
     color: '#EF4444',
     badge: 'Producción',
@@ -88,8 +110,8 @@ const STAFF_APPS: StaffAppInfo[] = [
     apkFile: 'beffger-mesero.apk',
     qrFile: '/images/qr-mesero.png',
     accessCode: 'MESERO-2026',
-    defaultEmail: 'mesero@beffger.com',
-    defaultPass: 'mesero123',
+    authMethod: 'Credenciales de Mesero',
+    authNote: 'Usuario y clave asignados a cada mesero o capitán de salón',
     icon: UtensilsCrossed,
     color: '#10B981',
     badge: 'Servicio en Mesa',
@@ -100,28 +122,6 @@ const STAFF_APPS: StaffAppInfo[] = [
       'Toma de comanda a pie de mesa enviada directo a cocina',
       'Modificadores de plato, bebidas y notas especiales',
       'Solicitud de cuenta y liberación automática de mesa'
-    ]
-  },
-  {
-    id: 'admin',
-    role: 'Administrador & Gerencia',
-    appName: 'BEFFGER Administrador',
-    packageId: 'com.beffger.app.admin',
-    apkFile: 'beffger-admin.apk',
-    qrFile: '/images/qr-admin.png',
-    accessCode: 'ADMIN-2026',
-    defaultEmail: 'admin@beffger.com',
-    defaultPass: 'AdminBeffger2026!',
-    icon: BarChart3,
-    color: '#8B5CF6',
-    badge: 'Control Maestro',
-    badgeBg: 'bg-purple-500/10 text-purple-600',
-    description: 'Monitoreo de ingresos y tickets promedio en tiempo real, arqueo y cierre de caja diario desglosado (Wompi, efectivo, datáfono) e interruptor para pausar o activar recetas del menú.',
-    features: [
-      'KPIs de ingresos, ticket promedio y pedidos activos',
-      'Arqueo de caja desglosado (Online, Efectivo, Datáfono)',
-      'Interruptor para pausar o activar recetas del menú',
-      'Auditoría y control global de todo el restaurante'
     ]
   }
 ];
@@ -230,30 +230,24 @@ export default function AdminDescargasPage() {
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold uppercase tracking-wider text-[#FFC247] flex items-center gap-1.5">
                     <KeyRound className="w-3.5 h-3.5" />
-                    Credenciales de Acceso para Iniciar Turno
+                    Autenticación & Acceso Seguro
                   </span>
-                  <button
-                    onClick={() =>
-                      handleCopy(
-                        'creds',
-                        `App: ${selectedApp.appName}\nUsuario: ${selectedApp.defaultEmail}\nClave: ${selectedApp.defaultPass}\nDescarga: https://beefger-platform.vercel.app/downloads/${selectedApp.apkFile}`
-                      )
-                    }
+                  <a
+                    href="/admin/usuarios"
                     className="text-[11px] font-bold text-[#FFC247] hover:text-white flex items-center gap-1 transition-colors"
                   >
-                    {copiedKey === 'creds' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>{copiedKey === 'creds' ? '¡Copiado!' : 'Copiar Ficha'}</span>
-                  </button>
+                    <span>Gestionar Colaboradores →</span>
+                  </a>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                    <span className="text-[10px] uppercase text-gray-400 block mb-0.5">Usuario / Correo:</span>
-                    <span className="text-white font-bold">{selectedApp.defaultEmail}</span>
+                <div className="space-y-2 text-xs">
+                  <div className="bg-white/5 p-3 rounded-xl border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <span className="text-gray-400 font-medium">Método de Acceso:</span>
+                    <span className="text-white font-bold">{selectedApp.authMethod}</span>
                   </div>
-                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                    <span className="text-[10px] uppercase text-gray-400 block mb-0.5">Contraseña:</span>
-                    <span className="text-white font-bold">{selectedApp.defaultPass}</span>
+                  <div className="bg-white/5 p-3 rounded-xl border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <span className="text-gray-400 font-medium">Instrucción:</span>
+                    <span className="text-[#FFC247] font-semibold">{selectedApp.authNote}</span>
                   </div>
                 </div>
               </div>
@@ -277,7 +271,7 @@ export default function AdminDescargasPage() {
                 className="w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-[#F47A22]/25 transition-all active:scale-[0.99]"
               >
                 <Download className="w-5 h-5 animate-bounce" />
-                <span>Descargar {selectedApp.apkFile} (APK 24.5 MB)</span>
+                <span>Descargar {selectedApp.apkFile} (APK Oficial)</span>
               </a>
 
               <div className="flex items-center justify-between text-[11px] text-gray-400 px-1">
@@ -285,7 +279,7 @@ export default function AdminDescargasPage() {
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                   Compilación nativa con autenticación de rol requerida
                 </span>
-                <span className="font-mono">Versión 1.0 Debug • SDK 36</span>
+                <span className="font-mono">Versión Oficial de Producción • SDK 36</span>
               </div>
             </div>
           </div>
@@ -312,7 +306,7 @@ export default function AdminDescargasPage() {
               https://beefger-platform.vercel.app/downloads/{selectedApp.apkFile}
             </span>
             <span className="text-[10px] text-gray-400">
-              Descarga directa oficial desde la nube o red
+              Descarga directa oficial desde la nube o red local
             </span>
           </div>
 
@@ -321,23 +315,32 @@ export default function AdminDescargasPage() {
 
       {/* Corporate Summary Table */}
       <div className="bg-[#222B2B] rounded-3xl p-6 sm:p-8 border border-white/10 shadow-xl space-y-4">
-        <h3 className="font-heading text-xl font-black text-white">
-          Directorio Completo de Apps y Credenciales para el Personal
-        </h3>
-        <p className="text-xs text-gray-300">
-          Usa esta tabla para crear usuarios o compartir los accesos con tu equipo de cocineros, repartidores y meseros.
-        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 className="font-heading text-xl font-black text-white">
+              Directorio de Apps Operativas & Control de Roles
+            </h3>
+            <p className="text-xs text-gray-300 mt-0.5">
+              Cada aplicación autentica con las cuentas asignadas individualmente según el rol del colaborador.
+            </p>
+          </div>
+          <a
+            href="/admin/usuarios"
+            className="px-4 py-2 rounded-xl bg-[#F47A22] hover:bg-[#d96616] text-white text-xs font-bold uppercase tracking-wider transition-colors shrink-0"
+          >
+            + Crear / Gestionar Colaboradores
+          </a>
+        </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead className="bg-white/5 text-[#FFC247] uppercase font-mono text-[11px] border-b border-white/10">
               <tr>
                 <th className="py-3 px-4 rounded-l-xl">Aplicación</th>
-                <th className="py-3 px-4">Rol Asignado</th>
-                <th className="py-3 px-4">Usuario Inicial</th>
-                <th className="py-3 px-4">Contraseña</th>
-                <th className="py-3 px-4">Archivo APK</th>
-                <th className="py-3 px-4 rounded-r-xl text-center">Ficha</th>
+                <th className="py-3 px-4">Rol Requerido</th>
+                <th className="py-3 px-4">Control de Acceso</th>
+                <th className="py-3 px-4">Instalador APK</th>
+                <th className="py-3 px-4 rounded-r-xl text-center">Acciones</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
@@ -348,8 +351,10 @@ export default function AdminDescargasPage() {
                     {app.appName}
                   </td>
                   <td className="py-3 px-4 text-gray-300">{app.role}</td>
-                  <td className="py-3 px-4 font-mono text-gray-200">{app.defaultEmail}</td>
-                  <td className="py-3 px-4 font-mono text-gray-400">{app.defaultPass}</td>
+                  <td className="py-3 px-4 text-gray-300 font-medium">
+                    <span className="text-[#FFC247] block font-bold">{app.authMethod}</span>
+                    <span className="text-[11px] text-gray-400">{app.authNote}</span>
+                  </td>
                   <td className="py-3 px-4 font-mono text-[11px] text-[#FFC247]">{app.apkFile}</td>
                   <td className="py-3 px-4 text-center">
                     <button

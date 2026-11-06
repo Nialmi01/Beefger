@@ -131,7 +131,7 @@ export default function HomePage() {
                   </div>
                   <span className="font-bold text-white text-sm">4.9 / 5</span>
                   <span>•</span>
-                  <span>+12.000 pedidos entregados en Cali</span>
+                  <span>+12.000 pedidos entregados a satisfacción</span>
                 </div>
               </div>
 

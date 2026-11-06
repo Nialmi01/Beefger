@@ -420,12 +420,14 @@ CREATE POLICY "Public read own orders by phone" ON orders FOR SELECT USING (TRUE
 CREATE POLICY "Public insert order_items" ON order_items FOR INSERT WITH CHECK (TRUE);
 CREATE POLICY "Public read order_items" ON order_items FOR SELECT USING (TRUE);
 
--- Staff (Admin, Gerente, Cajero, Cocina, Domiciliario) full access to management
-CREATE POLICY "Staff full access profiles" ON profiles FOR ALL USING (TRUE);
-CREATE POLICY "Staff full access orders" ON orders FOR ALL USING (TRUE);
-CREATE POLICY "Staff full access order_items" ON order_items FOR ALL USING (TRUE);
-CREATE POLICY "Staff full access ingredients" ON ingredients FOR ALL USING (TRUE);
-CREATE POLICY "Staff full access recipes" ON recipes FOR ALL USING (TRUE);
-CREATE POLICY "Staff full access recipe_items" ON recipe_items FOR ALL USING (TRUE);
-CREATE POLICY "Staff full access cash_registers" ON cash_registers FOR ALL USING (TRUE);
-CREATE POLICY "Staff full access cash_movements" ON cash_movements FOR ALL USING (TRUE);
+-- Hardened RBAC: Operational & Administrative tables strictly restricted to authenticated staff
+CREATE POLICY "Staff access profiles" ON profiles FOR ALL TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff update orders" ON orders FOR UPDATE TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff delete orders" ON orders FOR DELETE TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff update order_items" ON order_items FOR UPDATE TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff delete order_items" ON order_items FOR DELETE TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff access ingredients" ON ingredients FOR ALL TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff access recipes" ON recipes FOR ALL TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff access recipe_items" ON recipe_items FOR ALL TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff access cash_registers" ON cash_registers FOR ALL TO authenticated USING (auth.role() = 'authenticated');
+CREATE POLICY "Staff access cash_movements" ON cash_movements FOR ALL TO authenticated USING (auth.role() = 'authenticated');

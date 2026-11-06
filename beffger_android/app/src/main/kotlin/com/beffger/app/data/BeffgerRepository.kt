@@ -397,12 +397,72 @@ class BeffgerRepository {
             slug = "papas-rusticas",
             name = "Papas Rústicas Francesas",
             category = ProductCategory.COMPLEMENTOS,
-            price = 7900,
-            description = "Porción generosa de papas naturales cortadas en bastones rústicos, sazonadas con paprika y sal marina, servidas con salsa ahumada BEFFGER.",
+            price = 8900,
+            description = "Porción generosa de papas naturales cortadas en bastones rústicos, sazonadas con sal marina y finas hierbas, servidas con salsa ahumada BEFFGER.",
             imageRes = R.drawable.papas_francesa,
             isGourmet = false,
-            badge = null,
+            badge = "CRUNCH",
             ingredients = listOf("Papas naturales 250g", "Paprika", "Sal marina", "Salsa ahumada"),
+            modifierGroups = emptyList()
+        ),
+
+        // 🥔 17. PAPAS CRIOLLAS RÚSTICAS
+        Product(
+            id = "p11",
+            slug = "papas-criollas",
+            name = "Papas Criollas Rústicas",
+            category = ProductCategory.COMPLEMENTOS,
+            price = 9900,
+            description = "Papas criollas andinas doradas a la perfección, crocantes por fuera y suaves por dentro, sazonadas con sal marina y finas hierbas.",
+            imageRes = R.drawable.papas_criollas,
+            isGourmet = false,
+            badge = "TÍPICO",
+            ingredients = listOf("Papas criollas 250g", "Sal marina", "Finas hierbas", "Salsa de la casa"),
+            modifierGroups = emptyList()
+        ),
+
+        // 🍌 18. PATACONES O TOSTONES
+        Product(
+            id = "p12",
+            slug = "patacones-tostones",
+            name = "Patacones o Tostones",
+            category = ProductCategory.COMPLEMENTOS,
+            price = 8900,
+            description = "Plátano verde seleccionado dos veces frito hasta lograr una crocancia insuperable. Acompañados de hogao tradicional o salsa de la casa.",
+            imageRes = R.drawable.patacones_tostones,
+            isGourmet = false,
+            badge = "CRUNCH",
+            ingredients = listOf("Plátano verde 200g", "Sal marina", "Hogao casero colombiano"),
+            modifierGroups = emptyList()
+        ),
+
+        // 🧅 19. AROS DE CEBOLLA
+        Product(
+            id = "p13",
+            slug = "aros-cebolla",
+            name = "Aros de Cebolla Crocantes",
+            category = ProductCategory.COMPLEMENTOS,
+            price = 10900,
+            description = "Aros gruesos de cebolla blanca con rebozado artesanal dorado y extra crujiente, servidos con salsa BBQ de panela BEFFGER.",
+            imageRes = R.drawable.aros_cebolla,
+            isGourmet = false,
+            badge = "POPULAR",
+            ingredients = listOf("Cebolla blanca 180g", "Rebozado panko dorado", "Salsa BBQ de panela"),
+            modifierGroups = emptyList()
+        ),
+
+        // 🌿 20. YUCA FRITA DORADA
+        Product(
+            id = "p14",
+            slug = "yuca-frita",
+            name = "Yuca Frita Dorada",
+            category = ProductCategory.COMPLEMENTOS,
+            price = 8900,
+            description = "Bastones gruesos de yuca seleccionada, crujientes en su exterior y tiernos por dentro, con sal marina y dip cremoso de ajo y cilantro.",
+            imageRes = R.drawable.yuca_frita,
+            isGourmet = false,
+            badge = "CASERO",
+            ingredients = listOf("Yuca seleccionada 250g", "Sal marina", "Salsa de ajo y cilantro"),
             modifierGroups = emptyList()
         )
     )
@@ -635,13 +695,16 @@ class BeffgerRepository {
         _currentCustomer.value = null
     }
 
-    // --- RBAC: Staff Authentication ---
-    private val staffCredentials = listOf(
-        Triple("admin@beffger.com", "AdminBeffger2026!", StaffUserAccount("admin.super", "Super Administrador BEFFGER", AppRole.ADMIN, "admin@beffger.com")),
-        Triple("admin@beffger.com", "admin123", StaffUserAccount("admin.super", "Super Administrador BEFFGER", AppRole.ADMIN, "admin@beffger.com")),
-        Triple("rider@beffger.com", "rider123", StaffUserAccount("carlos.rider", "Carlos Mendoza", AppRole.DOMICILIARIO, "rider@beffger.com")),
-        Triple("cocina@beffger.com", "cocina123", StaffUserAccount("chef.andres", "Andrés Chef Parrillero", AppRole.COCINA, "cocina@beffger.com")),
-        Triple("mesero@beffger.com", "mesero123", StaffUserAccount("laura.mesero", "Laura Gómez", AppRole.MESERO, "mesero@beffger.com"))
+    // --- RBAC: Staff Authentication with Cryptographic Hash Defense ---
+    private fun sha256(input: String): String {
+        val bytes = java.security.MessageDigest.getInstance("SHA-256").digest(input.toByteArray())
+        return bytes.joinToString("") { "%02x".format(it) }
+    }
+
+    // Secure credentials store using SHA-256 hashes (NO plaintext passwords in APK binary)
+    private val staffCredentials = mutableListOf(
+        // Superadmin: AdminBeffger2026! (314854f4b7a40ba57183307db920897cd68c002c54792727f5e456e8d165ae6e)
+        Triple("admin@beffger.com", "314854f4b7a40ba57183307db920897cd68c002c54792727f5e456e8d165ae6e", StaffUserAccount("admin.super", "Super Administrador BEFFGER", AppRole.ADMIN, "admin@beffger.com"))
     )
 
     private val _activeStaffUser = MutableStateFlow<StaffUserAccount?>(null)
@@ -649,16 +712,24 @@ class BeffgerRepository {
 
     fun authenticateStaff(role: AppRole, userOrEmail: String, pass: String): Boolean {
         val cleanUser = userOrEmail.trim().lowercase()
-        val match = staffCredentials.find { (email, password, staff) ->
+        val hashedInput = sha256(pass.trim())
+        val match = staffCredentials.find { (email, passwordHash, staff) ->
             staff.role == role &&
             (email.lowercase() == cleanUser || staff.username.lowercase() == cleanUser) &&
-            password == pass
+            passwordHash == hashedInput
         }
         if (match != null) {
             _activeStaffUser.value = match.third
             return true
         }
         return false
+    }
+
+    fun registerStaffAccount(email: String, pass: String, staff: StaffUserAccount) {
+        val cleanEmail = email.trim().lowercase()
+        val hashed = sha256(pass.trim())
+        staffCredentials.removeAll { it.first.lowercase() == cleanEmail }
+        staffCredentials.add(Triple(cleanEmail, hashed, staff))
     }
 
     fun logoutStaff() {

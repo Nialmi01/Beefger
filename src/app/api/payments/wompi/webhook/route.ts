@@ -7,8 +7,15 @@ export async function POST(request: Request) {
     const payload = await request.json();
     const checksumHeader = request.headers.get('x-event-checksum') || '';
 
-    // Verify webhook authenticity (in sandbox we allow simulation if secret is test)
+    // Verify webhook authenticity (reject unauthorized / forged requests)
     const isValid = verifyWompiEventChecksum(payload, checksumHeader);
+    if (!isValid) {
+      console.warn('Wompi webhook signature mismatch or forged payload rejected');
+      return NextResponse.json(
+        { error: 'Firma criptográfica de evento inválida o no autorizada.' },
+        { status: 401 }
+      );
+    }
 
     const transaction = payload?.data?.transaction;
     if (transaction && transaction.reference) {

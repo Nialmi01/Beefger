@@ -74,13 +74,13 @@ export function Footer() {
             <h3 className="font-heading text-lg tracking-wider text-[#FFC247]">Nuestras Creaciones</h3>
             <ul className="space-y-2 text-sm text-[#EDE1CE]/80">
               <li>
-                <Link href="/menu#hamburguesas-gourmet" className="hover:text-[#F47A22] transition-colors">
-                  Hamburguesas Gourmet (La Brutal, La Criolla, La Tropical)
+                <Link href="/menu#hamburguesas" className="hover:text-[#F47A22] transition-colors">
+                  Hamburguesas (La Brutal, La Criolla, La Tropical)
                 </Link>
               </li>
               <li>
-                <Link href="/menu#perros-gourmet" className="hover:text-[#F47A22] transition-colors">
-                  Perros Calientes Gourmet (El Callejero, El Ranchero, El Ahumado)
+                <Link href="/menu#perros-calientes" className="hover:text-[#F47A22] transition-colors">
+                  Perros Calientes (El Callejero, El Ranchero, El Ahumado)
                 </Link>
               </li>
               <li>
@@ -128,7 +128,7 @@ export function Footer() {
 
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 gap-4">
-          <p>© {new Date().getFullYear()} BEFFGER. Todos los derechos reservados. Street Food Gourmet.</p>
+          <p>© {new Date().getFullYear()} BEFFGER. Todos los derechos reservados. Street Food Artesanal.</p>
           <p className="flex items-center gap-2">
             <span>Powered by Next.js & Supabase</span>
             <span>•</span>

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { verifySession } from '@/lib/security';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -17,12 +18,9 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    try {
-      const parsed = JSON.parse(decodeURIComponent(sessionCookie.value));
-      if (!parsed || !parsed.role) {
-        throw new Error('Invalid session payload');
-      }
-    } catch (e) {
+    const sessionPayload = verifySession(decodeURIComponent(sessionCookie.value));
+    if (!sessionPayload || !sessionPayload.role) {
+      // Cryptographic signature mismatch, invalid token or tampered role!
       const loginUrl = new URL('/admin/login', request.url);
       loginUrl.searchParams.set('redirect', pathname);
       const res = NextResponse.redirect(loginUrl);

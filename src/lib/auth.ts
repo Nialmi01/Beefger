@@ -1,10 +1,16 @@
 'use client';
 
 import { StaffRole, StaffUser } from '@/lib/types';
+import { sha256, signSession } from '@/lib/security';
 
 export type { StaffRole, StaffUser };
 
-export const DEFAULT_SUPERADMIN_CREDENTIAL: { user: StaffUser; pass: string } = {
+export interface StaffCredential {
+  user: StaffUser;
+  passHash: string;
+}
+
+export const DEFAULT_SUPERADMIN_CREDENTIAL: StaffCredential = {
   user: {
     id: 'u-superadmin',
     name: 'Super Administrador BEFFGER',
@@ -16,7 +22,7 @@ export const DEFAULT_SUPERADMIN_CREDENTIAL: { user: StaffUser; pass: string } = 
     createdAt: new Date().toISOString(),
     lastLogin: 'En línea',
   },
-  pass: 'AdminBeffger2026!',
+  passHash: '314854f4b7a40ba57183307db920897cd68c002c54792727f5e456e8d165ae6e', // SHA-256('AdminBeffger2026!')
 };
 
 const CREDENTIALS_STORAGE_KEY = 'beffger_staff_credentials';
@@ -25,8 +31,9 @@ const SESSION_STORAGE_KEY = 'beffger_auth_session';
 /**
  * Retrieve all configured staff credentials from local storage.
  * Defaults strictly to Super Administrador only (no demo employees).
+ * Automatically migrates legacy plaintext passwords to SHA-256 hashes.
  */
-export function getStaffCredentials(): { user: StaffUser; pass: string }[] {
+export function getStaffCredentials(): StaffCredential[] {
   if (typeof window === 'undefined') {
     return [DEFAULT_SUPERADMIN_CREDENTIAL];
   }
@@ -41,33 +48,33 @@ export function getStaffCredentials(): { user: StaffUser; pass: string }[] {
       return [DEFAULT_SUPERADMIN_CREDENTIAL];
     }
 
-    const parsed: { user: StaffUser; pass: string }[] = JSON.parse(raw);
+    const parsed: any[] = JSON.parse(raw);
 
     // Auto-purge legacy demo employees if present (Carlos, Valentina, Chef Andrés, Brayan)
-    const hasLegacyDemo = parsed.some(
-      (item) =>
-        item.user.name.includes('Carlos Gerente') ||
-        item.user.name.includes('Valentina Cajera') ||
-        item.user.name.includes('Chef Andrés') ||
-        item.user.name.includes('Brayan Domiciliario')
-    );
-
-    if (hasLegacyDemo) {
-      const sanitized = parsed.filter(
+    const sanitized = parsed
+      .filter(
         (item) =>
+          item.user &&
           !item.user.name.includes('Carlos Gerente') &&
           !item.user.name.includes('Valentina Cajera') &&
           !item.user.name.includes('Chef Andrés') &&
           !item.user.name.includes('Brayan Domiciliario')
-      );
-      if (!sanitized.some((item) => item.user.email.toLowerCase() === 'admin@beffger.com')) {
-        sanitized.unshift(DEFAULT_SUPERADMIN_CREDENTIAL);
-      }
-      localStorage.setItem(CREDENTIALS_STORAGE_KEY, JSON.stringify(sanitized));
-      return sanitized;
+      )
+      .map((item) => {
+        // Upgrade legacy plaintext passwords to SHA-256 hash
+        const passHash = item.passHash || (item.pass ? sha256(item.pass) : DEFAULT_SUPERADMIN_CREDENTIAL.passHash);
+        return {
+          user: item.user,
+          passHash,
+        };
+      });
+
+    if (!sanitized.some((item) => item.user.email.toLowerCase() === 'admin@beffger.com')) {
+      sanitized.unshift(DEFAULT_SUPERADMIN_CREDENTIAL);
     }
 
-    return parsed.length > 0 ? parsed : [DEFAULT_SUPERADMIN_CREDENTIAL];
+    localStorage.setItem(CREDENTIALS_STORAGE_KEY, JSON.stringify(sanitized));
+    return sanitized.length > 0 ? sanitized : [DEFAULT_SUPERADMIN_CREDENTIAL];
   } catch (e) {
     return [DEFAULT_SUPERADMIN_CREDENTIAL];
   }
@@ -134,7 +141,8 @@ export function createStaffUser(params: {
     lastLogin: 'Nunca',
   };
 
-  const updated = [...existing, { user: newUser, pass: cleanPass }];
+  const passHash = sha256(cleanPass);
+  const updated = [...existing, { user: newUser, passHash }];
   if (typeof window !== 'undefined') {
     localStorage.setItem(CREDENTIALS_STORAGE_KEY, JSON.stringify(updated));
     window.dispatchEvent(new Event('beffger_staff_change'));
@@ -221,11 +229,12 @@ export function login(
 ): { success: boolean; user?: StaffUser; error?: string } {
   const normalizedEmail = email.trim().toLowerCase();
   const credentials = getStaffCredentials();
+  const hashedInput = sha256(pass.trim());
 
   const match = credentials.find(
     (c) =>
       c.user.email.toLowerCase() === normalizedEmail &&
-      (c.pass === pass || (normalizedEmail === 'admin@beffger.com' && pass === 'admin123'))
+      (c.passHash === hashedInput || (c as any).pass === pass)
   );
 
   if (!match) {
@@ -246,11 +255,15 @@ export function login(
   match.user.lastLogin = 'En línea';
   if (typeof window !== 'undefined') {
     localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(match.user));
-    // Set secure authentication cookie for server-side middleware route validation
-    const cookieValue = encodeURIComponent(
-      JSON.stringify({ id: match.user.id, role: match.user.role, email: match.user.email })
-    );
-    document.cookie = `beffger_auth_session=${cookieValue}; path=/; SameSite=Lax; max-age=86400`;
+    // Set cryptographically signed session token cookie for server-side middleware route validation
+    const signedSessionToken = signSession({
+      id: match.user.id,
+      role: match.user.role,
+      email: match.user.email,
+    });
+    document.cookie = `beffger_auth_session=${encodeURIComponent(
+      signedSessionToken
+    )}; path=/; SameSite=Lax; max-age=86400`;
     window.dispatchEvent(new Event('beffger_auth_change'));
   }
 

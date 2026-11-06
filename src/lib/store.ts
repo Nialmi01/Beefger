@@ -357,6 +357,20 @@ export const INITIAL_PRODUCTS: Product[] = [
           { id: 'mo6', modifier_group_id: 'mg2', name: 'Carne Extra 150g', price_adjustment: 7500, is_default: false, is_available: true, display_order: 3 },
         ],
       },
+      {
+        id: 'mg-adicionales-p1',
+        name: 'Acompañamiento o Adicional',
+        min_selection: 0,
+        max_selection: 2,
+        is_required: false,
+        options: [
+          { id: 'mo-ad-1', modifier_group_id: 'mg-adicionales-p1', name: 'Papas Criollas Rústicas', price_adjustment: 8900, is_default: false, is_available: true, display_order: 1 },
+          { id: 'mo-ad-2', modifier_group_id: 'mg-adicionales-p1', name: 'Patacones o Tostones', price_adjustment: 7900, is_default: false, is_available: true, display_order: 2 },
+          { id: 'mo-ad-3', modifier_group_id: 'mg-adicionales-p1', name: 'Aros de Cebolla Crocantes', price_adjustment: 9900, is_default: false, is_available: true, display_order: 3 },
+          { id: 'mo-ad-4', modifier_group_id: 'mg-adicionales-p1', name: 'Yuca Frita Dorada', price_adjustment: 7900, is_default: false, is_available: true, display_order: 4 },
+          { id: 'mo-ad-5', modifier_group_id: 'mg-adicionales-p1', name: 'Papas Rústicas Francesas', price_adjustment: 7900, is_default: false, is_available: true, display_order: 5 },
+        ],
+      },
     ],
   },
   {
@@ -387,6 +401,20 @@ export const INITIAL_PRODUCTS: Product[] = [
           { id: 'mo2_2', modifier_group_id: 'mg1_2', name: 'Bien Asada', price_adjustment: 0, is_default: false, is_available: true, display_order: 2 },
         ],
       },
+      {
+        id: 'mg-adicionales-p2',
+        name: 'Acompañamiento o Adicional',
+        min_selection: 0,
+        max_selection: 2,
+        is_required: false,
+        options: [
+          { id: 'mo-ad-21', modifier_group_id: 'mg-adicionales-p2', name: 'Papas Criollas Rústicas', price_adjustment: 8900, is_default: false, is_available: true, display_order: 1 },
+          { id: 'mo-ad-22', modifier_group_id: 'mg-adicionales-p2', name: 'Patacones o Tostones', price_adjustment: 7900, is_default: false, is_available: true, display_order: 2 },
+          { id: 'mo-ad-23', modifier_group_id: 'mg-adicionales-p2', name: 'Aros de Cebolla Crocantes', price_adjustment: 9900, is_default: false, is_available: true, display_order: 3 },
+          { id: 'mo-ad-24', modifier_group_id: 'mg-adicionales-p2', name: 'Yuca Frita Dorada', price_adjustment: 7900, is_default: false, is_available: true, display_order: 4 },
+          { id: 'mo-ad-25', modifier_group_id: 'mg-adicionales-p2', name: 'Papas Rústicas Francesas', price_adjustment: 7900, is_default: false, is_available: true, display_order: 5 },
+        ],
+      },
     ],
   },
   {
@@ -405,6 +433,33 @@ export const INITIAL_PRODUCTS: Product[] = [
     allergens: ['Gluten', 'Lácteos'],
     badge: 'TROPICAL',
     display_order: 3,
+    modifier_groups: [
+      {
+        id: 'mg1_3',
+        name: 'Término de la Carne',
+        min_selection: 1,
+        max_selection: 1,
+        is_required: true,
+        options: [
+          { id: 'mo1_3', modifier_group_id: 'mg1_3', name: 'Tres Cuartos (Recomendado)', price_adjustment: 0, is_default: true, is_available: true, display_order: 1 },
+          { id: 'mo2_3', modifier_group_id: 'mg1_3', name: 'Bien Asada', price_adjustment: 0, is_default: false, is_available: true, display_order: 2 },
+        ],
+      },
+      {
+        id: 'mg-adicionales-p3',
+        name: 'Acompañamiento o Adicional',
+        min_selection: 0,
+        max_selection: 2,
+        is_required: false,
+        options: [
+          { id: 'mo-ad-31', modifier_group_id: 'mg-adicionales-p3', name: 'Papas Criollas Rústicas', price_adjustment: 8900, is_default: false, is_available: true, display_order: 1 },
+          { id: 'mo-ad-32', modifier_group_id: 'mg-adicionales-p3', name: 'Patacones o Tostones', price_adjustment: 7900, is_default: false, is_available: true, display_order: 2 },
+          { id: 'mo-ad-33', modifier_group_id: 'mg-adicionales-p3', name: 'Aros de Cebolla Crocantes', price_adjustment: 9900, is_default: false, is_available: true, display_order: 3 },
+          { id: 'mo-ad-34', modifier_group_id: 'mg-adicionales-p3', name: 'Yuca Frita Dorada', price_adjustment: 7900, is_default: false, is_available: true, display_order: 4 },
+          { id: 'mo-ad-35', modifier_group_id: 'mg-adicionales-p3', name: 'Papas Rústicas Francesas', price_adjustment: 7900, is_default: false, is_available: true, display_order: 5 },
+        ],
+      },
+    ],
   },
   {
     id: 'p4',
@@ -524,6 +579,70 @@ export const INITIAL_PRODUCTS: Product[] = [
     badge: 'CRUNCH',
     display_order: 10,
   },
+  {
+    id: 'p11',
+    category_id: 'c4',
+    name: 'Papas Criollas Rústicas',
+    slug: 'papas-criollas',
+    description:
+      'Porción generosa de papas criollas andinas doradas a la perfección, crocantes por fuera y suaves por dentro, sazonadas con sal marina y finas hierbas.',
+    short_description: 'Papas criollas andinas doradas y crocantes con sal marina y finas hierbas.',
+    price: 9900,
+    preparation_time_minutes: 10,
+    is_available: true,
+    is_gourmet: false,
+    image_url: '/images/products/complementos/papas-criollas.jpg',
+    badge: 'TÍPICO',
+    display_order: 11,
+  },
+  {
+    id: 'p12',
+    category_id: 'c4',
+    name: 'Patacones o Tostones Crocantes',
+    slug: 'patacones-tostones',
+    description:
+      'Plátano verde seleccionado dos veces frito hasta lograr una crocancia insuperable. Acompañados de hogao casero tradicional o salsa de la casa.',
+    short_description: 'Patacones de plátano verde crujientes con dip de hogao tradicional.',
+    price: 8900,
+    preparation_time_minutes: 12,
+    is_available: true,
+    is_gourmet: false,
+    image_url: '/images/products/complementos/patacones-tostones.jpg',
+    badge: 'CRUNCH',
+    display_order: 12,
+  },
+  {
+    id: 'p13',
+    category_id: 'c4',
+    name: 'Aros de Cebolla Crocantes',
+    slug: 'aros-cebolla',
+    description:
+      'Aros de cebolla fresca cortados gruesos con rebozado artesanal dorado y extra crujiente, servidos con salsa BBQ de panela BEFFGER.',
+    short_description: 'Aros de cebolla rebozados y dorados con salsa BBQ de panela.',
+    price: 10900,
+    preparation_time_minutes: 10,
+    is_available: true,
+    is_gourmet: false,
+    image_url: '/images/products/complementos/aros-cebolla.jpg',
+    badge: 'POPULAR',
+    display_order: 13,
+  },
+  {
+    id: 'p14',
+    category_id: 'c4',
+    name: 'Yuca Frita Dorada',
+    slug: 'yuca-frita',
+    description:
+      'Bastones gruesos de yuca seleccionada, crujientes y dorados en su exterior con corazón tierno y suave, espolvoreados con sal marina y dip de ajo y cilantro.',
+    short_description: 'Bastones de yuca crujientes con centro tierno y salsa de ajo y cilantro.',
+    price: 8900,
+    preparation_time_minutes: 12,
+    is_available: true,
+    is_gourmet: false,
+    image_url: '/images/products/complementos/yuca-frita.jpg',
+    badge: 'CASERO',
+    display_order: 14,
+  },
 ];
 
 // Initial Ingredients for Kardex & Technical sheets
@@ -560,6 +679,11 @@ export const INITIAL_INGREDIENTS: Ingredient[] = [
   { id: 'i30', name: 'Papa rústica bastón', sku: 'ING-PAPA-01', unit: 'g', current_stock: 28000, minimum_stock: 5000, cost_per_unit: 7.0, supplier: 'Central Mayorista', is_active: true },
   { id: 'i31', name: 'Aceite vegetal para fritura', sku: 'ING-ACEI-01', unit: 'g', current_stock: 18000, minimum_stock: 4000, cost_per_unit: 9.5, supplier: 'Distribuciones Gourmet', is_active: true },
   { id: 'i32', name: 'Cono kraft antigrasa papas', sku: 'EMP-CPAP-01', unit: 'un', current_stock: 350, minimum_stock: 70, cost_per_unit: 450.0, supplier: 'Empaques Eco', is_active: true },
+  { id: 'i33', name: 'Papa criolla seleccionada', sku: 'ING-PCRI-01', unit: 'g', current_stock: 15000, minimum_stock: 3000, cost_per_unit: 8.0, supplier: 'Central Mayorista', is_active: true },
+  { id: 'i34', name: 'Plátano verde para patacón', sku: 'ING-PVER-01', unit: 'g', current_stock: 18000, minimum_stock: 3000, cost_per_unit: 6.0, supplier: 'Central Mayorista', is_active: true },
+  { id: 'i35', name: 'Cebolla blanca para aros', sku: 'ING-CEBA-01', unit: 'g', current_stock: 12000, minimum_stock: 2500, cost_per_unit: 5.5, supplier: 'Central Mayorista', is_active: true },
+  { id: 'i36', name: 'Mezcla panko rebozado', sku: 'ING-REBO-01', unit: 'g', current_stock: 9000, minimum_stock: 2000, cost_per_unit: 11.0, supplier: 'Distribuciones Gourmet', is_active: true },
+  { id: 'i37', name: 'Yuca fresca seleccionada', sku: 'ING-YUCA-01', unit: 'g', current_stock: 20000, minimum_stock: 4000, cost_per_unit: 7.5, supplier: 'Central Mayorista', is_active: true },
 ];
 
 // Initial Recipes / Technical cost sheets for ALL 10 products
@@ -789,6 +913,84 @@ export const INITIAL_RECIPES: Recipe[] = [
     food_cost_percentage: 25.00,
     gross_margin_percentage: 64.33,
   },
+  {
+    id: 'rec11',
+    product_id: 'p11',
+    product_name: 'Papas Criollas Rústicas',
+    yield_portions: 1,
+    packaging_cost: 450,
+    labor_variable_cost: 600,
+    preparation_notes: 'Vaporizado breve y fritura en aceite a 190°C hasta que la piel quede crujiente y el centro tierno. Sazonar con sal marina y servir con salsa de la casa.',
+    items: [
+      { id: 'ri111', recipe_id: 'rec11', ingredient_id: 'i33', ingredient_name: 'Papa criolla seleccionada', quantity: 220, unit: 'g', unit_cost_snapshot: 8.0, total_cost: 1760 },
+      { id: 'ri112', recipe_id: 'rec11', ingredient_id: 'i31', ingredient_name: 'Aceite vegetal para fritura', quantity: 30, unit: 'g', unit_cost_snapshot: 9.5, total_cost: 285 },
+      { id: 'ri113', recipe_id: 'rec11', ingredient_id: 'i14', ingredient_name: 'Salsa Ahumada BEFFGER', quantity: 30, unit: 'g', unit_cost_snapshot: 16.0, total_cost: 480 },
+      { id: 'ri114', recipe_id: 'rec11', ingredient_id: 'i10', ingredient_name: 'Hogao casero colombiano', quantity: 5, unit: 'g', unit_cost_snapshot: 12.0, total_cost: 60 },
+    ],
+    total_ingredient_cost: 2585,
+    total_cost: 3635,
+    sale_price: 9900,
+    food_cost_percentage: 26.11,
+    gross_margin_percentage: 63.28,
+  },
+  {
+    id: 'rec12',
+    product_id: 'p12',
+    product_name: 'Patacones o Tostones Crocantes',
+    yield_portions: 1,
+    packaging_cost: 450,
+    labor_variable_cost: 600,
+    preparation_notes: 'Doble fritura de plátano verde con prensado rústico. Textura extra crujiente con dip generoso de hogao casero tradicional.',
+    items: [
+      { id: 'ri121', recipe_id: 'rec12', ingredient_id: 'i34', ingredient_name: 'Plátano verde para patacón', quantity: 200, unit: 'g', unit_cost_snapshot: 6.0, total_cost: 1200 },
+      { id: 'ri122', recipe_id: 'rec12', ingredient_id: 'i31', ingredient_name: 'Aceite vegetal para fritura', quantity: 35, unit: 'g', unit_cost_snapshot: 9.5, total_cost: 332 },
+      { id: 'ri123', recipe_id: 'rec12', ingredient_id: 'i10', ingredient_name: 'Hogao casero colombiano', quantity: 40, unit: 'g', unit_cost_snapshot: 12.0, total_cost: 480 },
+    ],
+    total_ingredient_cost: 2012,
+    total_cost: 3062,
+    sale_price: 8900,
+    food_cost_percentage: 22.61,
+    gross_margin_percentage: 65.60,
+  },
+  {
+    id: 'rec13',
+    product_id: 'p13',
+    product_name: 'Aros de Cebolla Crocantes',
+    yield_portions: 1,
+    packaging_cost: 450,
+    labor_variable_cost: 600,
+    preparation_notes: 'Aros de cebolla gruesos con rebozado en panko crujiente. Fritura dorada a 180°C y acompañados de salsa BBQ de panela.',
+    items: [
+      { id: 'ri131', recipe_id: 'rec13', ingredient_id: 'i35', ingredient_name: 'Cebolla blanca para aros', quantity: 160, unit: 'g', unit_cost_snapshot: 5.5, total_cost: 880 },
+      { id: 'ri132', recipe_id: 'rec13', ingredient_id: 'i36', ingredient_name: 'Mezcla panko rebozado', quantity: 60, unit: 'g', unit_cost_snapshot: 11.0, total_cost: 660 },
+      { id: 'ri133', recipe_id: 'rec13', ingredient_id: 'i31', ingredient_name: 'Aceite vegetal para fritura', quantity: 30, unit: 'g', unit_cost_snapshot: 9.5, total_cost: 285 },
+      { id: 'ri134', recipe_id: 'rec13', ingredient_id: 'i23', ingredient_name: 'Salsa BBQ de panela', quantity: 30, unit: 'g', unit_cost_snapshot: 14.0, total_cost: 420 },
+    ],
+    total_ingredient_cost: 2245,
+    total_cost: 3295,
+    sale_price: 10900,
+    food_cost_percentage: 20.60,
+    gross_margin_percentage: 69.77,
+  },
+  {
+    id: 'rec14',
+    product_id: 'p14',
+    product_name: 'Yuca Frita Dorada',
+    yield_portions: 1,
+    packaging_cost: 450,
+    labor_variable_cost: 600,
+    preparation_notes: 'Yuca hervida con sal y cortada en bastones rústicos. Frita hasta obtener corteza dorada y centro blanco tierno. Servida con salsa de ajo y cilantro.',
+    items: [
+      { id: 'ri141', recipe_id: 'rec14', ingredient_id: 'i37', ingredient_name: 'Yuca fresca seleccionada', quantity: 220, unit: 'g', unit_cost_snapshot: 7.5, total_cost: 1650 },
+      { id: 'ri142', recipe_id: 'rec14', ingredient_id: 'i31', ingredient_name: 'Aceite vegetal para fritura', quantity: 30, unit: 'g', unit_cost_snapshot: 9.5, total_cost: 285 },
+      { id: 'ri143', recipe_id: 'rec14', ingredient_id: 'i22', ingredient_name: 'Salsa de ajo y cilantro', quantity: 30, unit: 'g', unit_cost_snapshot: 13.0, total_cost: 390 },
+    ],
+    total_ingredient_cost: 2325,
+    total_cost: 3375,
+    sale_price: 8900,
+    food_cost_percentage: 26.12,
+    gross_margin_percentage: 62.08,
+  },
 ];
 
 // Initial Orders (Production ready: clean queue for live orders)
@@ -898,7 +1100,19 @@ class BeffgerStore {
         }
 
         const savedProducts = localStorage.getItem('beffger_products');
-        if (savedProducts) this.products = JSON.parse(savedProducts);
+        if (savedProducts) {
+          try {
+            const parsedProd = JSON.parse(savedProducts);
+            if (Array.isArray(parsedProd) && parsedProd.some((p: any) => p.id === 'p11')) {
+              this.products = parsedProd;
+            } else {
+              this.products = INITIAL_PRODUCTS;
+              localStorage.setItem('beffger_products', JSON.stringify(INITIAL_PRODUCTS));
+            }
+          } catch (e) {
+            this.products = INITIAL_PRODUCTS;
+          }
+        }
 
         const savedSettings = localStorage.getItem('beffger_settings');
         if (savedSettings) {
