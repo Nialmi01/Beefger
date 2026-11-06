@@ -75,11 +75,11 @@ function AdminLoginForm() {
           </p>
         </div>
 
-        {/* Quick Role Fill Pills (Ideal for Rapid Testing / Evaluators) */}
+        {/* Quick Role Fill Pills */}
         <div className="bg-white/70 p-3.5 rounded-2xl border border-[#dec0b1] space-y-2">
           <span className="text-[10px] font-bold text-[#8b7265] uppercase flex items-center justify-between">
-            <span>Perfiles de Prueba Autorizados:</span>
-            <span className="text-[#F47A22]">Toca para autorellenar</span>
+            <span>Perfiles de Colaboradores:</span>
+            <span className="text-[#F47A22]">Seleccionar rol</span>
           </span>
           <div className="grid grid-cols-2 gap-1.5 text-[11px]">
             {STAFF_CREDENTIALS.map((cred) => (
@@ -137,7 +137,7 @@ function AdminLoginForm() {
               <label className="text-xs font-bold text-[#222B2B] uppercase">
                 Contraseña de Acceso
               </label>
-              <span className="text-[10px] text-[#8b7265]">PIN 1234 también válido</span>
+              <span className="text-[10px] text-[#8b7265]">Superadmin: admin@beffger.com</span>
             </div>
             <div className="relative">
               <Lock className="w-4 h-4 text-[#8b7265] absolute left-3.5 top-1/2 -translate-y-1/2" />

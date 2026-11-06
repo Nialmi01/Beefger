@@ -111,7 +111,7 @@ const STAFF_APPS: StaffAppInfo[] = [
     qrFile: '/images/qr-admin.png',
     accessCode: 'ADMIN-2026',
     defaultEmail: 'admin@beffger.com',
-    defaultPass: 'admin123',
+    defaultPass: 'AdminBeffger2026!',
     icon: BarChart3,
     color: '#8B5CF6',
     badge: 'Control Maestro',

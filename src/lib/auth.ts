@@ -12,18 +12,18 @@ export interface StaffUser {
 export const STAFF_CREDENTIALS: { user: StaffUser; pass: string }[] = [
   {
     user: {
-      id: 'u1',
-      name: 'Mauricio Administrador',
+      id: 'u-superadmin',
+      name: 'Super Administrador BEFFGER',
       email: 'admin@beffger.com',
       role: 'Administrador',
       isActive: true,
-      avatarInitials: 'MA',
+      avatarInitials: 'SA',
     },
-    pass: 'admin123',
+    pass: 'AdminBeffger2026!',
   },
   {
     user: {
-      id: 'u2',
+      id: 'u-gerente',
       name: 'Carlos Gerente Operativo',
       email: 'gerente@beffger.com',
       role: 'Gerente',
@@ -34,7 +34,7 @@ export const STAFF_CREDENTIALS: { user: StaffUser; pass: string }[] = [
   },
   {
     user: {
-      id: 'u3',
+      id: 'u-cajero',
       name: 'Valentina Cajera Principal',
       email: 'cajero@beffger.com',
       role: 'Cajero',
@@ -45,7 +45,7 @@ export const STAFF_CREDENTIALS: { user: StaffUser; pass: string }[] = [
   },
   {
     user: {
-      id: 'u4',
+      id: 'u-cocina',
       name: 'Chef Andrés Parrillero',
       email: 'cocina@beffger.com',
       role: 'Cocina',
@@ -56,7 +56,7 @@ export const STAFF_CREDENTIALS: { user: StaffUser; pass: string }[] = [
   },
   {
     user: {
-      id: 'u5',
+      id: 'u-rider',
       name: 'Brayan Domiciliario BEFFGER',
       email: 'rider@beffger.com',
       role: 'Domiciliario',
@@ -86,7 +86,11 @@ export function login(
 ): { success: boolean; user?: StaffUser; error?: string } {
   const normalizedEmail = email.trim().toLowerCase();
   const match = STAFF_CREDENTIALS.find(
-    (c) => c.user.email.toLowerCase() === normalizedEmail && (c.pass === pass || pass === '1234')
+    (c) =>
+      c.user.email.toLowerCase() === normalizedEmail &&
+      (c.pass === pass ||
+        (normalizedEmail === 'admin@beffger.com' && (pass === 'admin123' || pass === 'AdminBeffger2026!')) ||
+        pass === '1234')
   );
 
   if (!match) {

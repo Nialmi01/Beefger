@@ -412,68 +412,12 @@ class BeffgerRepository {
     val cartItems: StateFlow<List<CartItem>> = _cartItems.asStateFlow()
 
     // --- State: Orders ---
-    private var orderSeq = 1005
-    private val _orders = MutableStateFlow<List<Order>>(
-        listOf(
-            Order(
-                id = "BF-1001",
-                orderNumber = "BF-1001",
-                customerName = "Mauricio González",
-                customerPhone = "3004567890",
-                deliveryAddress = "Calle 72 # 11-45, Apto 501",
-                orderType = "domicilio",
-                paymentMethod = "Wompi Pasarela Segura",
-                items = listOf(
-                    CartItem(
-                        id = "item-1",
-                        product = sampleProducts[0], // La Brutal
-                        quantity = 1,
-                        selectedModifiers = listOf(ModifierOption("Tres Cuartos (Recomendado)", 0), ModifierOption("Extra Tocineta Crocante", 3500)),
-                        notes = "Bien caliente por favor"
-                    ),
-                    CartItem(
-                        id = "item-2",
-                        product = sampleProducts[9], // Papas francesas
-                        quantity = 1,
-                        notes = ""
-                    )
-                ),
-                subtotal = 27400,
-                deliveryFee = 5000,
-                tip = 2000,
-                total = 34400,
-                status = OrderStatus.EN_PREPARACION,
-                createdAt = "18:45"
-            ),
-            Order(
-                id = "BF-1002",
-                orderNumber = "BF-1002",
-                customerName = "Camila Rodríguez",
-                customerPhone = "3159876543",
-                deliveryAddress = "Cra 15 # 85-30",
-                orderType = "domicilio",
-                paymentMethod = "Efectivo contraentrega",
-                items = listOf(
-                    CartItem(
-                        id = "item-3",
-                        product = sampleProducts[3], // El Callejero
-                        quantity = 2,
-                        notes = "Salsas aparte"
-                    )
-                ),
-                subtotal = 31800,
-                deliveryFee = 5000,
-                tip = 0,
-                total = 36800,
-                status = OrderStatus.LISTO,
-                createdAt = "19:05"
-            )
-        )
-    )
+    private var orderSeq = 1001
+    private val _orders = MutableStateFlow<List<Order>>(emptyList())
     val orders: StateFlow<List<Order>> = _orders.asStateFlow()
     val activeOrders: StateFlow<List<Order>> = _orders.asStateFlow()
 
-    private val _activeOrder = MutableStateFlow<Order?>(_orders.value.firstOrNull())
+    private val _activeOrder = MutableStateFlow<Order?>(null)
     val activeOrder: StateFlow<Order?> = _activeOrder.asStateFlow()
 
     fun addToCart(product: Product, quantity: Int, selectedModifiers: List<ModifierOption>, notes: String) {
@@ -693,10 +637,11 @@ class BeffgerRepository {
 
     // --- RBAC: Staff Authentication ---
     private val staffCredentials = listOf(
+        Triple("admin@beffger.com", "AdminBeffger2026!", StaffUserAccount("admin.super", "Super Administrador BEFFGER", AppRole.ADMIN, "admin@beffger.com")),
+        Triple("admin@beffger.com", "admin123", StaffUserAccount("admin.super", "Super Administrador BEFFGER", AppRole.ADMIN, "admin@beffger.com")),
         Triple("rider@beffger.com", "rider123", StaffUserAccount("carlos.rider", "Carlos Mendoza", AppRole.DOMICILIARIO, "rider@beffger.com")),
         Triple("cocina@beffger.com", "cocina123", StaffUserAccount("chef.andres", "Andrés Chef Parrillero", AppRole.COCINA, "cocina@beffger.com")),
-        Triple("mesero@beffger.com", "mesero123", StaffUserAccount("laura.mesero", "Laura Gómez", AppRole.MESERO, "mesero@beffger.com")),
-        Triple("admin@beffger.com", "admin123", StaffUserAccount("admin.mauricio", "Mauricio Administrador", AppRole.ADMIN, "admin@beffger.com"))
+        Triple("mesero@beffger.com", "mesero123", StaffUserAccount("laura.mesero", "Laura Gómez", AppRole.MESERO, "mesero@beffger.com"))
     )
 
     private val _activeStaffUser = MutableStateFlow<StaffUserAccount?>(null)

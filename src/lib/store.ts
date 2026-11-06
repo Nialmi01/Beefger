@@ -14,6 +14,7 @@ import {
   BusinessSettings,
   UserRole,
 } from './types';
+import { supabase } from './supabase';
 
 // Initial Categories
 export const INITIAL_CATEGORIES: Category[] = [
@@ -600,186 +601,28 @@ export const INITIAL_RECIPES: Recipe[] = [
   },
 ];
 
-// Initial Live Orders across Kanban Pipeline
-export const INITIAL_ORDERS: Order[] = [
-  {
-    id: 'ord-1001',
-    order_number: 'BF-1001',
-    customer_name: 'Andrés Gómez',
-    customer_phone: '3184567890',
-    customer_email: 'andres.gomez@gmail.com',
-    order_type: 'domicilio',
-    status: 'nuevo',
-    delivery_zone_id: 'dz1',
-    delivery_address: 'Calle 5 # 38-20, Apto 402',
-    delivery_instructions: 'Portería blanca, timbre 402',
-    delivery_fee: 4000,
-    subtotal: 39800,
-    discount: 0,
-    tip: 2000,
-    total: 45800,
-    payment_method: 'efectivo',
-    payment_status: 'pendiente',
-    created_at: new Date(Date.now() - 4 * 60 * 1000).toISOString(),
-    updated_at: new Date(Date.now() - 4 * 60 * 1000).toISOString(),
-    items: [
-      {
-        id: 'oi1',
-        order_id: 'ord-1001',
-        product_id: 'p1',
-        product_name_snapshot: 'La Brutal',
-        product_price_snapshot: 19900,
-        product_image_snapshot: '/images/products/hamburguesas/la-brutal.jpg',
-        quantity: 2,
-        unit_price: 19900,
-        total_price: 39800,
-        notes: 'Una término medio y una 3/4 bien cargada de salsa',
-        modifiers: [
-          { group_name: 'Término de la Carne', option_name: 'Tres Cuartos', price_adjustment: 0 },
-        ],
-      },
-    ],
-    status_history: [
-      { id: 'sh1', order_id: 'ord-1001', new_status: 'nuevo', notes: 'Pedido recibido desde la tienda web', created_at: new Date(Date.now() - 4 * 60 * 1000).toISOString() },
-    ],
-  },
-  {
-    id: 'ord-1002',
-    order_number: 'BF-1002',
-    customer_name: 'Mariana López',
-    customer_phone: '3159988776',
-    customer_email: 'mariana.lopez@hotmail.com',
-    order_type: 'domicilio',
-    status: 'en_preparacion',
-    delivery_zone_id: 'dz2',
-    delivery_address: 'Av. 9N # 14-25, Casa 3',
-    delivery_instructions: 'Conjunto Los Álamos, dejar en recepción',
-    delivery_fee: 5000,
-    subtotal: 26900,
-    discount: 0,
-    tip: 1500,
-    total: 33400,
-    payment_method: 'wompi',
-    payment_status: 'aprobado',
-    created_at: new Date(Date.now() - 16 * 60 * 1000).toISOString(),
-    updated_at: new Date(Date.now() - 8 * 60 * 1000).toISOString(),
-    items: [
-      {
-        id: 'oi2',
-        order_id: 'ord-1002',
-        product_id: 'p7',
-        product_name_snapshot: 'La Colombiana (30 cm)',
-        product_price_snapshot: 26900,
-        product_image_snapshot: '/images/products/pizzas/la-colombiana.jpg',
-        quantity: 1,
-        unit_price: 26900,
-        total_price: 26900,
-        notes: 'Masa bien doradita por favor',
-        modifiers: [],
-      },
-    ],
-    status_history: [
-      { id: 'sh2', order_id: 'ord-1002', new_status: 'nuevo', created_at: new Date(Date.now() - 16 * 60 * 1000).toISOString() },
-      { id: 'sh3', order_id: 'ord-1002', previous_status: 'nuevo', new_status: 'confirmado', notes: 'Pago confirmado Wompi', created_at: new Date(Date.now() - 14 * 60 * 1000).toISOString() },
-      { id: 'sh4', order_id: 'ord-1002', previous_status: 'confirmado', new_status: 'en_preparacion', notes: 'Tomado por Chef Andrés', created_at: new Date(Date.now() - 8 * 60 * 1000).toISOString() },
-    ],
-  },
-  {
-    id: 'ord-1003',
-    order_number: 'BF-1003',
-    customer_name: 'Sebastián Caicedo',
-    customer_phone: '3123456781',
-    customer_email: 'sebas.c@gmail.com',
-    order_type: 'domicilio',
-    status: 'listo',
-    delivery_zone_id: 'dz1',
-    delivery_address: 'Cra. 32 # 6-12',
-    delivery_instructions: 'Tocar el timbre con fuerza',
-    delivery_fee: 4000,
-    subtotal: 33800,
-    discount: 0,
-    tip: 0,
-    total: 37800,
-    payment_method: 'nequi',
-    payment_status: 'aprobado',
-    created_at: new Date(Date.now() - 28 * 60 * 1000).toISOString(),
-    updated_at: new Date(Date.now() - 5 * 60 * 1000).toISOString(),
-    items: [
-      {
-        id: 'oi3',
-        order_id: 'ord-1003',
-        product_id: 'p5',
-        product_name_snapshot: 'El Ranchero',
-        product_price_snapshot: 16900,
-        product_image_snapshot: '/images/products/perros/el-ranchero.jpg',
-        quantity: 2,
-        unit_price: 16900,
-        total_price: 33800,
-        notes: 'Jalapeños extra picantes',
-        modifiers: [],
-      },
-    ],
-  },
-  {
-    id: 'ord-1004',
-    order_number: 'BF-1004',
-    customer_name: 'Felipe Riascos',
-    customer_phone: '3176543210',
-    order_type: 'mesa',
-    status: 'entregado',
-    delivery_fee: 0,
-    subtotal: 27900,
-    discount: 0,
-    tip: 2500,
-    total: 30400,
-    payment_method: 'efectivo',
-    payment_status: 'aprobado',
-    created_at: new Date(Date.now() - 65 * 60 * 1000).toISOString(),
-    updated_at: new Date(Date.now() - 20 * 60 * 1000).toISOString(),
-    items: [
-      {
-        id: 'oi4',
-        order_id: 'ord-1004',
-        product_id: 'p8',
-        product_name_snapshot: 'La BBQ Explosiva (30 cm)',
-        product_price_snapshot: 27900,
-        product_image_snapshot: '/images/products/pizzas/bbq-explosiva.jpg',
-        quantity: 1,
-        unit_price: 27900,
-        total_price: 27900,
-        modifiers: [],
-      },
-    ],
-  },
-];
+// Initial Orders (Production ready: clean queue for live orders)
+export const INITIAL_ORDERS: Order[] = [];
 
-// Initial Cash Register
+// Initial Cash Register (Production ready: waiting for shift opening with real base)
 export const INITIAL_CASH_REGISTER: CashRegister = {
   id: 'cr1',
   name: 'Caja Principal 01',
-  status: 'open',
-  opened_at: new Date(Date.now() - 4 * 3600 * 1000).toISOString(),
-  opened_by_name: 'Valentina Cajera',
-  initial_cash: 200000,
-  counted_cash: 354700,
-  expected_cash: 354700,
+  status: 'closed',
+  opened_at: new Date().toISOString(),
+  opened_by_name: '',
+  initial_cash: 0,
+  counted_cash: 0,
+  expected_cash: 0,
   cash_difference: 0,
-  notes: 'Turno de tarde abierto con base de $200.000 COP',
+  notes: 'Caja lista para apertura de turno con base real.',
 };
 
-// Initial Cash Movements
-export const INITIAL_CASH_MOVEMENTS: CashMovement[] = [
-  { id: 'cm1', cash_register_id: 'cr1', type: 'ingreso', amount: 200000, description: 'Base de apertura de caja', performed_by_name: 'Valentina Cajera', created_at: new Date(Date.now() - 4 * 3600 * 1000).toISOString() },
-  { id: 'cm2', cash_register_id: 'cr1', type: 'venta_efectivo', amount: 30400, description: 'Venta orden #BF-1004 Mesa 4', performed_by_name: 'Valentina Cajera', created_at: new Date(Date.now() - 60 * 60 * 1000).toISOString() },
-  { id: 'cm3', cash_register_id: 'cr1', type: 'egreso', amount: 15000, description: 'Compra urgente de cilantro fresco', performed_by_name: 'Valentina Cajera', created_at: new Date(Date.now() - 90 * 60 * 1000).toISOString() },
-];
+// Initial Cash Movements (Production ready: clean ledger)
+export const INITIAL_CASH_MOVEMENTS: CashMovement[] = [];
 
-// Initial Customers CRM
-export const INITIAL_CUSTOMERS: Customer[] = [
-  { id: 'cust1', full_name: 'Andrés Gómez', phone: '3184567890', email: 'andres.gomez@gmail.com', total_spent: 142000, orders_count: 3, loyalty_points: 140, created_at: '2026-10-12T10:00:00Z', last_order_at: new Date(Date.now() - 4 * 60 * 1000).toISOString() },
-  { id: 'cust2', full_name: 'Mariana López', phone: '3159988776', email: 'mariana.lopez@hotmail.com', total_spent: 85900, orders_count: 2, loyalty_points: 85, created_at: '2026-10-18T15:30:00Z', last_order_at: new Date(Date.now() - 16 * 60 * 1000).toISOString() },
-  { id: 'cust3', full_name: 'Sebastián Caicedo', phone: '3123456781', email: 'sebas.c@gmail.com', total_spent: 215400, orders_count: 5, loyalty_points: 215, created_at: '2026-09-01T12:00:00Z', last_order_at: new Date(Date.now() - 28 * 60 * 1000).toISOString() },
-];
+// Initial Customers CRM (Production ready: empty list for real clients)
+export const INITIAL_CUSTOMERS: Customer[] = [];
 
 // Initial Settings
 export const INITIAL_SETTINGS: BusinessSettings = {
@@ -814,18 +657,62 @@ class BeffgerStore {
   private deliveryZones: DeliveryZone[] = INITIAL_DELIVERY_ZONES;
   private customers: Customer[] = INITIAL_CUSTOMERS;
   private settings: BusinessSettings = INITIAL_SETTINGS;
-  private orderSeq: number = 1005;
+  private orderSeq: number = 1001;
   private listeners: Set<() => void> = new Set();
 
   constructor() {
+    this.orderSeq = 1001;
     if (typeof window !== 'undefined') {
       try {
         const savedOrders = localStorage.getItem('beffger_orders');
-        if (savedOrders) this.orders = JSON.parse(savedOrders);
+        if (savedOrders) {
+          const parsed = JSON.parse(savedOrders);
+          const hasDemo = Array.isArray(parsed) && parsed.some((o: any) => o.id === 'ord-1001' || o.id === 'ord-1002' || o.customer_name === 'Andrés Gómez');
+          if (hasDemo) {
+            localStorage.removeItem('beffger_orders');
+            this.orders = [];
+          } else {
+            this.orders = parsed;
+          }
+        } else {
+          this.orders = [];
+        }
+
+        const savedCustomers = localStorage.getItem('beffger_customers');
+        if (savedCustomers) {
+          const parsedCust = JSON.parse(savedCustomers);
+          const hasDemoCust = Array.isArray(parsedCust) && parsedCust.some((c: any) => c.id === 'cust1' || c.full_name === 'Andrés Gómez');
+          if (hasDemoCust) {
+            localStorage.removeItem('beffger_customers');
+            this.customers = [];
+          } else {
+            this.customers = parsedCust;
+          }
+        } else {
+          this.customers = [];
+        }
+
+        const savedCashRegister = localStorage.getItem('beffger_cash_register');
+        if (savedCashRegister) {
+          const parsedCash = JSON.parse(savedCashRegister);
+          if (parsedCash.opened_by_name === 'Valentina Cajera') {
+            localStorage.removeItem('beffger_cash_register');
+            localStorage.removeItem('beffger_cash_movements');
+            this.cashRegister = INITIAL_CASH_REGISTER;
+            this.cashMovements = [];
+          } else {
+            this.cashRegister = parsedCash;
+            const savedMovements = localStorage.getItem('beffger_cash_movements');
+            if (savedMovements) this.cashMovements = JSON.parse(savedMovements);
+          }
+        }
+
         const savedProducts = localStorage.getItem('beffger_products');
         if (savedProducts) this.products = JSON.parse(savedProducts);
       } catch (e) {
-        // Fallback to initial
+        this.orders = [];
+        this.customers = [];
+        this.cashMovements = [];
       }
     }
   }
@@ -968,6 +855,54 @@ class BeffgerStore {
 
     this.orders.unshift(newOrder);
 
+    // Sync to Supabase in background
+    if (typeof window !== 'undefined') {
+      try {
+        supabase
+          .from('orders')
+          .insert({
+            id: newOrder.id,
+            order_number: newOrder.order_number,
+            customer_name: newOrder.customer_name,
+            customer_phone: newOrder.customer_phone,
+            delivery_address: newOrder.delivery_address || 'Mostrador / Local',
+            order_type: newOrder.order_type,
+            payment_method: newOrder.payment_method,
+            subtotal: newOrder.subtotal,
+            delivery_fee: newOrder.delivery_fee,
+            tip: newOrder.tip,
+            total: newOrder.total,
+            status: newOrder.status,
+            notes: newOrder.kitchen_notes || '',
+            created_at: newOrder.created_at,
+            updated_at: newOrder.updated_at,
+          })
+          .then(({ error }) => {
+            if (error) console.warn('Supabase sync order warning:', error);
+          });
+
+        if (newOrder.items && newOrder.items.length > 0) {
+          const dbItems = newOrder.items.map((it) => ({
+            id: it.id,
+            order_id: newOrder.id,
+            product_id: it.product_id,
+            product_name: it.product_name_snapshot,
+            product_price: it.product_price_snapshot,
+            quantity: it.quantity,
+            selected_modifiers: it.modifiers || [],
+            notes: it.notes || '',
+            total_price: it.total_price,
+            created_at: newOrder.created_at,
+          }));
+          supabase.from('order_items').insert(dbItems).then(({ error }) => {
+            if (error) console.warn('Supabase sync items warning:', error);
+          });
+        }
+      } catch (e) {
+        console.warn('Supabase background insert error:', e);
+      }
+    }
+
     // Update customer stats
     this.recordCustomerOrder(params.customer_name, params.customer_phone, total);
 
@@ -984,6 +919,21 @@ class BeffgerStore {
     const prev = order.status;
     order.status = newStatus;
     order.updated_at = new Date().toISOString();
+
+    if (typeof window !== 'undefined') {
+      try {
+        supabase
+          .from('orders')
+          .update({
+            status: newStatus,
+            updated_at: order.updated_at,
+          })
+          .eq('id', orderId)
+          .then(({ error }) => {
+            if (error) console.warn('Supabase status update warning:', error);
+          });
+      } catch (e) {}
+    }
 
     if (!order.status_history) order.status_history = [];
     order.status_history.push({

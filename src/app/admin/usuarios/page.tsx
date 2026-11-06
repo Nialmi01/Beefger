@@ -24,11 +24,11 @@ interface StaffUser {
 }
 
 const INITIAL_STAFF: StaffUser[] = [
-  { id: 'u1', name: 'Mauricio Administrador', email: 'admin@beffger.com', role: 'Administrador', isActive: true, lastLogin: 'Hoy 14:32' },
-  { id: 'u2', name: 'Carlos Gerente Operativo', email: 'gerente@beffger.com', role: 'Gerente', isActive: true, lastLogin: 'Hoy 10:15' },
-  { id: 'u3', name: 'Valentina Cajera Principal', email: 'cajero@beffger.com', role: 'Cajero', isActive: true, lastLogin: 'Hoy 12:00' },
-  { id: 'u4', name: 'Chef Andrés Parrillero', email: 'cocina@beffger.com', role: 'Cocina', isActive: true, lastLogin: 'Hoy 11:45' },
-  { id: 'u5', name: 'Brayan Domiciliario BEFFGER', email: 'rider@beffger.com', role: 'Domiciliario', isActive: true, lastLogin: 'Hoy 13:10' },
+  { id: 'u-superadmin', name: 'Super Administrador BEFFGER', email: 'admin@beffger.com', role: 'Administrador', isActive: true, lastLogin: 'En línea' },
+  { id: 'u-gerente', name: 'Carlos Gerente Operativo', email: 'gerente@beffger.com', role: 'Gerente', isActive: true, lastLogin: 'Inactivo' },
+  { id: 'u-cajero', name: 'Valentina Cajera Principal', email: 'cajero@beffger.com', role: 'Cajero', isActive: true, lastLogin: 'Inactivo' },
+  { id: 'u-cocina', name: 'Chef Andrés Parrillero', email: 'cocina@beffger.com', role: 'Cocina', isActive: true, lastLogin: 'Inactivo' },
+  { id: 'u-rider', name: 'Brayan Domiciliario BEFFGER', email: 'rider@beffger.com', role: 'Domiciliario', isActive: true, lastLogin: 'Inactivo' },
 ];
 
 export default function UsersRolesPage() {
