@@ -382,7 +382,7 @@ export default function HomePage() {
 
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
                     <a
-                      href="http://192.168.40.3:8080/beffger-cliente.apk"
+                      href="/downloads/beffger-cliente.apk"
                       download="beffger-cliente.apk"
                       className="px-6 py-3.5 rounded-xl bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-sm uppercase tracking-wider text-center shadow-lg shadow-[#F47A22]/30 transition-all flex items-center justify-center gap-2 active:scale-95"
                     >

@@ -80,7 +80,7 @@ export default function DescargarAppClientesPage() {
               {/* Download CTA */}
               <div className="pt-6 border-t border-[#222B2B]/10 space-y-3">
                 <a
-                  href="http://192.168.40.3:8080/beffger-cliente.apk"
+                  href="/downloads/beffger-cliente.apk"
                   download="beffger-cliente.apk"
                   className="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-[#F47A22] hover:bg-[#d96515] text-white font-bold text-base sm:text-lg shadow-lg shadow-[#F47A22]/25 transition-all transform active:scale-[0.99]"
                 >

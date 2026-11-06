@@ -3,8 +3,8 @@
 import React, { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { login, STAFF_CREDENTIALS, hasPermission, getDefaultRouteForRole } from '@/lib/auth';
-import { Lock, Mail, ArrowRight, ShieldCheck, AlertCircle, CheckCircle2, User, KeyRound } from 'lucide-react';
+import { login, hasPermission, getDefaultRouteForRole } from '@/lib/auth';
+import { Lock, Mail, ArrowRight, ShieldCheck, AlertCircle, CheckCircle2, User } from 'lucide-react';
 
 function AdminLoginForm() {
   const router = useRouter();
@@ -15,12 +15,6 @@ function AdminLoginForm() {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleFillCredentials = (staffEmail: string, staffPass: string) => {
-    setEmail(staffEmail);
-    setPassword(staffPass);
-    setErrorMsg('');
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,38 +65,8 @@ function AdminLoginForm() {
             </h1>
           </div>
           <p className="text-xs text-[#574237]">
-            Ingresa con tu correo institucional y contraseña de colaborador.
+            Ingresa con tu correo institucional y contraseña de colaborador autorizada.
           </p>
-        </div>
-
-        {/* Quick Role Fill Pills */}
-        <div className="bg-white/70 p-3.5 rounded-2xl border border-[#dec0b1] space-y-2">
-          <span className="text-[10px] font-bold text-[#8b7265] uppercase flex items-center justify-between">
-            <span>Perfiles de Colaboradores:</span>
-            <span className="text-[#F47A22]">Seleccionar rol</span>
-          </span>
-          <div className="grid grid-cols-2 gap-1.5 text-[11px]">
-            {STAFF_CREDENTIALS.map((cred) => (
-              <button
-                key={cred.user.id}
-                type="button"
-                onClick={() => handleFillCredentials(cred.user.email, cred.pass)}
-                className={`p-2 rounded-xl text-left border transition-all flex flex-col ${
-                  email === cred.user.email
-                    ? 'bg-[#F47A22] text-white border-[#F47A22] shadow'
-                    : 'bg-white hover:bg-orange-50 border-[#dec0b1] text-[#222B2B]'
-                }`}
-              >
-                <span className="font-bold flex items-center justify-between">
-                  <span>{cred.user.role}</span>
-                  <KeyRound className="w-3 h-3 opacity-70" />
-                </span>
-                <span className={`text-[10px] truncate ${email === cred.user.email ? 'text-white/80' : 'text-[#8b7265]'}`}>
-                  {cred.user.email}
-                </span>
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Error Alert */}
@@ -137,7 +101,7 @@ function AdminLoginForm() {
               <label className="text-xs font-bold text-[#222B2B] uppercase">
                 Contraseña de Acceso
               </label>
-              <span className="text-[10px] text-[#8b7265]">Superadmin: admin@beffger.com</span>
+              <span className="text-[10px] text-[#8b7265]">Acceso institucional seguro</span>
             </div>
             <div className="relative">
               <Lock className="w-4 h-4 text-[#8b7265] absolute left-3.5 top-1/2 -translate-y-1/2" />

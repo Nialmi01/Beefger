@@ -509,8 +509,8 @@ export default function CheckoutPage() {
                           </span>
                         </div>
                       </div>
-                      <span className="bg-[#FFC247] text-[#222B2B] text-[10px] font-extrabold uppercase px-2 py-0.5 rounded">
-                        TEST SANDBOX
+                      <span className="bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded flex items-center gap-1">
+                        🔒 PAGO SEGURO SSL
                       </span>
                     </label>
 

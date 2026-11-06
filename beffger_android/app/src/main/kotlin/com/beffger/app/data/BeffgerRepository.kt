@@ -652,7 +652,7 @@ class BeffgerRepository {
         val match = staffCredentials.find { (email, password, staff) ->
             staff.role == role &&
             (email.lowercase() == cleanUser || staff.username.lowercase() == cleanUser) &&
-            (password == pass || pass == "1234" || pass == "admin123" || pass == "beff2026")
+            password == pass
         }
         if (match != null) {
             _activeStaffUser.value = match.third

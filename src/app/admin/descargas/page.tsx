@@ -155,7 +155,7 @@ export default function AdminDescargasPage() {
 
         {/* Public App Reference Link */}
         <a
-          href="http://192.168.40.3:8080/beffger-cliente.apk"
+          href="/downloads/beffger-cliente.apk"
           download="beffger-cliente.apk"
           className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold flex items-center gap-2 border border-white/10 transition-all shrink-0"
         >
@@ -236,7 +236,7 @@ export default function AdminDescargasPage() {
                     onClick={() =>
                       handleCopy(
                         'creds',
-                        `App: ${selectedApp.appName}\nUsuario: ${selectedApp.defaultEmail}\nClave: ${selectedApp.defaultPass}\nDescarga: http://192.168.40.3:8080/${selectedApp.apkFile}`
+                        `App: ${selectedApp.appName}\nUsuario: ${selectedApp.defaultEmail}\nClave: ${selectedApp.defaultPass}\nDescarga: https://beefger-platform.vercel.app/downloads/${selectedApp.apkFile}`
                       )
                     }
                     className="text-[11px] font-bold text-[#FFC247] hover:text-white flex items-center gap-1 transition-colors"
@@ -272,7 +272,7 @@ export default function AdminDescargasPage() {
             {/* Direct Download Action */}
             <div className="pt-6 border-t border-white/10 mt-6 space-y-3">
               <a
-                href={`http://192.168.40.3:8080/${selectedApp.apkFile}`}
+                href={`/downloads/${selectedApp.apkFile}`}
                 download={selectedApp.apkFile}
                 className="w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#F47A22] hover:bg-[#d96616] text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-[#F47A22]/25 transition-all active:scale-[0.99]"
               >
@@ -309,10 +309,10 @@ export default function AdminDescargasPage() {
             </div>
 
             <span className="text-xs font-mono text-[#FFC247] bg-white/10 px-3 py-1 rounded-full mb-1">
-              http://192.168.40.3:8080/{selectedApp.apkFile}
+              https://beefger-platform.vercel.app/downloads/{selectedApp.apkFile}
             </span>
             <span className="text-[10px] text-gray-400">
-              Requiere conexión a la red WiFi local
+              Descarga directa oficial desde la nube o red
             </span>
           </div>
 

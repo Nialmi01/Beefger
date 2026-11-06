@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Phone, MapPin, Clock, Instagram, Facebook, UtensilsCrossed } from 'lucide-react';
+import { Phone, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -83,30 +83,32 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Operations & Staff Quick Links */}
+          {/* Service Hours & Customer Trust Box */}
           <div className="space-y-4 bg-white/5 p-4 rounded-xl border border-white/10">
             <h3 className="font-heading text-base tracking-wider text-[#FFC247] flex items-center gap-2">
-              <UtensilsCrossed className="w-4 h-4 text-[#F47A22]" /> Acceso Operativo
+              <Clock className="w-4 h-4 text-[#F47A22]" /> Horarios & Cobertura
             </h3>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <Link href="/admin" className="p-2 rounded bg-black/40 hover:bg-[#F47A22] transition-colors text-center font-bold">
-                Dashboard
-              </Link>
-              <Link href="/admin/pedidos" className="p-2 rounded bg-black/40 hover:bg-[#F47A22] transition-colors text-center font-bold">
-                Kanban
-              </Link>
-              <Link href="/admin/cocina" className="p-2 rounded bg-black/40 hover:bg-[#F47A22] transition-colors text-center font-bold text-[#FFC247]">
-                Cocina KDS
-              </Link>
-              <Link href="/admin/caja" className="p-2 rounded bg-black/40 hover:bg-[#F47A22] transition-colors text-center font-bold">
-                Caja POS
-              </Link>
-              <Link href="/admin/inventario" className="p-2 rounded bg-black/40 hover:bg-[#F47A22] transition-colors text-center font-bold">
-                Kardex
-              </Link>
-              <Link href="/rider/pedidos" className="p-2 rounded bg-black/40 hover:bg-[#F47A22] transition-colors text-center font-bold text-[#10b981]">
-                App Riders
-              </Link>
+            <div className="space-y-2 text-xs text-white/80">
+              <p className="flex justify-between items-center py-1 border-b border-white/5">
+                <span className="text-white/60">Lunes a Domingo:</span>
+                <span className="font-bold text-white">12:00 PM - 11:00 PM</span>
+              </p>
+              <p className="flex justify-between items-center py-1 border-b border-white/5">
+                <span className="text-white/60">Domicilios:</span>
+                <span className="font-bold text-[#10b981]">Despachos en 30-45 min</span>
+              </p>
+              <p className="flex justify-between items-center py-1 border-b border-white/5">
+                <span className="text-white/60">Pagos Seguros:</span>
+                <span className="font-bold text-white">Wompi, Nequi & Efectivo</span>
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/descargar-app"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#FFC247] hover:text-white transition-colors font-bold"
+                >
+                  <span>📱 Descargar App para Clientes →</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

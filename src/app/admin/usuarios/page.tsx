@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { login, getDefaultRouteForRole, getCurrentUser } from '@/lib/auth';
+
 import {
   Shield,
   UserCheck,
@@ -34,14 +34,6 @@ const INITIAL_STAFF: StaffUser[] = [
 export default function UsersRolesPage() {
   const router = useRouter();
   const [staff, setStaff] = useState<StaffUser[]>(INITIAL_STAFF);
-
-  const handleSimulateRole = (staffEmail: string) => {
-    login(staffEmail, '1234');
-    const u = getCurrentUser();
-    if (u) {
-      router.push(getDefaultRouteForRole(u.role));
-    }
-  };
 
   const toggleUserActive = (id: string) => {
     setStaff((prev) =>
@@ -170,13 +162,6 @@ export default function UsersRolesPage() {
                     </span>
                   </td>
                   <td className="p-4 text-right space-x-2 whitespace-nowrap">
-                    <button
-                      onClick={() => handleSimulateRole(u.email)}
-                      className="px-2.5 py-1 rounded-lg bg-[#F47A22] hover:bg-[#d96616] text-white text-[11px] font-bold shadow-sm"
-                      title={`Iniciar turno como ${u.role}`}
-                    >
-                      Probar este Rol →
-                    </button>
                     <button
                       onClick={() => toggleUserActive(u.id)}
                       className="px-2.5 py-1 rounded-lg border border-[#dec0b1] hover:bg-gray-100 text-[11px] font-bold"

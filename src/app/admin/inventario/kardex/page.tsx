@@ -26,15 +26,7 @@ interface MockKardexRow {
   date: string;
 }
 
-const SAMPLE_KARDEX: MockKardexRow[] = [
-  { id: 'k1', sku: 'ING-CARN-01', name: 'Carne de res seleccionada', type: 'consumo', quantity: -300, unit: 'g', previous_stock: 24800, new_stock: 24500, reference: 'Orden #BF-1001 (2x La Brutal)', user: 'Sistema Automático', date: 'Hace 4 min' },
-  { id: 'k2', sku: 'ING-PANB-01', name: 'Pan brioche artesanal', type: 'consumo', quantity: -2, unit: 'un', previous_stock: 177, new_stock: 175, reference: 'Orden #BF-1001', user: 'Sistema Automático', date: 'Hace 4 min' },
-  { id: 'k3', sku: 'EMP-CAJH-01', name: 'Caja ecológica hamburguesa', type: 'consumo', quantity: -2, unit: 'un', previous_stock: 382, new_stock: 380, reference: 'Orden #BF-1001', user: 'Sistema Automático', date: 'Hace 4 min' },
-  { id: 'k4', sku: 'ING-MASP-01', name: 'Masa para pizza 30cm (220g)', type: 'consumo', quantity: -220, unit: 'g', previous_stock: 15020, new_stock: 14800, reference: 'Orden #BF-1002 (La Colombiana)', user: 'Sistema Automático', date: 'Hace 16 min' },
-  { id: 'k5', sku: 'ING-MOZZ-01', name: 'Queso Mozzarella bloque', type: 'consumo', quantity: -130, unit: 'g', previous_stock: 17330, new_stock: 17200, reference: 'Orden #BF-1002', user: 'Sistema Automático', date: 'Hace 16 min' },
-  { id: 'k6', sku: 'ING-CHED-01', name: 'Queso Cheddar lonchas', type: 'compra', quantity: 5000, unit: 'g', previous_stock: 2800, new_stock: 7800, reference: 'Factura Compra FC-8841 Lácteos El Trébol', user: 'Carlos Gerente', date: 'Hoy 10:15 AM' },
-  { id: 'k7', sku: 'ING-PLAT-01', name: 'Plátano maduro en cubos', type: 'merma', quantity: -200, unit: 'g', previous_stock: 9800, new_stock: 9600, reference: 'Merma por maduración excesiva', user: 'Chef Andrés', date: 'Hoy 09:30 AM' },
-];
+const SAMPLE_KARDEX: MockKardexRow[] = [];
 
 export default function KardexAlmacenPage() {
   const [filterType, setFilterType] = useState<string>('all');
@@ -118,35 +110,43 @@ export default function KardexAlmacenPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#dec0b1]/60">
-              {filtered.map((row) => (
-                <tr key={row.id} className="hover:bg-[#FFF2DF]/30 transition-colors">
-                  <td className="p-4 font-mono text-[#8b7265]">{row.date}</td>
-                  <td className="p-4">
-                    <span className="font-bold text-[#222B2B] block">{row.name}</span>
-                    <span className="text-[10px] text-[#8b7265] font-mono">{row.sku}</span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="p-8 text-center text-[#8b7265] text-xs">
+                    No hay movimientos registrados en el Kardex. Los consumos por receta se registrarán automáticamente al despachar comandas.
                   </td>
-                  <td className="p-4">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold uppercase ${
-                      row.type === 'compra'
-                        ? 'bg-emerald-100 text-emerald-800'
-                        : row.type === 'consumo'
-                        ? 'bg-blue-100 text-blue-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}>
-                      {row.type}
-                    </span>
-                  </td>
-                  <td className="p-4 font-mono font-bold">
-                    <span className={row.quantity > 0 ? 'text-[#10b981]' : 'text-[#ba1a1a]'}>
-                      {row.quantity > 0 ? `+${row.quantity}` : row.quantity} {row.unit}
-                    </span>
-                  </td>
-                  <td className="p-4 font-mono text-[#8b7265]">{row.previous_stock} {row.unit}</td>
-                  <td className="p-4 font-mono font-extrabold text-[#222B2B]">{row.new_stock} {row.unit}</td>
-                  <td className="p-4 text-[#574237] max-w-xs truncate">{row.reference}</td>
-                  <td className="p-4 text-[#8b7265]">{row.user}</td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map((row) => (
+                  <tr key={row.id} className="hover:bg-[#FFF2DF]/30 transition-colors">
+                    <td className="p-4 font-mono text-[#8b7265]">{row.date}</td>
+                    <td className="p-4">
+                      <span className="font-bold text-[#222B2B] block">{row.name}</span>
+                      <span className="text-[10px] text-[#8b7265] font-mono">{row.sku}</span>
+                    </td>
+                    <td className="p-4">
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold uppercase ${
+                        row.type === 'compra'
+                          ? 'bg-emerald-100 text-emerald-800'
+                          : row.type === 'consumo'
+                          ? 'bg-blue-100 text-blue-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {row.type}
+                      </span>
+                    </td>
+                    <td className="p-4 font-mono font-bold">
+                      <span className={row.quantity > 0 ? 'text-[#10b981]' : 'text-[#ba1a1a]'}>
+                        {row.quantity > 0 ? `+${row.quantity}` : row.quantity} {row.unit}
+                      </span>
+                    </td>
+                    <td className="p-4 font-mono text-[#8b7265]">{row.previous_stock} {row.unit}</td>
+                    <td className="p-4 font-mono font-extrabold text-[#222B2B]">{row.new_stock} {row.unit}</td>
+                    <td className="p-4 text-[#574237] max-w-xs truncate">{row.reference}</td>
+                    <td className="p-4 text-[#8b7265]">{row.user}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

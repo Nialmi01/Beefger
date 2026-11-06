@@ -40,8 +40,6 @@ export default function PedidosIndexPage() {
     setError(`No encontramos ningún pedido activo con "${query}". Verifica el número.`);
   };
 
-  const sampleRecentOrders = store.getOrders().slice(0, 3);
-
   return (
     <div className="min-h-screen flex flex-col bg-[#FFF2DF]">
       <Navbar />
@@ -91,27 +89,6 @@ export default function PedidosIndexPage() {
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
-
-            {/* Quick Demo Links */}
-            <div className="pt-6 border-t border-[#dec0b1]/60 text-left">
-              <p className="text-xs font-bold text-[#8b7265] uppercase mb-2 text-center">
-                Órdenes activas de demostración:
-              </p>
-              <div className="space-y-2">
-                {sampleRecentOrders.map((o) => (
-                  <button
-                    key={o.id}
-                    onClick={() => router.push(`/pedidos/${o.order_number}`)}
-                    className="w-full p-2.5 rounded-xl bg-[#FFF2DF] hover:bg-[#dec0b1]/40 border border-[#dec0b1] flex items-center justify-between text-xs transition-colors"
-                  >
-                    <span className="font-bold text-[#222B2B]">{o.order_number} ({o.customer_name})</span>
-                    <span className="px-2 py-0.5 rounded-full bg-[#222B2B] text-white font-mono uppercase text-[10px]">
-                      {o.status}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </main>

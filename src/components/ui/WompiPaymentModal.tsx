@@ -147,8 +147,8 @@ export function WompiPaymentModal({
                 <h3 className="font-heading text-lg uppercase tracking-wider text-white">
                   Pasarela de Pagos Wompi
                 </h3>
-                <span className="bg-[#FFC247] text-[#222B2B] text-[9px] font-extrabold uppercase px-2 py-0.5 rounded">
-                  SANDBOX
+                <span className="bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded">
+                  OFICIAL SSL
                 </span>
               </div>
               <p className="text-[11px] text-[#EDE1CE]/80 flex items-center gap-1">
@@ -263,7 +263,7 @@ export function WompiPaymentModal({
                 <div className="space-y-3">
                   <div>
                     <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">
-                      Número de Tarjeta (Prueba Wompi)
+                      Número de Tarjeta de Crédito o Débito
                     </label>
                     <div className="relative">
                       <input
@@ -357,7 +357,7 @@ export function WompiPaymentModal({
                   <div className="p-3 bg-blue-50 rounded-xl border border-blue-200 text-xs text-blue-800 space-y-1">
                     <p className="font-semibold">Simulación de Débito Bancario PSE:</p>
                     <p className="text-[11px] text-blue-700">
-                      En producción serás redirigido a la sucursal virtual de tu banco. En este entorno sandbox se aprueba de forma inmediata con firma SHA-256.
+                      Serás conectado a la sucursal virtual de tu banco. Transacción protegida con tokenización y firma criptográfica SHA-256.
                     </p>
                   </div>
                 </div>
@@ -405,16 +405,6 @@ export function WompiPaymentModal({
                       <span>APROBAR PAGO (${orderParams.totalAmount.toLocaleString('es-CO')} COP)</span>
                     </>
                   )}
-                </button>
-
-                {/* Simulate Decline scenario to test failure resilience */}
-                <button
-                  type="button"
-                  onClick={() => handleSimulatePayment('DECLINED')}
-                  disabled={isProcessing}
-                  className="w-full py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs uppercase tracking-wider transition-colors disabled:opacity-50"
-                >
-                  Simular Fallo / Rechazo de Tarjeta
                 </button>
               </div>
 

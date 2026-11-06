@@ -63,24 +63,8 @@ fun StaffLoginScreen(
     repository: BeffgerRepository,
     onLoginSuccess: () -> Unit
 ) {
-    val defaultUser = when (role) {
-        AppRole.DOMICILIARIO -> "rider@beffger.com"
-        AppRole.COCINA -> "cocina@beffger.com"
-        AppRole.MESERO -> "mesero@beffger.com"
-        AppRole.ADMIN -> "admin@beffger.com"
-        AppRole.CLIENTE -> ""
-    }
-
-    val defaultPass = when (role) {
-        AppRole.DOMICILIARIO -> "rider123"
-        AppRole.COCINA -> "cocina123"
-        AppRole.MESERO -> "mesero123"
-        AppRole.ADMIN -> "admin123"
-        AppRole.CLIENTE -> ""
-    }
-
-    var username by remember { mutableStateOf(defaultUser) }
-    var password by remember { mutableStateOf(defaultPass) }
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
@@ -207,7 +191,7 @@ fun StaffLoginScreen(
                             errorMessage = null
                         },
                         label = { Text("Usuario o Correo Institucional") },
-                        placeholder = { Text(defaultUser) },
+                        placeholder = { Text("ej: usuario@beffger.com") },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                         colors = OutlinedTextFieldDefaults.colors(
@@ -253,34 +237,6 @@ fun StaffLoginScreen(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 12.sp,
                                 modifier = Modifier.padding(10.dp)
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(14.dp))
-
-                    // Credential hint pill
-                    Surface(
-                        color = BeffgerCream,
-                        shape = RoundedCornerShape(10.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                username = defaultUser
-                                password = defaultPass
-                            }
-                    ) {
-                        Row(
-                            modifier = Modifier.padding(10.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text("🔑", fontSize = 14.sp)
-                            Spacer(modifier = Modifier.size(8.dp))
-                            Text(
-                                text = "Demo: $defaultUser / $defaultPass (Toca para autocompletar)",
-                                fontSize = 11.sp,
-                                color = BeffgerCharcoal.copy(alpha = 0.8f),
-                                fontWeight = FontWeight.Medium
                             )
                         }
                     }

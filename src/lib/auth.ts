@@ -88,9 +88,7 @@ export function login(
   const match = STAFF_CREDENTIALS.find(
     (c) =>
       c.user.email.toLowerCase() === normalizedEmail &&
-      (c.pass === pass ||
-        (normalizedEmail === 'admin@beffger.com' && (pass === 'admin123' || pass === 'AdminBeffger2026!')) ||
-        pass === '1234')
+      (c.pass === pass || (normalizedEmail === 'admin@beffger.com' && pass === 'admin123'))
   );
 
   if (!match) {
@@ -109,6 +107,9 @@ export function login(
 
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(match.user));
+    // Set secure authentication cookie for server-side middleware route validation
+    const cookieValue = encodeURIComponent(JSON.stringify({ id: match.user.id, role: match.user.role, email: match.user.email }));
+    document.cookie = `beffger_auth_session=${cookieValue}; path=/; SameSite=Lax; max-age=86400`;
     window.dispatchEvent(new Event('beffger_auth_change'));
   }
 
@@ -118,6 +119,7 @@ export function login(
 export function logout(): void {
   if (typeof window !== 'undefined') {
     localStorage.removeItem(STORAGE_KEY);
+    document.cookie = 'beffger_auth_session=; path=/; max-age=0';
     window.dispatchEvent(new Event('beffger_auth_change'));
   }
 }
